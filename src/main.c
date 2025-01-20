@@ -1,197 +1,119 @@
-
-
-/*******************************************************************************************
-*
-*   raylib [core] example - Storage save/load values
-*
-*   Example complexity rating: [★★☆☆] 2/4
-*
-*   Example originally created with raylib 1.4, last time updated with raylib 4.2
-*
-*   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
-*   BSD-like license that allows static linking with closed source software
-*
-*   Copyright (c) 2015-2025 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
 #include "raylib.h"
+#include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
-#include <stdlib.h>         // Required for: calloc(), free()
+#include "letters.h"
 
-#define STORAGE_DATA_FILE   "storage.data"   // Storage file
+int layout_width = 10;
+int layout_height = 4;
 
-// NOTE: Storage positions must start with 0, directly related to file memory layout
-typedef enum {
-    STORAGE_POSITION_SCORE      = 0,
-    STORAGE_POSITION_HISCORE    = 1
-} StorageData;
-
-// Persistent storage functions
-static bool SaveStorageValue(unsigned int position, int value);
-static int LoadStorageValue(unsigned int position);
-
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
-int main(void)
-{
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
-
-    int score = 0;
-    int hiscore = 0;
-    int framesCounter = 0;
-
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_R))
-        {
-            score = GetRandomValue(1000, 2000);
-            hiscore = GetRandomValue(2000, 4000);
+//--------------------------------------------------------------------------------
+// ENTRY
+//--------------------------------------------------------------------------------
+int main(void) {
+    const int screenWidth = 400;
+    const int screenHeight = 300;
+    int layout_width = 10;
+    int layout_height = 4;
+    
+    InitWindow(640, 480, "Morse Recognition Trainer");
+    SetTargetFPS(18);
+    SetWindowMinSize(screenWidth, screenHeight);
+    SetWindowState(FLAG_WINDOW_RESIZABLE);
+    
+    float defaultLineWidth = rlGetLineWidth();
+    rlSetLineWidth(defaultLineWidth * 3);
+    
+    
+    //--------------------------------------------------------------------------------
+    // MAIN LOOP
+    //--------------------------------------------------------------------------------
+    while (!WindowShouldClose()) {
+    
+        //--------------------------------------------------------------------------------
+        // LAYOUT ADAPTING
+        //--------------------------------------------------------------------------------
+        
+        float circle_space_x = GetScreenWidth();
+        float circle_space_y = GetScreenHeight() * 0.9;  // Save space at the top for buttons
+        float radius = 10.0f;
+    
+        int x_divisions;
+        int y_divisions;
+        
+        //  y = -0.8x + 12 therefore y = (-4x + 60) / 5, see LAYOUT_HGT
+        if (GetScreenWidth() > GetScreenHeight()) {
+            // Normal Desktop Layout 10 x 4
+            layout_width = 10;
+            layout_height = 4;
+            x_divisions = (3 * layout_width) + 1;
+            y_divisions = (3 * layout_height) + 1;
+            radius = (circle_space_x / x_divisions);
+            if (circle_space_x > 3.6 * circle_space_y) radius = 32;  // Edge case, ugly but prevents overlap
+        } else {
+            // Phone style layout 5 x 8
+            layout_width = 5;
+            layout_height = 8;
+            x_divisions = (3 * layout_width) + 1;
+            y_divisions = (3 * layout_height) + 1;
+            radius = (circle_space_y / y_divisions);
         }
-
-        if (IsKeyPressed(KEY_ENTER))
-        {
-            SaveStorageValue(STORAGE_POSITION_SCORE, score);
-            SaveStorageValue(STORAGE_POSITION_HISCORE, hiscore);
+        
+        float single_x_div = circle_space_x / x_divisions;
+        float single_y_div = circle_space_y / y_divisions;
+        
+        //--------------------------------------------------------------------------------
+        // KEY CHECKING
+        //--------------------------------------------------------------------------------
+        
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            if CheckCollisionPointCircle(Vector2 point, Vector2 center, radius)
         }
-        else if (IsKeyPressed(KEY_SPACE))
-        {
-            // NOTE: If requested position could not be found, value 0 is returned
-            score = LoadStorageValue(STORAGE_POSITION_SCORE);
-            hiscore = LoadStorageValue(STORAGE_POSITION_HISCORE);
-        }
-
-        framesCounter++;
-        //----------------------------------------------------------------------------------
-
-        // Draw
-        //----------------------------------------------------------------------------------
+        
+        if ()
+   
+        //--------------------------------------------------------------------------------
+        // DRAWING
+        //--------------------------------------------------------------------------------
         BeginDrawing();
-
-            ClearBackground(RAYWHITE);
-
-            DrawText(TextFormat("SCORE: %i", score), 280, 130, 40, MAROON);
-            DrawText(TextFormat("HI-SCORE: %i", hiscore), 210, 200, 50, BLACK);
-
-            DrawText(TextFormat("frames: %i", framesCounter), 10, 10, 20, LIME);
-
-            DrawText("Press R to generate random numbers", 220, 40, 20, LIGHTGRAY);
-            DrawText("Press ENTER to SAVE values", 250, 310, 20, LIGHTGRAY);
-            DrawText("Press SPACE to LOAD values", 252, 350, 20, LIGHTGRAY);
-
+            ClearBackground(LIGHTGRAY);
+            
+            // Split the screen into buttons and circles sections
+            DrawLine(
+                0, 
+                (GetScreenHeight() * 0.1), 
+                GetScreenWidth(),
+                (GetScreenHeight() * 0.1), 
+                BLACK
+            );
+            
+            // Draw Buttons
+            
+            // Draw Circles with text in them
+            for (int k = 0, y = 2; k < layout_height; k++, y += 3) {
+                for (int i = 0, x = 2; i < layout_width;  i++, x += 3) {
+                    DrawCircleLines(
+                        x * single_x_div,
+                        y * single_y_div + (GetScreenHeight() * 0.1),
+                        radius,
+                        BLACK
+                    );
+                    
+                    DrawText(
+                        letters[i + (k * layout_width)], 
+                        x * single_x_div - radius / 4.7, 
+                        y * single_y_div + (GetScreenHeight() * 0.1) - radius / 2.2, 
+                        radius, 
+                        BLACK
+                    );
+                }
+            }
         EndDrawing();
-        //----------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------
     }
-
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
-
+    //--------------------------------------------------------------------------------
+    // De-initialise
+    //--------------------------------------------------------------------------------
+    
+    CloseWindow();
     return 0;
-}
-
-// Save integer value to storage file (to defined position)
-// NOTE: Storage positions is directly related to file memory layout (4 bytes each integer)
-bool SaveStorageValue(unsigned int position, int value)
-{
-    bool success = false;
-    int dataSize = 0;
-    unsigned int newDataSize = 0;
-    unsigned char *fileData = LoadFileData(STORAGE_DATA_FILE, &dataSize);
-    unsigned char *newFileData = NULL;
-
-    if (fileData != NULL)
-    {
-        if (dataSize <= (position*sizeof(int)))
-        {
-            // Increase data size up to position and store value
-            newDataSize = (position + 1)*sizeof(int);
-            newFileData = (unsigned char *)RL_REALLOC(fileData, newDataSize);
-
-            if (newFileData != NULL)
-            {
-                // RL_REALLOC succeded
-                int *dataPtr = (int *)newFileData;
-                dataPtr[position] = value;
-            }
-            else
-            {
-                // RL_REALLOC failed
-                TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to realloc data (%u), position in bytes (%u) bigger than actual file size", STORAGE_DATA_FILE, dataSize, position*sizeof(int));
-
-                // We store the old size of the file
-                newFileData = fileData;
-                newDataSize = dataSize;
-            }
-        }
-        else
-        {
-            // Store the old size of the file
-            newFileData = fileData;
-            newDataSize = dataSize;
-
-            // Replace value on selected position
-            int *dataPtr = (int *)newFileData;
-            dataPtr[position] = value;
-        }
-
-        success = SaveFileData(STORAGE_DATA_FILE, newFileData, newDataSize);
-        RL_FREE(newFileData);
-
-        TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
-    }
-    else
-    {
-        TraceLog(LOG_INFO, "FILEIO: [%s] File created successfully", STORAGE_DATA_FILE);
-
-        dataSize = (position + 1)*sizeof(int);
-        fileData = (unsigned char *)RL_MALLOC(dataSize);
-        int *dataPtr = (int *)fileData;
-        dataPtr[position] = value;
-
-        success = SaveFileData(STORAGE_DATA_FILE, fileData, dataSize);
-        UnloadFileData(fileData);
-
-        TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
-    }
-
-    return success;
-}
-
-// Load integer value from storage file (from defined position)
-// NOTE: If requested position could not be found, value 0 is returned
-int LoadStorageValue(unsigned int position)
-{
-    int value = 0;
-    int dataSize = 0;
-    unsigned char *fileData = LoadFileData(STORAGE_DATA_FILE, &dataSize);
-
-    if (fileData != NULL)
-    {
-        if (dataSize < ((int)(position*4))) TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to find storage position: %i", STORAGE_DATA_FILE, position);
-        else
-        {
-            int *dataPtr = (int *)fileData;
-            value = dataPtr[position];
-        }
-
-        UnloadFileData(fileData);
-
-        TraceLog(LOG_INFO, "FILEIO: [%s] Loaded storage value: %i", STORAGE_DATA_FILE, value);
-    }
-
-    return value;
 }
