@@ -2,28 +2,31 @@
 #include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
 #include "letters.h"
+#include "morse.h"
 
-int layout_width = 10;
-int layout_height = 4;
+int layoutWidth = 10;
+int layoutHeight = 4;
 
 //--------------------------------------------------------------------------------
 // ENTRY
 //--------------------------------------------------------------------------------
 int main(void) {
-    const int screenWidth = 400;
-    const int screenHeight = 300;
-    int layout_width = 10;
-    int layout_height = 4;
-    
     InitWindow(640, 480, "Morse Recognition Trainer");
-    SetTargetFPS(18);
-    SetWindowMinSize(screenWidth, screenHeight);
+    SetTargetFPS(60);
+    SetWindowMinSize(400, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     
+    InitAudioDevice();
+    
+    // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
     rlSetLineWidth(defaultLineWidth * 3);
     
+    int layoutWidth = 10;
+    int layoutHeight = 4;
     
+    bool wasKeyPress = false;
+    int keyPressed = KEY_A;
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
@@ -33,44 +36,40 @@ int main(void) {
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
         
-        float circle_space_x = GetScreenWidth();
-        float circle_space_y = GetScreenHeight() * 0.9;  // Save space at the top for buttons
+        float circleSpaceX = GetScreenWidth();
+        float circleSpaceY = GetScreenHeight() * 0.9;  // Save space at the top for buttons
         float radius = 10.0f;
-    
-        int x_divisions;
-        int y_divisions;
+        int divisionsX;
+        int divisionsY;
         
-        //  y = -0.8x + 12 therefore y = (-4x + 60) / 5, see LAYOUT_HGT
         if (GetScreenWidth() > GetScreenHeight()) {
             // Normal Desktop Layout 10 x 4
-            layout_width = 10;
-            layout_height = 4;
-            x_divisions = (3 * layout_width) + 1;
-            y_divisions = (3 * layout_height) + 1;
-            radius = (circle_space_x / x_divisions);
-            if (circle_space_x > 3.6 * circle_space_y) radius = 32;  // Edge case, ugly but prevents overlap
+            layoutWidth = 10;
+            layoutHeight = 4;
+            divisionsX = (3 * layoutWidth) + 1;
+            divisionsY = (3 * layoutHeight) + 1;
+            radius = (circleSpaceX / divisionsX);
+            if (circleSpaceX > 3.6 * circleSpaceY) radius = 32;  // Edge case, ugly but prevents overlap
         } else {
             // Phone style layout 5 x 8
-            layout_width = 5;
-            layout_height = 8;
-            x_divisions = (3 * layout_width) + 1;
-            y_divisions = (3 * layout_height) + 1;
-            radius = (circle_space_y / y_divisions);
+            layoutWidth = 5;
+            layoutHeight = 8;
+            divisionsX = (3 * layoutWidth) + 1;
+            divisionsY = (3 * layoutHeight) + 1;
+            radius = (circleSpaceY / divisionsY);
         }
         
-        float single_x_div = circle_space_x / x_divisions;
-        float single_y_div = circle_space_y / y_divisions;
+        float singleDivX = circleSpaceX / divisionsX;
+        float singleDivY = circleSpaceY / divisionsY;
         
         //--------------------------------------------------------------------------------
         // KEY CHECKING
         //--------------------------------------------------------------------------------
         
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            if CheckCollisionPointCircle(Vector2 point, Vector2 center, radius)
-        }
+        //--------------------------------------------------------------------------------
+        // PLAY MORSE
+        //--------------------------------------------------------------------------------
         
-        if ()
-   
         //--------------------------------------------------------------------------------
         // DRAWING
         //--------------------------------------------------------------------------------
@@ -86,25 +85,55 @@ int main(void) {
                 BLACK
             );
             
-            // Draw Buttons
+            // TODO: Draw Buttons
+            Rectangle startButton = { 10, 10, GetScreenWidth() / 4, GetScreenHeight() * 0.05 };
+            DrawRectangleRoundedLines(startButton, 3, 0.0f, BLUE);
+            //DrawText()
             
-            // Draw Circles with text in them
-            for (int k = 0, y = 2; k < layout_height; k++, y += 3) {
-                for (int i = 0, x = 2; i < layout_width;  i++, x += 3) {
+            // This loops draws the main circles, but also does collision detection 
+            for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
+                for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
+                
+                    //--------------------------------------------------------------------------------
+                    // Draw Circles with letters in them
+                    //--------------------------------------------------------------------------------
                     DrawCircleLines(
-                        x * single_x_div,
-                        y * single_y_div + (GetScreenHeight() * 0.1),
+                        x * singleDivX,
+                        y * singleDivY + (GetScreenHeight() * 0.1),
                         radius,
                         BLACK
                     );
                     
+                    // Used for Centering the letters in each circle
+                    Vector2 offsets = MeasureTextEx(
+                        GetFontDefault(),
+                        letters[i + (k * layoutWidth)],
+                        radius,
+                        2  // Is set to to by default in rText.C I think this is an unused parameter TODO: Check and issue report
+                    );
+                    
                     DrawText(
-                        letters[i + (k * layout_width)], 
-                        x * single_x_div - radius / 4.7, 
-                        y * single_y_div + (GetScreenHeight() * 0.1) - radius / 2.2, 
-                        radius, 
+                        letters[i + (k * layoutWidth)], 
+                        x * singleDivX - (offsets.x / 2), 
+                        y * singleDivY + (GetScreenHeight() * 0.105) - (offsets.y / 2), 
+                        radius,
                         BLACK
                     );
+                    
+                    //--------------------------------------------------------------------------------
+                    // TODO: Detection
+                    //--------------------------------------------------------------------------------
+                    
+                    // Check if one was clicked by the mouse
+                    //if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+                    //    
+                    //    if (CheckCollisionPointCircle())
+                    //}
+                    
+                    // Check if it was typed
+                    // if (true)
+               
+                    
                 }
             }
         EndDrawing();
