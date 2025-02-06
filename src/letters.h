@@ -1,10 +1,9 @@
-/* This header defines letters for printing 
- * and some utility functions for leveling */
-
+/* This header defines letters for printing */ 
 
 #ifndef LETTERS_H
 #define LETTERS_H
 
+// Strings with all the letters
 char* letters[40] = {
     "1",
     "2",

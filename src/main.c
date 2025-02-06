@@ -1,3 +1,5 @@
+#include "stdio.h"
+
 #include "raylib.h"
 #include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
@@ -63,15 +65,7 @@ int main(void) {
         float singleDivY = circleSpaceY / divisionsY;
         
         //--------------------------------------------------------------------------------
-        // KEY CHECKING
-        //--------------------------------------------------------------------------------
-        
-        //--------------------------------------------------------------------------------
-        // PLAY MORSE
-        //--------------------------------------------------------------------------------
-        
-        //--------------------------------------------------------------------------------
-        // DRAWING
+        // DRAWING, CHECKING, PLAYING
         //--------------------------------------------------------------------------------
         BeginDrawing();
             ClearBackground(LIGHTGRAY);
@@ -94,12 +88,13 @@ int main(void) {
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
                 
+                    Vector2 circleCentre = {x * singleDivX, y * singleDivY + (GetScreenHeight() * 0.1)};
+
                     //--------------------------------------------------------------------------------
-                    // Draw Circles with letters in them
+                    // Drawing parts
                     //--------------------------------------------------------------------------------
-                    DrawCircleLines(
-                        x * singleDivX,
-                        y * singleDivY + (GetScreenHeight() * 0.1),
+                    DrawCircleLinesV(
+                        circleCentre,
                         radius,
                         BLACK
                     );
@@ -121,18 +116,24 @@ int main(void) {
                     );
                     
                     //--------------------------------------------------------------------------------
-                    // TODO: Detection
+                    // Detection
                     //--------------------------------------------------------------------------------
-                    
+                    int wasDetected = 41;
                     // Check if one was clicked by the mouse
-                    //if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-                    //    
-                    //    if (CheckCollisionPointCircle())
-                    //}
+                    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+                        if (CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {
+                            wasDetected = i + (k * layoutWidth);
+                        }
+                    } else {  // Check if it was typed
+                        
+                    }
                     
                     // Check if it was typed
-                    // if (true)
-               
+                    if (wasDetected < 40) {
+                        printf("Pressed %s\n", letters[wasDetected]);
+                        //playMorse(wasDetected);
+                    }
+
                     
                 }
             }
