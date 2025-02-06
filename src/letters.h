@@ -42,6 +42,7 @@ char* letters[40] = {
     "B",
     "N",
     "M",
+    // Special
     ",",
     ".",
     "/",

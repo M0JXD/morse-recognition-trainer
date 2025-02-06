@@ -126,8 +126,7 @@ int main(void) {
                         }
                     } else {  // Check if it was typed
                         
-                    }
-                    
+                    }             
                     // Check if it was typed
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", letters[wasDetected]);
