@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include "ctype.h"
 
 #include "raylib.h"
 #include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
@@ -26,9 +27,6 @@ int main(void) {
     
     int layoutWidth = 10;
     int layoutHeight = 4;
-    
-    bool wasKeyPress = false;
-    int keyPressed = KEY_A;
     int whatTheme = 1;
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -138,8 +136,14 @@ int main(void) {
                             wasDetected = i + (k * layoutWidth);
                         }
                     } else {  // Check if it was typed
-                        
-                    }             
+                        char pressed[2] = "\0"; 
+                        pressed[0] = toupper(GetCharPressed());
+                        if(pressed[0]) {
+                            for (wasDetected = 0; wasDetected < 40; wasDetected++) {
+                                if (letters[wasDetected][0] == pressed[0]) { break; }
+                            }
+                        }
+                    }
                     // Check if it was typed
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", letters[wasDetected]);
