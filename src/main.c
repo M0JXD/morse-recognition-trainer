@@ -33,18 +33,21 @@ int main(void) {
     // MAIN LOOP
     //--------------------------------------------------------------------------------
     while (!WindowShouldClose()) {
-    
+        
+        float width = GetScreenWidth();
+        float height = GetScreenHeight();
+
         //--------------------------------------------------------------------------------
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
         
-        float circleSpaceX = GetScreenWidth();
-        float circleSpaceY = GetScreenHeight() * 0.9;  // Save space at the top for buttons
+        float circleSpaceX = width;
+        float circleSpaceY = height * 0.9;  // Save space at the top for buttons
         float radius = 10.0f;
         int divisionsX;
         int divisionsY;
         
-        if (GetScreenWidth() > GetScreenHeight()) {
+        if (width > height) {
             // Normal Desktop Layout 10 x 4
             layoutWidth = 10;
             layoutHeight = 4;
@@ -71,24 +74,23 @@ int main(void) {
             ClearBackground(LIGHTGRAY);
             
             // Split the screen into buttons and circles sections
-            DrawLine(
-                0, 
-                (GetScreenHeight() * 0.1), 
-                GetScreenWidth(),
-                (GetScreenHeight() * 0.1), 
-                BLACK
-            );
+            DrawLine(0, 50, width, 50, BLACK);
             
             // TODO: Draw Buttons
-            Rectangle startButton = { 10, 10, GetScreenWidth() / 4, GetScreenHeight() * 0.05 };
-            DrawRectangleRoundedLines(startButton, 3, 0.0f, BLUE);
-            //DrawText()
+            Rectangle startLessonButton = { 10, 10, 180, 30 };
+            DrawRectangleRoundedLines(startLessonButton, 0.4f, 0.0f, BLUE);
+            DrawText("Start Lesson", 32, 15, 20, BLACK);
             
+            Rectangle switchTheme = { (width - 190), 10, 180, 30 };
+            DrawRectangleRoundedLines(switchTheme, 0.4f, 0.0f, PURPLE);
+            DrawText("Switch Theme", width - 165, 15, 20, BLACK);
+
+
             // This loops draws the main circles, but also does collision detection 
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
                 
-                    Vector2 circleCentre = {x * singleDivX, y * singleDivY + (GetScreenHeight() * 0.1)};
+                    Vector2 circleCentre = {x * singleDivX, y * singleDivY + (height * 0.1)};
 
                     //--------------------------------------------------------------------------------
                     // Drawing parts
@@ -110,7 +112,7 @@ int main(void) {
                     DrawText(
                         letters[i + (k * layoutWidth)], 
                         x * singleDivX - (offsets.x / 2), 
-                        y * singleDivY + (GetScreenHeight() * 0.105) - (offsets.y / 2), 
+                        y * singleDivY + (height * 0.105) - (offsets.y / 2), 
                         radius,
                         BLACK
                     );
@@ -132,8 +134,6 @@ int main(void) {
                         printf("Pressed %s\n", letters[wasDetected]);
                         //playMorse(wasDetected);
                     }
-
-                    
                 }
             }
         EndDrawing();
