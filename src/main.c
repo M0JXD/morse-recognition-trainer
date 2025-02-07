@@ -29,6 +29,7 @@ int main(void) {
     
     bool wasKeyPress = false;
     int keyPressed = KEY_A;
+    int whatTheme = 1;
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
@@ -36,6 +37,16 @@ int main(void) {
         
         float width = GetScreenWidth();
         float height = GetScreenHeight();
+        Color mainTheme;
+        Color oppositeMainTheme;
+
+        if (whatTheme) {
+            mainTheme = LIGHTGRAY;
+            oppositeMainTheme = BLACK;
+        } else {
+            mainTheme = DARKGRAY;
+            oppositeMainTheme = WHITE;
+        }
 
         //--------------------------------------------------------------------------------
         // LAYOUT ADAPTING
@@ -71,19 +82,23 @@ int main(void) {
         // DRAWING, CHECKING, PLAYING
         //--------------------------------------------------------------------------------
         BeginDrawing();
-            ClearBackground(LIGHTGRAY);
+            ClearBackground(mainTheme);
             
             // Split the screen into buttons and circles sections
             DrawLine(0, 50, width, 50, BLACK);
             
-            // TODO: Draw Buttons
+            // Draw Buttons
             Rectangle startLessonButton = { 10, 10, 180, 30 };
             DrawRectangleRoundedLines(startLessonButton, 0.4f, 0.0f, BLUE);
-            DrawText("Start Lesson", 32, 15, 20, BLACK);
+            DrawText("Start Lesson", 32, 15, 20, oppositeMainTheme);
             
-            Rectangle switchTheme = { (width - 190), 10, 180, 30 };
-            DrawRectangleRoundedLines(switchTheme, 0.4f, 0.0f, PURPLE);
-            DrawText("Switch Theme", width - 165, 15, 20, BLACK);
+            Rectangle switchThemeButton = { (width - 190), 10, 180, 30 };
+            DrawRectangleRoundedLines(switchThemeButton, 0.4f, 0.0f, PURPLE);
+            DrawText("Switch Theme", width - 167, 15, 20, oppositeMainTheme);
+
+            // Detect Buttons
+            CheckCollisionPointRec(GetMousePosition(), startLessonButton);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) whatTheme = !whatTheme;
 
 
             // This loops draws the main circles, but also does collision detection 
@@ -95,26 +110,22 @@ int main(void) {
                     //--------------------------------------------------------------------------------
                     // Drawing parts
                     //--------------------------------------------------------------------------------
-                    DrawCircleLinesV(
-                        circleCentre,
-                        radius,
-                        BLACK
-                    );
+                    DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
                     
                     // Used for Centering the letters in each circle
                     Vector2 offsets = MeasureTextEx(
                         GetFontDefault(),
                         letters[i + (k * layoutWidth)],
                         radius,
-                        2  // Is set to to by default in rText.C I think this is an unused parameter TODO: Check and issue report
-                    );
+                        2  // Is the default in rText.C I think this is an unused parameter 
+                    );  // TODO: Check and issue report to raylib
                     
                     DrawText(
                         letters[i + (k * layoutWidth)], 
                         x * singleDivX - (offsets.x / 2), 
                         y * singleDivY + (height * 0.105) - (offsets.y / 2), 
                         radius,
-                        BLACK
+                        oppositeMainTheme
                     );
                     
                     //--------------------------------------------------------------------------------
