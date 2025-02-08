@@ -21,14 +21,14 @@ int main(void) {
     
     // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
-    rlSetLineWidth(defaultLineWidth * 3);
+    rlSetLineWidth(defaultLineWidth * 2.3);
     
     int layoutWidth = 10;
     int layoutHeight = 4;
     int whatTheme = 1;
 
-    // Initialise the Waves
-
+    // Initialise the dot and dash Waves
+    
 
     // TODO: Load game save and generate waves for Morse
     // Maybe I need a loading screen for when it generates?
@@ -54,7 +54,7 @@ int main(void) {
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
         float circleSpaceX = width;
-        float circleSpaceY = height - 70;  // Save space at the top for buttons
+        float circleSpaceY = height - 50;  // Save space at the top for buttons
         float radius = 10.0f;
         int divisionsX;
         int divisionsY;
@@ -72,6 +72,7 @@ int main(void) {
             divisionsX = (3 * layoutWidth) + 1;
             divisionsY = (3 * layoutHeight) + 1;
             radius = (circleSpaceY / divisionsY);
+            if (circleSpaceY > 3.6 * circleSpaceX) radius = 32;  // Edge case, ugly but prevents overlap
         }
         
         float singleDivX = circleSpaceX / divisionsX;
@@ -103,25 +104,58 @@ int main(void) {
             // TODO: Improve this now that top bar is constant size.
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
-
-                    // TODO: Add segments to each circle for progress
                     // TODO: Add animation to the circle that is playing
-                    Vector2 circleCentre = {x * singleDivX, y * singleDivY + (height * 0.1)};
+
+                    // Outer Circle
+                    Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 50};
                     DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
-                    
+
+                    // Smaller inner circle
+                    DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
+
+                    // Fill with ring as per progress
+                    // DrawRing();
+
+                    // Add 8 lines for the segments
+                    DrawLine(circleCentre.x, circleCentre.y + radius * 0.6, 
+                             circleCentre.x, circleCentre.y + radius, oppositeMainTheme);
+
+                    DrawLine(circleCentre.x, circleCentre.y - radius * 0.6, 
+                             circleCentre.x, circleCentre.y - radius, oppositeMainTheme);
+
+                    DrawLine(circleCentre.x + radius * 0.6, circleCentre.y, 
+                             circleCentre.x + radius, circleCentre.y, oppositeMainTheme);
+
+                    DrawLine(circleCentre.x - radius * 0.6, circleCentre.y,
+                             circleCentre.x - radius, circleCentre.y, oppositeMainTheme);
+
+                    // sin(45) = 0.707
+                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707, 
+                             circleCentre.x + radius * 0.707, circleCentre.y + radius * 0.707, oppositeMainTheme);
+   
+                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707, 
+                             circleCentre.x - radius * 0.707, circleCentre.y + radius * 0.707, oppositeMainTheme);
+
+                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707, 
+                             circleCentre.x - radius * 0.707, circleCentre.y - radius * 0.707, oppositeMainTheme);
+
+                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707, 
+                             circleCentre.x + radius * 0.707, circleCentre.y - radius * 0.707, oppositeMainTheme);
+
                     // Used for centering the letters in each circle
                     Vector2 offsets = MeasureTextEx(
                         GetFontDefault(),
                         letters_qwerty[i + (k * layoutWidth)],
-                        radius,
+                        radius * 0.9,
                         2  // Is the default in rText.C I think this is an unused parameter 
                     );  // TODO: Double check and issue report to raylib
                     
+                    // Letter in circle
                     DrawText(
                         letters_qwerty[i + (k * layoutWidth)], 
-                        x * singleDivX - (offsets.x / 2), 
-                        y * singleDivY + (height * 0.105) - (offsets.y / 2), 
-                        radius,
+                        circleCentre.x - (offsets.x / 2) + 1, 
+                        circleCentre.y - (offsets.y / 2) + 1, 
+                        radius * 0.9,
                         oppositeMainTheme
                     );
                     
@@ -146,7 +180,7 @@ int main(void) {
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", letters_qwerty[wasDetected]);
                         //playMorse(wasDetected);
-                    }
+                    }   
                 }
             }
         EndDrawing();

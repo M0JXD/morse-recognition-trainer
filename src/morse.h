@@ -8,8 +8,8 @@
 
 #include "raylib.h"
 
-// These are sized to be big enough for the lowest allowed WPM
-// no dynamic memory aspects
+// These are sized to be big enough for the lowest allowed WPM (5)
+// no dynamic resizing aspects, because they'll always be needed
 extern Wave dot;
 extern Wave dash;
 
