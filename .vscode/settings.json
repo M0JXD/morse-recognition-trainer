@@ -67,6 +67,8 @@
     "stdarg.h": "c",
     "raylib.h": "c",
     "stdlib.h": "c",
-    "rlgl.h": "c"
+    "rlgl.h": "c",
+    "bitset": "c",
+    "__locale": "c"
   }
 }

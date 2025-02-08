@@ -6,6 +6,9 @@
 #include "letters.h"
 #include "morse.h"
 
+Wave dot;
+Wave dash;
+
 //--------------------------------------------------------------------------------
 // ENTRY
 //--------------------------------------------------------------------------------
@@ -23,6 +26,9 @@ int main(void) {
     int layoutWidth = 10;
     int layoutHeight = 4;
     int whatTheme = 1;
+
+    // Initialise the Waves
+
 
     // TODO: Load game save and generate waves for Morse
     // Maybe I need a loading screen for when it generates?
@@ -106,13 +112,13 @@ int main(void) {
                     // Used for centering the letters in each circle
                     Vector2 offsets = MeasureTextEx(
                         GetFontDefault(),
-                        letters[i + (k * layoutWidth)],
+                        letters_qwerty[i + (k * layoutWidth)],
                         radius,
                         2  // Is the default in rText.C I think this is an unused parameter 
                     );  // TODO: Double check and issue report to raylib
                     
                     DrawText(
-                        letters[i + (k * layoutWidth)], 
+                        letters_qwerty[i + (k * layoutWidth)], 
                         x * singleDivX - (offsets.x / 2), 
                         y * singleDivY + (height * 0.105) - (offsets.y / 2), 
                         radius,
@@ -132,13 +138,13 @@ int main(void) {
                         pressed[0] = toupper(GetCharPressed());
                         if(pressed[0]) {
                             for (wasDetected = 0; wasDetected < 40; wasDetected++) {
-                                if (letters[wasDetected][0] == pressed[0]) { break; }
+                                if (letters_qwerty[wasDetected][0] == pressed[0]) { break; }
                             }
                         }
                     }
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
-                        printf("Pressed %s\n", letters[wasDetected]);
+                        printf("Pressed %s\n", letters_qwerty[wasDetected]);
                         //playMorse(wasDetected);
                     }
                 }

@@ -1,6 +1,6 @@
 #include "letters.h"
 
-const char* letters[40] = {
+const char* letters_qwerty[40] = {
     "1",
     "2",
     "3",
@@ -43,4 +43,51 @@ const char* letters[40] = {
     ".",
     "/",
     "?"
+};
+
+// See https://www.qsl.net/kb5wck/super.html
+// And: https://lcwo.net/forum/628
+// Using LCWO's order
+const char* letters_koch[40] = {
+    "K",
+    "M",
+    "U",
+    "R",
+    "E",
+    "S",
+    "N",
+    "A", 
+    "P",
+    "T",
+    "L",
+    "W",
+    "I",
+    ".", 
+    "J",
+    "Z",
+    // "=", // Removed as not in app copied!
+    "F",
+    "O",
+    "Y",
+    ",",
+    "V",
+    "G",
+    "5",
+    "/",
+    "Q",
+    "9",
+    "2",
+    "H",
+    "3",
+    "8",
+    "B",
+    "?",
+    "4",
+    "7",
+    "C",
+    "1",
+    "D",
+    "6",
+    "0", 
+    "X" 
 };

@@ -13,6 +13,6 @@ typedef struct SaveState {
 
 void LoadState();
 void SaveState();
-void UpdateLevel(char* letterToUpdate);
+void UpdateLevel(char* kochLetterToUpdate);
 
 #endif  // GAME_SAVE_H
