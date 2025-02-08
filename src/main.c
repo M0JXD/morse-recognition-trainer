@@ -94,6 +94,7 @@ int main(void) {
                 whatTheme = !whatTheme;
 
             // This loops draws the main circles, but also does collision detection 
+            // TODO: Improve this now that top bar is constant size.
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
 
