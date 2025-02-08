@@ -3,8 +3,8 @@
 #ifndef LETTERS_H
 #define LETTERS_H
 
-// Strings with all the letters
-char* letters[40] = {
+// Strings with all the letters (extern?)
+const char* letters[40] = {
     "1",
     "2",
     "3",
@@ -48,8 +48,5 @@ char* letters[40] = {
     "/",
     "?"
 };
-
-// Koch method levels
-int level[40] = { 0 };
 
 #endif  // LETTERS_H

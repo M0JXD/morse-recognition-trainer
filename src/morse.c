@@ -37,7 +37,6 @@ Wave CalculateDot(int WPM, int tone) {
     return dot;
 }
 
-
 Wave CalculateDash(int WPM, int tone) {
     Wave dash;
         dash.sampleRate = 44100;
@@ -172,6 +171,7 @@ Sound CalculateMorseLetter(int letter, Wave dot, Wave dash) {
     }  
 }
 
+// TODO
 void playMorse(int letter) {
     
 }
