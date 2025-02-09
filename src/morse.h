@@ -8,17 +8,28 @@
 
 #include "raylib.h"
 
-// These are sized to be big enough for the lowest allowed WPM (5)
-// no dynamic resizing aspects, because they'll always be needed
-extern Wave dot;
-extern Wave dash;
+/* A selection of wav files are included to play the morse sounds. 
+ * Included options are:
+ * 650Hz 10WPM
+ * 650Hz 15WPM
+ * 650Hz 20WPM
+ * 650Hz 25WPM
+ * 700Hz 10WPM
+ * 700Hz 15WPM
+ * 700Hz 20WPM
+ * 700Hz 25WPM
+ * 800Hz 10WPM
+ * 800Hz 15WPM
+ * 800Hz 20WPM
+ * 800Hz 25WPM
+ * This site was used to generate them: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
+ * Generated using letters "E" and "T". I checked in audacity and they contain the appropriate gaps after the sound already. 
+ * Please use the site to generate the ones you need should you're requirements not be provided for */
 
-Wave CalculateDotAndDash(int WPM, int tone);
-Wave ConcatWaves(int n, ...);
-Sound CalculateMorseLetter(int letter, Wave dot, Wave dash);
+extern Sound dot;
+extern Sound dash;
+
 void PlayMorse(int letter);
 
-// For words and sentences, at some point
-// Sound calculateGroup(const char* group, int farnsworthTiming);
 
 #endif  // MORSE_H

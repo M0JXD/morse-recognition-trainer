@@ -7,9 +7,6 @@
 #include "morse.h"
 #include "lessons.h"
 
-Wave dot;
-Wave dash;
-
 //--------------------------------------------------------------------------------
 // ENTRY
 //--------------------------------------------------------------------------------
@@ -157,14 +154,14 @@ int main(void) {
                     // Used for centering the letters in each circle
                     Vector2 offsets = MeasureTextEx(
                         GetFontDefault(),
-                        letters_qwerty[i + (k * layoutWidth)],
+                        lettersQwerty[i + (k * layoutWidth)],
                         radius * 0.9,
                         2  // Is the default in rText.C I think this is an unused parameter 
                     );  // TODO: Double check and issue report to raylib
                     
                     // Letter in circle
                     DrawText(
-                        letters_qwerty[i + (k * layoutWidth)], 
+                        lettersQwerty[i + (k * layoutWidth)], 
                         circleCentre.x - (offsets.x / 2), 
                         circleCentre.y - (offsets.y / 2), 
                         radius * 0.9,
@@ -184,13 +181,13 @@ int main(void) {
                         pressed[0] = toupper(GetCharPressed());
                         if(pressed[0]) {
                             for (wasDetected = 0; wasDetected < 40; wasDetected++) {
-                                if (letters_qwerty[wasDetected][0] == pressed[0]) { break; }
+                                if (lettersQwerty[wasDetected][0] == pressed[0]) { break; }
                             }
                         }
                     }
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
-                        printf("Pressed %s\n", letters_qwerty[wasDetected]);
+                        printf("Pressed %s\n", lettersQwerty[wasDetected]);
                         PlayMorse(wasDetected);
                         // UpdateLesson(wasDetected);
                     }
@@ -198,6 +195,7 @@ int main(void) {
             }
         EndDrawing();
         inLesson = EndLesson(0);
+        PlayMorse(41);
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------

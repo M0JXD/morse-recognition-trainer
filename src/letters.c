@@ -1,6 +1,6 @@
 #include "letters.h"
 
-const char* letters_qwerty[40] = {
+const char* lettersQwerty[40] = {
     "1",
     "2",
     "3",
@@ -48,7 +48,7 @@ const char* letters_qwerty[40] = {
 // See https://www.qsl.net/kb5wck/super.html
 // And: https://lcwo.net/forum/628
 // Using LCWO's order
-const char* letters_koch[40] = {
+const char* lettersKoch[40] = {
     "K",
     "M",
     "U",
