@@ -7,6 +7,9 @@
 #include "morse.h"
 #include "lessons.h"
 
+Sound dot;
+Sound dash;
+
 //--------------------------------------------------------------------------------
 // ENTRY
 //--------------------------------------------------------------------------------
@@ -20,7 +23,6 @@ int main(void) {
     // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
     rlSetLineWidth(defaultLineWidth * 2.3);
-    
     int layoutWidth = 10;
     int layoutHeight = 4;
 
@@ -28,7 +30,11 @@ int main(void) {
     int whatTheme = 1;  // Light or Dark Mode
     int inLesson = 0;  // Is a lesson running
 
-    // TODO: Load game save and init/generate waves for Morse
+    // TODO: Load game save
+
+    // Load morse sounds
+    dot = LoadSound("assets/morse_dit.wav");
+    dash = LoadSound("assets/morse_dah.wav");
     // Maybe I need a loading screen for when it generates?
 
     //--------------------------------------------------------------------------------

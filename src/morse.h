@@ -9,6 +9,7 @@
 #include "raylib.h"
 
 /* A selection of wav files are included to play the morse sounds. 
+ * The original intention was to generate on the fly, but for a measly 48kB this is much easier!
  * Included options are:
  * 650Hz 10WPM
  * 650Hz 15WPM
@@ -25,9 +26,6 @@
  * This site was used to generate them: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
  * Generated using letters "E" and "T". I checked in audacity and they contain the appropriate gaps after the sound already. 
  * Please use the site to generate the ones you need should you're requirements not be provided for */
-
-extern Sound dot;
-extern Sound dash;
 
 void PlayMorse(int letter);
 
