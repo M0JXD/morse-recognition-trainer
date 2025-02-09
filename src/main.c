@@ -73,7 +73,7 @@ int main(void) {
             divisionsX = (3 * layoutWidth) + 1;
             divisionsY = (3 * layoutHeight) + 1;
             radius = (circleSpaceY / divisionsY);
-            if (circleSpaceY > 3.6 * circleSpaceX) radius = 32;  // Edge case, ugly but prevents overlap
+            if (circleSpaceY > 2.2 * circleSpaceX) radius = 24;  // Edge case, ugly but prevents overlap
         }
         
         float singleDivX = circleSpaceX / divisionsX;
