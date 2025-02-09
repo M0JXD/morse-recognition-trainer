@@ -7,9 +7,8 @@ typedef struct SaveState {
     int windowWidth, windowLength;
     int WPM, tone;
     int theme;
-    int levels[40] = { 0 };  // Koch method levels
+    int levels[40];  // Koch method levels
 } saveState;
-
 
 void LoadState();
 void SaveState();
