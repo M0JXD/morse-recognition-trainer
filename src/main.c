@@ -5,6 +5,7 @@
 
 #include "letters.h"
 #include "morse.h"
+#include "lessons.h"
 
 Wave dot;
 Wave dash;
@@ -14,8 +15,8 @@ Wave dash;
 //--------------------------------------------------------------------------------
 int main(void) {
     InitWindow(640, 480, "Morse Recognition Trainer");
-    SetTargetFPS(60);
-    SetWindowMinSize(400, 300);
+    SetTargetFPS(20);
+    SetWindowMinSize(300, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     InitAudioDevice();
     
@@ -25,12 +26,12 @@ int main(void) {
     
     int layoutWidth = 10;
     int layoutHeight = 4;
-    int whatTheme = 1;
 
-    // Initialise the dot and dash Waves
-    
+    // Various Flags, some are extern
+    int whatTheme = 1;  // Light or Dark Mode
+    int inLesson = 0;  // Is a lesson running
 
-    // TODO: Load game save and generate waves for Morse
+    // TODO: Load game save and init/generate waves for Morse
     // Maybe I need a loading screen for when it generates?
 
     //--------------------------------------------------------------------------------
@@ -86,13 +87,13 @@ int main(void) {
             DrawLine(0, 50, width, 50, BLACK);  // Split the screen into buttons and circles sections
             
             // Top Buttons
-            Rectangle startLessonButton = { 10, 10, 180, 30 };
+            Rectangle startLessonButton = { 10, 10, 145, 30 };
             DrawRectangleRoundedLines(startLessonButton, 0.4f, 0.0f, BLUE);
-            DrawText("Start Lesson", 32, 15, 20, oppositeMainTheme);
+            DrawText("Start Lesson", 14, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), startLessonButton))
-                ;
+                puts("Start Lesson Pressed");  // StartLesson();
             
-            // TODO: WPM & Tone Settings
+            // TODO: WPM & Tone Settings, Save/Load buttons
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
             DrawRectangleRoundedLines(switchThemeButton, 0.4f, 0.0f, PURPLE);
@@ -100,11 +101,22 @@ int main(void) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) 
                 whatTheme = !whatTheme;
 
+            // TODO: Statusbar at bottom, quit lesson button
+            if (inLesson) {
+                Rectangle quitLessonButton = { (width - 85), 10, 75, 30 };
+                DrawRectangleRoundedLines(quitLessonButton, 0.4f, 0.0f, RED);
+                DrawText("Quit Lesson", width - 80, 15, 20, oppositeMainTheme);
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), quitLessonButton)) 
+                    inLesson = EndLesson(1);
+            } else {
+                
+            }
+
+
             // This loops draws the main circles, but also does collision detection 
-            // TODO: Improve this now that top bar is constant size.
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
-                    // TODO: Add animation to the circle that is playing
+                    // TODO: Add animation to the circle that is playing? Might not need it if adding a statusbar
 
                     // Outer Circle
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 50};
@@ -153,8 +165,8 @@ int main(void) {
                     // Letter in circle
                     DrawText(
                         letters_qwerty[i + (k * layoutWidth)], 
-                        circleCentre.x - (offsets.x / 2) + 1, 
-                        circleCentre.y - (offsets.y / 2) + 1, 
+                        circleCentre.x - (offsets.x / 2), 
+                        circleCentre.y - (offsets.y / 2), 
                         radius * 0.9,
                         oppositeMainTheme
                     );
@@ -179,17 +191,19 @@ int main(void) {
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", letters_qwerty[wasDetected]);
-                        //playMorse(wasDetected);
-                    }   
+                        PlayMorse(wasDetected);
+                        // UpdateLesson(wasDetected);
+                    }
                 }
             }
         EndDrawing();
+        inLesson = EndLesson(0);
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------
     // De-initialise
     //--------------------------------------------------------------------------------
-    
+    EndLesson(1); // If we reach here we should stop the lesson and save!
     CloseWindow();
     return 0;
 }

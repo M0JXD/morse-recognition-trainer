@@ -7,4 +7,7 @@
 extern const char* letters_qwerty[40];
 extern const char* letters_koch[40];
 
+int getKochFromQwerty(int qwertyIndex);
+int getQwertyFromKoch(int kochIndex);
+
 #endif  // LETTERS_H

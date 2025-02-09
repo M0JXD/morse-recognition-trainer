@@ -16,7 +16,7 @@ extern Wave dash;
 Wave CalculateDotAndDash(int WPM, int tone);
 Wave ConcatWaves(int n, ...);
 Sound CalculateMorseLetter(int letter, Wave dot, Wave dash);
-void playMorse(int letter);
+void PlayMorse(int letter);
 
 // For words and sentences, at some point
 // Sound calculateGroup(const char* group, int farnsworthTiming);
