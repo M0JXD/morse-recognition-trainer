@@ -91,9 +91,8 @@ const char* lettersKoch[40] = {
     "0", 
     "X" 
 };
-
-// TODO: These are going to be tedious... 
-// no, I will not use AI!!!!!!!!!
+ 
+// Yes, I did these by hand. No, it was not fun.
 const char firstCodePart[40] = {
     '.', // 1
     '.', // 2
