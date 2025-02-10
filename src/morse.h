@@ -8,6 +8,11 @@
 
 #include "raylib.h"
 
+/* If passed NOT_LETTER then sets @text appropriate string for current state.
+ * Is passed letters in PlayMorse so it knows what letter we're on.
+ * If passed (NOT_LETTER + 1) that tells it nothing is playing (done in PlayMorse) */
+void GetMorseText(int letter, char* text);
+
 /* A selection of wav files are included to play the morse sounds. 
  * The original intention was to generate on the fly, but for a measly 48kB this is much easier!
  * Included options are:
@@ -28,8 +33,5 @@
  * Please use the site to generate the ones you need should you're requirements not be provided for */
 
 void PlayMorse(int letter);
-
-char* GetMorseText(void);
-
 
 #endif  // MORSE_H

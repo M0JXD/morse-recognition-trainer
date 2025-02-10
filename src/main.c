@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "stdio.h"  // printf debugging
 #include "ctype.h"  // for toupper
+
 #include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
 #include "letters.h"
@@ -33,7 +34,7 @@ int main(void) {
 
     // TODO: Load game save
 
-    // Load morse sounds, 
+    // Load morse sounds // TODO: Make more!
     dot = LoadSound("assets/morse_dit.wav");
     dash = LoadSound("assets/morse_dah.wav");
 
@@ -58,7 +59,7 @@ int main(void) {
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
         float circleSpaceX = width;
-        float circleSpaceY = height - 50;  // Save space at the top for buttons
+        float circleSpaceY = height - 30;  // Save space at the top for buttons
         float radius = 10.0f;
         int divisionsX;
         int divisionsY;
@@ -87,15 +88,15 @@ int main(void) {
         //--------------------------------------------------------------------------------
         BeginDrawing();
             ClearBackground(mainTheme);
-            DrawLine(0, 50, width, 50, BLACK);  // Split the screen into buttons and circles sections
+            // DrawLine(0, 50, width, 50, BLACK);  // Split the screen into buttons and circles sections
             
             // Top Buttons
-            Rectangle LessonButton = { 10, 10, 138, 30 };
+            Rectangle LessonButton = { 10, 10, 80, 30 };
             inLesson ? DrawRectangleRounded(LessonButton, 0.4f, 10.0f, BLUE) : DrawRectangleRoundedLines(LessonButton, 0.4f, 10.0f, BLUE);
-            DrawText("Lesson Mode", 14, 15, 20, oppositeMainTheme);
+            DrawText("Lesson", 14, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                printf("Lesson Mode Pressed, inLesson = %d\n", inLesson);  // StartLesson();
+                printf("Lesson Pressed, inLesson = %d\n", inLesson);  // StartLesson();
             }
                 
             
@@ -111,9 +112,12 @@ int main(void) {
             if (inLesson) {
 
             } else {
-                
+                char string[40];  // This should always be enough. Not a user input path!
+                GetMorseText(NOT_LETTER, string); 
+                //printf("String is %s\n", string);
+                int centering = MeasureText(string, radius * 0.8) / 2;
+                string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
             }
-
 
             // This loops draws the main circles, but also does collision detection 
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
@@ -121,10 +125,10 @@ int main(void) {
                     // TODO: Add animation to the circle that is playing? Might not need it if adding a statusbar
 
                     // Outer Circle
-                    Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 50};
+                    Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
                     DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
 
-                    // Smaller inner circle
+                    // Smaller inner circle  // TODO: Fill when activated by lesson
                     DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
 
                     // Fill with ring as per progress
@@ -199,7 +203,6 @@ int main(void) {
                 }
             }
         EndDrawing();
-        // inLesson = EndLesson(0);
         PlayMorse(NOT_LETTER);
         //--------------------------------------------------------------------------------
     }
