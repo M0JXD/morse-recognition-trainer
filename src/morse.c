@@ -66,7 +66,7 @@ void PlayMorse(int letter) {
 
             case 4:
                 if (fifthCodePart[letterPlaying] == '.') PlaySound(dot);
-                else if (fourthCodePart[letterPlaying] == '-') PlaySound(dash);
+                else if (fifthCodePart[letterPlaying] == '-') PlaySound(dash);
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
