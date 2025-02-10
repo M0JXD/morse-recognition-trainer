@@ -27,15 +27,14 @@ int main(void) {
     int layoutHeight = 4;
 
     // Various Flags, some are extern
-    int whatTheme = 1;  // Light or Dark Mode
+    int whatTheme = 1;  // Light or Dark Mode // TODO: Change to gamesave
     int inLesson = 0;  // Is a lesson running
 
     // TODO: Load game save
 
-    // Load morse sounds
+    // Load morse sounds, 
     dot = LoadSound("assets/morse_dit.wav");
     dash = LoadSound("assets/morse_dah.wav");
-    // Maybe I need a loading screen for when it generates?
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -177,7 +176,7 @@ int main(void) {
                     //--------------------------------------------------------------------------------
                     // Detection
                     //--------------------------------------------------------------------------------
-                    int wasDetected = 41;
+                    int wasDetected = NOT_LETTER;
                     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {  // Check if one was clicked by the mouse
                         if (CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {
                             wasDetected = i + (k * layoutWidth);
@@ -201,7 +200,7 @@ int main(void) {
             }
         EndDrawing();
         inLesson = EndLesson(0);
-        PlayMorse(41);
+        PlayMorse(NOT_LETTER);
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------

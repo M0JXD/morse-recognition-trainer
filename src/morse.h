@@ -24,7 +24,7 @@
  * 800Hz 20WPM
  * 800Hz 25WPM
  * This site was used to generate them: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
- * Generated using letters "E" and "T". I checked in audacity and they contain the appropriate gaps after the sound already. 
+ * Generated using letters "E" and "T". I checked in Audacity and they contain the appropriate gaps after the sound already. 
  * Please use the site to generate the ones you need should you're requirements not be provided for */
 
 void PlayMorse(int letter);

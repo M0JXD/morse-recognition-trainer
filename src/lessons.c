@@ -1,4 +1,5 @@
 #include "lessons.h"
+#include "letters.h"
 
 int StartLesson(void) {
     return 1;
@@ -15,7 +16,6 @@ char* GetLessonText(void) {
     // "Wrong, try again."
     // "Repeating letter as wrong 3 times..."
     // "Correct! Status updated"
-    // DrawText(GetLessonText())
 }
 
 void UpdateLesson(int characterDetected) {

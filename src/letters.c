@@ -91,3 +91,17 @@ const char* lettersKoch[40] = {
     "0", 
     "X" 
 };
+
+// TODO: These are going to be tedious... 
+// no, I will not use AI!!!!!!!!!
+const char firstCodePart[40] = {
+    '.',  // A
+    '-',  // B
+    '-',  // C
+};
+
+const char secondCodePart[40] = {};
+const char thirdCodePart[40] = {};
+const char fourthCodePart[40] = {};
+const char fifthCodePart[40] = {};
+const char sixthCodePart[40] = {};
