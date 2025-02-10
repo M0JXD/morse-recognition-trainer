@@ -11,3 +11,4 @@ target("morse-recognition-trainer")
     add_configfiles("assets/*.*", {onlycopy = true})
 
     -- TODO: Install rules
+    -- on_install()

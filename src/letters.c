@@ -133,6 +133,10 @@ const char firstCodePart[40] = {
     '-',  // N
     '-',  // M
 
+    '-', // ,
+    '.', // .
+    '-', // /
+    '.'  // ?
 };
 
 const char secondCodePart[40] = {
@@ -174,7 +178,13 @@ const char secondCodePart[40] = {
     '.',  // N
     '-',  // M
 
+    '-', // ,
+    '-', // .
+    '.', // /
+    '.'  // ?
+
 };
+
 const char thirdCodePart[40] = {
     '-', // 1
     '-', // 2
@@ -214,7 +224,12 @@ const char thirdCodePart[40] = {
     0,    // N
     0,    // M
 
+    '.', // ,
+    '.', // .
+    '.', // /
+    '-'  // ?
 };
+
 const char fourthCodePart[40] = {
     '-', // 1
     '-', // 2
@@ -254,7 +269,12 @@ const char fourthCodePart[40] = {
     0,    // N
     0,    // M
 
+    '.', // ,
+    '-', // .
+    '-', // /
+    '-'  // ?
 };
+
 const char fifthCodePart[40] = {
     '-', // 1
     '-', // 2
@@ -293,7 +313,13 @@ const char fifthCodePart[40] = {
     0,  // B
     0,  // N
     0,  // M
+
+    '-', // ,
+    '.', // .
+    '.', // /
+    '.'  // ?
 };
+
 const char sixthCodePart[40] = {
     0, // 1
     0, // 2
@@ -332,4 +358,9 @@ const char sixthCodePart[40] = {
     0,  // B
     0,  // N
     0,  // M
+
+    '-', // ,
+    '-', // .
+    0, // /
+    '.'  // ?
 };

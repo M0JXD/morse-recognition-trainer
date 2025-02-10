@@ -15,7 +15,7 @@ Sound dash;
 //--------------------------------------------------------------------------------
 int main(void) {
     InitWindow(640, 480, "Morse Recognition Trainer");
-    SetTargetFPS(20);
+    SetTargetFPS(30);
     SetWindowMinSize(300, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     InitAudioDevice();
