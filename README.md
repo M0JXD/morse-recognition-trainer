@@ -7,12 +7,12 @@ Built with C and Raylib.
 
 ## User Guide
 
-When not in a lesson, clicking/tapping the letters will simply play the morse for that letter, letting you know in the at the bottom which is playing. 
+When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which is playing.
 This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
 
-Press "Lesson Mode" to start a lesson. A lesson begins by teaching you the morse for a letter, by highlighting the center for the letter that's introduced in RED and playing it's morse. Letters learnt in previous lessons have green centers. You can press Lesson Mode again at any time to return to Normal Mode
+Press `Lesson` to start lesson mode, it will change to a filled button. A lesson begins by teaching you the morse for a letter, by highlighting the center for the letter that's introduced in RED and playing it's morse. Letters learnt in previous lessons have green centers. You can press `Lesson` again at any time to return to Normal Mode
 
-After this, the morse for a letter will play. Press the right letter and the meter for the letter will progress a segment.
+After this, the morse for a letter will play. Enter the right letter, and the meter for the letter will progress a segment.
 
 Once you reach two segements for a letter, you will move to the next lesson and the next letter will be introduced. 
 The order is the same as LCWO. The currently active letters are played at random.
@@ -24,10 +24,11 @@ Hopefully this should be a rare occurence for most learners!
 
 The theme button changes the light/dark theme.
 
-The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM, although there are other options that can be set at the top.
+The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM.
+click/tap the WPM and Tone numbers to cycle through other options. 
 
 ## Download
-I currently make binaries for Linux, Windows (and soon, Android). You can download them on the releases page.
+I currently make binaries for Linux, Windows (and hopefully soon, Android). You can download them on the releases page.
 Due to not owning Apple devices and an unwillingness to break their EULA's, macOS binaries are not provided, although it should build and run.
 iOS is waiting on Raylib to gain iOS support, but likewise I can't provide binaries anyways...
 
@@ -52,7 +53,7 @@ xmake install
 ```
 
 Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
-For Android, the build is more complicated. See the Android branch and the raymob README.
+For Android, the build will be more complicated. See the Android branch Raymob README.
 
 ## Credits
 Made for my Dad, love you!! xx
