@@ -29,5 +29,7 @@
 
 void PlayMorse(int letter);
 
+char* GetMorseText(void);
+
 
 #endif  // MORSE_H
