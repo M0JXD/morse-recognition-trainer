@@ -23,12 +23,13 @@ int main(void) {
     // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
     rlSetLineWidth(defaultLineWidth * 2.3);
+    
     int layoutWidth = 10;
     int layoutHeight = 4;
 
     // Various Flags, some are extern
     int whatTheme = 1;  // Light or Dark Mode // TODO: Change to gamesave
-    int inLesson = 0;  // Is a lesson running
+    bool inLesson = false;  // Is a lesson running
 
     // TODO: Load game save
 
@@ -89,27 +90,26 @@ int main(void) {
             DrawLine(0, 50, width, 50, BLACK);  // Split the screen into buttons and circles sections
             
             // Top Buttons
-            Rectangle startLessonButton = { 10, 10, 145, 30 };
-            DrawRectangleRoundedLines(startLessonButton, 0.4f, 0.0f, BLUE);
-            DrawText("Start Lesson", 14, 15, 20, oppositeMainTheme);
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), startLessonButton))
-                puts("Start Lesson Pressed");  // StartLesson();
+            Rectangle LessonButton = { 10, 10, 138, 30 };
+            inLesson ? DrawRectangleRounded(LessonButton, 0.4f, 10.0f, BLUE) : DrawRectangleRoundedLines(LessonButton, 0.4f, 10.0f, BLUE);
+            DrawText("Lesson Mode", 14, 15, 20, oppositeMainTheme);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
+                inLesson = !inLesson;
+                printf("Lesson Mode Pressed, inLesson = %d\n", inLesson);  // StartLesson();
+            }
+                
             
             // TODO: WPM & Tone Settings, Save/Load buttons
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
-            DrawRectangleRoundedLines(switchThemeButton, 0.4f, 0.0f, PURPLE);
+            DrawRectangleRounded(switchThemeButton, 0.4f, 0.0f, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) 
                 whatTheme = !whatTheme;
 
-            // TODO: Statusbar at bottom, quit lesson button
+            // TODO: Statusbar at bottom
             if (inLesson) {
-                Rectangle quitLessonButton = { (width - 85), 10, 75, 30 };
-                DrawRectangleRoundedLines(quitLessonButton, 0.4f, 0.0f, RED);
-                DrawText("Quit Lesson", width - 80, 15, 20, oppositeMainTheme);
-                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), quitLessonButton)) 
-                    inLesson = EndLesson(1);
+
             } else {
                 
             }
@@ -199,7 +199,7 @@ int main(void) {
                 }
             }
         EndDrawing();
-        inLesson = EndLesson(0);
+        // inLesson = EndLesson(0);
         PlayMorse(NOT_LETTER);
         //--------------------------------------------------------------------------------
     }
