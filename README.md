@@ -7,8 +7,7 @@ Built with C and Raylib.
 
 ## User Guide
 
-When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which is playing.
-This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
+When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
 
 Press `Lesson` to start lesson mode, it will change to a filled button. A lesson begins by teaching you the morse for a letter, by highlighting the center for the letter that's introduced in RED and playing it's morse. Letters learnt in previous lessons have green centers. You can press `Lesson` again at any time to return to Normal Mode
 
@@ -17,15 +16,11 @@ After this, the morse for a letter will play. Enter the right letter, and the me
 Once you reach two segements for a letter, you will move to the next lesson and the next letter will be introduced. 
 The order is the same as LCWO. The currently active letters are played at random.
 
-If you get the letter wrong or run out of time, the progress meter for the letter you should have pressed will regress. 
-If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced.
-I see no way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on.
-Hopefully this should be a rare occurence for most learners!
+If you get the letter wrong, the progress meter for the letter you should have pressed will regress.If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. I see no way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
 
-The theme button changes the light/dark theme.
+The `Theme` button changes the light/dark theme.
 
-The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM.
-click/tap the WPM and Tone numbers to cycle through other options. 
+The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM. Click/tap the WPM and Tone numbers to cycle through other options. 
 
 ## Download
 I currently make binaries for Linux, Windows (and hopefully soon, Android). You can download them on the releases page.
