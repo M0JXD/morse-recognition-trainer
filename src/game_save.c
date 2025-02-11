@@ -19,7 +19,7 @@ void LoadData(SaveState *saveState) {
 
         // Now the fun part...
         for (int i = 0; i < 40; i++) {
-            saveState->activated_letters[i] = (int)file[6 + i];
+            saveState->activatedLetters[i] = (int)file[6 + i];
             saveState->levels[i] = (int)file[47 + i];
         }
         UnloadFileData(file);
@@ -31,7 +31,7 @@ void LoadData(SaveState *saveState) {
         saveState->theme = 1; // Light theme
         saveState->tone = 700;
         saveState->WPM = 20;
-        memset(saveState->activated_letters, 0, 40);
+        memset(saveState->activatedLetters, 0, 40);
         memset(saveState->levels, 0, 40);
     }
 }
@@ -52,7 +52,7 @@ void SaveData(SaveState *saveState) {
     };
 
     for (int i = 0; i < 40; i++) {
-        newData[6 + i] = saveState->activated_letters[i];
+        newData[6 + i] = saveState->activatedLetters[i];
         newData[47 + i] = saveState->levels[i];
     }
 

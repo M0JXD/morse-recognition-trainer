@@ -10,14 +10,12 @@ typedef struct SaveState {
     int WPM, tone;
     int theme;
     int levels[40];  // Koch method levels, Koch order
-    int activated_letters[40];  // Active letters are !0, qwerty order.
+    int activatedLetters[40];  // Active letters are !0, Koch order.
 } SaveState;
 
 
 void LoadData(SaveState *saveState);
 
 void SaveData(SaveState *saveState);
-
-
 
 #endif  // GAME_SAVE_H
