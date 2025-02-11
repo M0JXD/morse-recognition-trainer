@@ -119,7 +119,7 @@ int main(void) {
             if (inLesson) {
 
             } else {
-                char string[40];  // This should always be enough. Not a user input path!
+                char string[40] = {0};  // This should always be enough. Not a user input path!
                 GetMorseText(NOT_LETTER, string); 
                 //printf("String is %s\n", string);
                 int centering = MeasureText(string, radius * 0.8) / 2;
