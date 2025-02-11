@@ -36,6 +36,7 @@ int main(void) {
 
     // TODO: Load game save
     LoadData(&gameSave);
+    SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
     
     // Load morse sounds // TODO: Make more!
     dot = LoadSound("assets/morse_dit.wav");
@@ -46,8 +47,9 @@ int main(void) {
     //--------------------------------------------------------------------------------
     bool inLesson = false;  // Is a lesson running
     while (!WindowShouldClose()) {
-        float width = GetScreenWidth();
-        float height = GetScreenHeight();
+        //--------------------------------------------------------------------------------
+        // THEME
+        //--------------------------------------------------------------------------------
         Color mainTheme;
         Color oppositeMainTheme;
 
@@ -62,6 +64,8 @@ int main(void) {
         //--------------------------------------------------------------------------------
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
+        float width = GetScreenWidth();
+        float height = GetScreenHeight();
         float circleSpaceX = width;
         float circleSpaceY = height - 30;  // Save space at the top for buttons
         float radius = 10.0f;

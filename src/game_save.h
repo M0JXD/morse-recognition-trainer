@@ -3,6 +3,7 @@
 #ifndef GAME_SAVE_H
 #define GAME_SAVE_H
 
+#define SAVE_FILE "save.mrt"
 
 typedef struct SaveState {
     int windowWidth, windowLength;
