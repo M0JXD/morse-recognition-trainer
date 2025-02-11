@@ -7,5 +7,6 @@ int StartLesson(void);  // Checks the current global gamesave and starts the app
 int EndLesson(int force);  // Always called at end of the loop, ends the lesson if it's done.
 char* GetLessonText(void);  // Provides the appropriate lesson text for the statusbar depending on current lesson state
 void UpdateLesson(int characterDetected);  // Passes the last pressed character so the lesson state can update.
+void UpdateLevel(char* kochLetterToUpdate);
 
 #endif

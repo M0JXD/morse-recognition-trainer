@@ -1,15 +1,18 @@
 #include "raylib.h"
+#include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
+
 #include "stdio.h"  // printf debugging
 #include "ctype.h"  // for toupper
-
-#include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
 #include "letters.h"
 #include "morse.h"
 #include "lessons.h"
+#include "game_save.h"
 
+// These are needed all the time, I think it's fair they're global.
 Sound dot;
 Sound dash;
+SaveState gameSave;
 
 //--------------------------------------------------------------------------------
 // ENTRY
@@ -19,6 +22,9 @@ int main(void) {
     SetTargetFPS(30);
     SetWindowMinSize(300, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
+    Image icon = LoadImage("assets/icon.png");
+    SetWindowIcon(icon);
+
     InitAudioDevice();
     
     // Default line width is a bit thin.
@@ -28,12 +34,9 @@ int main(void) {
     int layoutWidth = 10;
     int layoutHeight = 4;
 
-    // Various Flags, some are extern
-    int whatTheme = 1;  // Light or Dark Mode // TODO: Change to gamesave
-    bool inLesson = false;  // Is a lesson running
-
     // TODO: Load game save
-
+    LoadData(&gameSave);
+    
     // Load morse sounds // TODO: Make more!
     dot = LoadSound("assets/morse_dit.wav");
     dash = LoadSound("assets/morse_dah.wav");
@@ -41,13 +44,14 @@ int main(void) {
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
+    bool inLesson = false;  // Is a lesson running
     while (!WindowShouldClose()) {
         float width = GetScreenWidth();
         float height = GetScreenHeight();
         Color mainTheme;
         Color oppositeMainTheme;
 
-        if (whatTheme) {
+        if (gameSave.theme) {
             mainTheme = LIGHTGRAY;
             oppositeMainTheme = BLACK;
         } else {
@@ -106,7 +110,7 @@ int main(void) {
             DrawRectangleRounded(switchThemeButton, 0.4f, 0.0f, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) 
-                whatTheme = !whatTheme;
+                gameSave.theme = !gameSave.theme;
 
             // TODO: Statusbar at bottom
             if (inLesson) {
