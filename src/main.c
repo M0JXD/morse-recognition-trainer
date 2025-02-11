@@ -34,7 +34,6 @@ int main(void) {
     int layoutWidth = 10;
     int layoutHeight = 4;
 
-    // TODO: Load game save
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
     
@@ -130,7 +129,6 @@ int main(void) {
             // This loops draws the main circles, but also does collision detection 
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
-                    // TODO: Add animation to the circle that is playing? Might not need it if adding a statusbar
 
                     // Outer Circle
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};

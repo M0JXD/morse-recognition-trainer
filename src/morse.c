@@ -20,7 +20,7 @@ void GetMorseText(int letter, char* text) {
         // *text = 0;
     }
 
-    if (letter == NOT_LETTER && currentLetter < 40) {
+    if (letter == NOT_LETTER && currentLetter < 40 && text != NULL) {
         sprintf(text, "Currently playing '%s' ...", lettersQwerty[currentLetter]);
     }
 }
