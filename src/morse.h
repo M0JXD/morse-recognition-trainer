@@ -6,8 +6,6 @@
 #ifndef MORSE_H
 #define MORSE_H
 
-#include "raylib.h"
-
 /* If passed NOT_LETTER then sets @text appropriate string for current state.
  * Is passed letters in PlayMorse so it knows what letter we're on.
  * If passed (NOT_LETTER + 1) that tells it nothing is playing (done in PlayMorse) */

@@ -11,13 +11,13 @@ void GetMorseText(int letter, char* text) {
 
     if (letter < 40) {
         currentLetter = letter;
-        *text = 0;
+        // *text = 0;
     }
 
     // We're not playing a sound anymore
     if (letter == (NOT_LETTER + 1)) {
         currentLetter = NOT_LETTER;
-        *text = 0;
+        // *text = 0;
     }
 
     if (letter == NOT_LETTER && currentLetter < 40) {
@@ -29,7 +29,6 @@ void PlayMorse(int letter) {
     
     static int letterPlaying = NOT_LETTER;
     static int onPart = 0;
-    char uselessBuffer[1]; // Needed to pass to GetMorseText
 
     // NOT_LETTER is passed to allow us to keep playing if something is playing
     // If both are NOT_LETTER, then nothing is playing right now, promptly return
@@ -40,7 +39,7 @@ void PlayMorse(int letter) {
         letterPlaying = letter;
         if (firstCodePart[letterPlaying] == '.') PlaySound(dot);
         else PlaySound(dash);
-        GetMorseText(letterPlaying, uselessBuffer);
+        GetMorseText(letterPlaying, NULL);
         onPart = 1;
         return;
     }
@@ -58,7 +57,7 @@ void PlayMorse(int letter) {
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
-                    GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                    GetMorseText((NOT_LETTER + 1), NULL);
                     return;
                 }
                 onPart = 2;
@@ -70,7 +69,7 @@ void PlayMorse(int letter) {
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
-                    GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                    GetMorseText((NOT_LETTER + 1), NULL);
                     return;
                 }
                 onPart = 3;
@@ -82,7 +81,7 @@ void PlayMorse(int letter) {
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
-                    GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                    GetMorseText((NOT_LETTER + 1), NULL);
                     return;
                 }
                 onPart = 4;
@@ -94,7 +93,7 @@ void PlayMorse(int letter) {
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
-                    GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                    GetMorseText((NOT_LETTER + 1), NULL);
                     return;
                 }
                 onPart = 5;
@@ -106,7 +105,7 @@ void PlayMorse(int letter) {
                 else {  // Must be null, we're done...
                     onPart = 0;
                     letterPlaying = NOT_LETTER;
-                    GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                    GetMorseText((NOT_LETTER + 1), NULL);
                     return;
                 }
                 onPart = 6;
@@ -115,13 +114,13 @@ void PlayMorse(int letter) {
             case 6: // All done!
                 onPart = 0;
                 letterPlaying = NOT_LETTER;
-                GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                GetMorseText((NOT_LETTER + 1), NULL);
                 break;
 
             default:
                 onPart = 0;
                 letterPlaying = NOT_LETTER;
-                GetMorseText((NOT_LETTER + 1), uselessBuffer);
+                GetMorseText((NOT_LETTER + 1), NULL);
                 break;
         }
         return;
