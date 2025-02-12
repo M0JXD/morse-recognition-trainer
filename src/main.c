@@ -51,13 +51,16 @@ int main(void) {
     // Set up initial theme;
     Color mainTheme;
     Color oppositeMainTheme;
+    Color progressColour;
 
     if (gameSave.theme) {
         mainTheme = LIGHTGRAY;
         oppositeMainTheme = BLACK;
+        progressColour = GREEN;
     } else {
         mainTheme = DARKGRAY;
         oppositeMainTheme = WHITE;
+        progressColour = VIOLET;
     }
 
     //--------------------------------------------------------------------------------
@@ -153,9 +156,11 @@ int main(void) {
                 if (gameSave.theme) {
                     mainTheme = LIGHTGRAY;
                     oppositeMainTheme = BLACK;
+                    progressColour = GREEN;
                 } else {
                     mainTheme = DARKGRAY;
                     oppositeMainTheme = WHITE;
+                    progressColour = VIOLET;
                 }
             }
 
@@ -177,12 +182,12 @@ int main(void) {
                     if (gameSave.levels[kochIndex] != 0) {
                         DrawRing(circleCentre, radius * 0.6, radius, -90, 
                                 ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
-                                20, GREEN
+                                20, progressColour
                         );
                     }
 
                     if (gameSave.activatedLetters[kochIndex]) {
-                        DrawCircleV(circleCentre, radius * 0.6, GREEN);
+                        DrawCircleV(circleCentre, radius * 0.6, progressColour);
                     }
 
                     // Outer Circle & Smaller inner circle 
