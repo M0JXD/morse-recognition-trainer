@@ -20,7 +20,7 @@ If you get the letter wrong, the progress meter for the letter you should have p
 
 The `Theme` button changes the light/dark theme.
 
-The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM. Click/tap the WPM and Tone numbers to cycle through other options. 
+The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM. Click/tap the `WPM` and `Tone` buttons to cycle through other options. 
 
 ## Download
 I currently make binaries for Linux, Windows (and hopefully soon, Android). You can download them on the releases page.
