@@ -9,12 +9,18 @@ extern Sound dash;
 extern SaveState gameSave;
 
 void LoadMorseSounds(void) {
+    static int unload = 0;
+    if(unload) {
+        UnloadSound(dot);
+        UnloadSound(dash);
+    }
     char dotPath[32], dashPath[34];
     sprintf(dotPath, "assets/%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
     sprintf(dashPath, "assets/%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
     printf("Loading tones for %dWPM %dHz.\n", gameSave.WPM, gameSave.tone);
     dot = LoadSound(dotPath);
     dash = LoadSound(dashPath);
+    unload = 1;
 }
 
 void GetMorseText(int letter, char* text) {
