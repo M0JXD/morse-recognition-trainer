@@ -1,10 +1,21 @@
 #include "raylib.h"
 #include "morse.h"
 #include "letters.h"
+#include "game_save.h"
 #include "stdio.h"
 
 extern Sound dot;
 extern Sound dash;
+extern SaveState gameSave;
+
+void LoadMorseSounds(void) {
+    char dotPath[32], dashPath[34];
+    sprintf(dotPath, "assets/%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
+    sprintf(dashPath, "assets/%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
+    printf("Loading tones for %dWPM %dHz.\n", gameSave.WPM, gameSave.tone);
+    dot = LoadSound(dotPath);
+    dash = LoadSound(dashPath);
+}
 
 void GetMorseText(int letter, char* text) {
     static int currentLetter = NOT_LETTER;

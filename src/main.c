@@ -3,11 +3,16 @@
 
 #include "stdio.h"  // printf debugging
 #include "ctype.h"  // for toupper
+#include "string.h"
 
 #include "letters.h"
 #include "morse.h"
 #include "lessons.h"
 #include "game_save.h"
+
+#define BUTTON_ROUNDNESS 0.4f
+#define BUTTON_SEGMENTS 5.0f
+#define FONT_SIZE 20
 
 // These are needed all the time, I think it's fair they're global.
 Sound dot;
@@ -41,15 +46,7 @@ int main(void) {
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
 
     // Load morse sounds
-    char dotPath[32];
-    sprintf(dotPath, "assets/%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
-    char dashPath[34];
-    sprintf(dashPath, "assets/%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
-
-    printf("Loading tones for %dWPM %dHz.\n", gameSave.WPM, gameSave.tone);
-
-    dot = LoadSound(dotPath);
-    dash = LoadSound(dashPath);
+    LoadMorseSounds();
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -78,8 +75,7 @@ int main(void) {
         float circleSpaceX = width;
         float circleSpaceY = height - 30;  // Save space at the top for buttons
         float radius = 10.0f;
-        int divisionsX;
-        int divisionsY;
+        int divisionsX, divisionsY;
         
         if (width > height) {
             // Normal Desktop Layout 10 x 4
@@ -96,7 +92,7 @@ int main(void) {
             radius = (circleSpaceY / divisionsY);
             if (circleSpaceY > 2.2 * circleSpaceX) radius = 24;  // Edge case, ugly but prevents overlap
         }
-        
+
         float singleDivX = circleSpaceX / divisionsX;
         float singleDivY = circleSpaceY / divisionsY;
         
@@ -105,36 +101,63 @@ int main(void) {
         //--------------------------------------------------------------------------------
         BeginDrawing();
             ClearBackground(mainTheme);
-            // DrawLine(0, 50, width, 50, BLACK);  // Split the screen into buttons and circles sections
+            char string[40] = {0};  // This should always be enough. Not used as a user input path!
             
             // Top Buttons
             Rectangle LessonButton = { 10, 10, 80, 30 };
-            inLesson ? DrawRectangleRounded(LessonButton, 0.4f, 10.0f, BLUE) : DrawRectangleRoundedLines(LessonButton, 0.4f, 10.0f, BLUE);
-            DrawText("Lesson", 14, 15, 20, oppositeMainTheme);
+            inLesson ? DrawRectangleRounded(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE) 
+                     : DrawRectangleRoundedLines(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE);
+            DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                printf("Lesson Pressed, inLesson = %d\n", inLesson);  // StartLesson();
+                printf("Lesson Pressed, inLesson now = %d\n", inLesson);  // StartLesson();
             }
                 
-            
-            // TODO: WPM & Tone Settings, Save/Load buttons
+            Rectangle wpmButton = { width - 307, 10, 90 ,30 };
+            DrawRectangleRoundedLines(wpmButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, RED);
+            sprintf(string, "WPM: %d", gameSave.WPM);
+            DrawText(string, width - 302, 15, FONT_SIZE, oppositeMainTheme);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), wpmButton)) {
+                if (gameSave.WPM == 25) gameSave.WPM = 10; else gameSave.WPM += 5;
+                LoadMorseSounds();
+                printf("WPM Changed, is now = %d\n", gameSave.WPM);  // StartLesson();
+            }
+
+            Rectangle toneButton = { width - 205, 10, 110 ,30 };
+            DrawRectangleRoundedLines(toneButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, GREEN);
+            sprintf(string, "Tone: %d", gameSave.tone);
+            DrawText(string, width - 200, 15, FONT_SIZE, oppositeMainTheme);
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), toneButton)) {
+                switch (gameSave.tone) {
+                    case 650:
+                        gameSave.tone = 700;
+                        break;
+                    case 700:
+                        gameSave.tone = 800;
+                        break;
+                    case 800:
+                        gameSave.tone = 650;
+                        break;
+                    default:
+                        gameSave.tone = 700;
+                        break;
+                }
+                LoadMorseSounds();
+                printf("Tone Changed, is now = %d\n", gameSave.tone);  // StartLesson();
+            }
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
-            DrawRectangleRounded(switchThemeButton, 0.4f, 0.0f, PURPLE);
+            DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) 
                 gameSave.theme = !gameSave.theme;
 
             // TODO: Statusbar at bottom
-            if (inLesson) {
-
-            } else {
-                char string[40] = {0};  // This should always be enough. Not a user input path!
-                GetMorseText(NOT_LETTER, string); 
-                //printf("String is %s\n", string);
-                int centering = MeasureText(string, radius * 0.8) / 2;
-                string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
-            }
+            memset(string, 0, 40);
+            inLesson ? GetLessonText(string) : GetMorseText(NOT_LETTER, string);     
+            // string[0] ? printf("Statusbar says \"%s\"\n", string) : 0 ;
+            int centering = MeasureText(string, radius * 0.8) / 2;
+            string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
 
             // This loops draws the main circles, but also does collision detection 
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {

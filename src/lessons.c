@@ -9,7 +9,7 @@ int EndLesson(int force) {
     return 0;
 }
 
-char* GetLessonText(void) {
+void GetLessonText(char *string) {
     // "Lesson: %d"
     // "Playing Letter..." 
     // "Which Letter Was Played?"
