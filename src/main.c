@@ -19,6 +19,18 @@ Sound dot;
 Sound dash;
 SaveState gameSave;
 
+void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour) {
+    if (gameSave.theme) {
+        *mainTheme = LIGHTGRAY;
+        *oppositeMainTheme = BLACK;
+        *progressColour = GREEN;
+    } else {
+        *mainTheme = DARKGRAY;
+        *oppositeMainTheme = WHITE;
+        *progressColour = VIOLET;
+    }
+}
+
 //--------------------------------------------------------------------------------
 // ENTRY
 //--------------------------------------------------------------------------------
@@ -52,16 +64,7 @@ int main(void) {
     Color mainTheme;
     Color oppositeMainTheme;
     Color progressColour;
-
-    if (gameSave.theme) {
-        mainTheme = LIGHTGRAY;
-        oppositeMainTheme = BLACK;
-        progressColour = GREEN;
-    } else {
-        mainTheme = DARKGRAY;
-        oppositeMainTheme = WHITE;
-        progressColour = VIOLET;
-    }
+    SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -112,7 +115,7 @@ int main(void) {
             DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                printf("Lesson pressed, inLesson now = %d\n", inLesson);  // StartLesson();
+                //printf("Lesson pressed, inLesson now = %d\n", inLesson);  // StartLesson();
             }
                 
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
@@ -153,15 +156,7 @@ int main(void) {
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
                 gameSave.theme = !gameSave.theme;
-                if (gameSave.theme) {
-                    mainTheme = LIGHTGRAY;
-                    oppositeMainTheme = BLACK;
-                    progressColour = GREEN;
-                } else {
-                    mainTheme = DARKGRAY;
-                    oppositeMainTheme = WHITE;
-                    progressColour = VIOLET;
-                }
+                SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
             }
 
             // Statusbar at bottom
