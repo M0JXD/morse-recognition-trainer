@@ -48,25 +48,22 @@ int main(void) {
     // Load morse sounds
     LoadMorseSounds();
 
+    Color mainTheme;
+    Color oppositeMainTheme;
+
+    if (gameSave.theme) {
+        mainTheme = LIGHTGRAY;
+        oppositeMainTheme = BLACK;
+    } else {
+        mainTheme = DARKGRAY;
+        oppositeMainTheme = WHITE;
+    }
+
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
     bool inLesson = false;  // Is a lesson running
     while (!WindowShouldClose()) {
-        //--------------------------------------------------------------------------------
-        // THEME
-        //--------------------------------------------------------------------------------
-        Color mainTheme;
-        Color oppositeMainTheme;
-
-        if (gameSave.theme) {
-            mainTheme = LIGHTGRAY;
-            oppositeMainTheme = BLACK;
-        } else {
-            mainTheme = DARKGRAY;
-            oppositeMainTheme = WHITE;
-        }
-
         //--------------------------------------------------------------------------------
         // LAYOUT ADAPTING
         //--------------------------------------------------------------------------------
@@ -90,7 +87,7 @@ int main(void) {
             divisionsX = (3 * layoutWidth) + 1;
             divisionsY = (3 * layoutHeight) + 1;
             radius = (circleSpaceY / divisionsY);
-            if (circleSpaceY > 2.2 * circleSpaceX) radius = 24;  // Edge case, ugly but prevents overlap
+            if (circleSpaceY > 2.2 * circleSpaceX) radius = 28;  // Edge case, ugly but prevents overlap
         }
 
         float singleDivX = circleSpaceX / divisionsX;
@@ -150,10 +147,18 @@ int main(void) {
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) 
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
                 gameSave.theme = !gameSave.theme;
+                if (gameSave.theme) {
+                    mainTheme = LIGHTGRAY;
+                    oppositeMainTheme = BLACK;
+                } else {
+                    mainTheme = DARKGRAY;
+                    oppositeMainTheme = WHITE;
+                }
+            }
 
-            // TODO: Statusbar at bottom
+            // Statusbar at bottom
             memset(string, 0, 40);
             inLesson ? GetLessonText(string) : GetMorseText(NOT_LETTER, string);     
             // string[0] ? printf("Statusbar says \"%s\"\n", string) : 0 ;
@@ -163,6 +168,7 @@ int main(void) {
             // This loops draws the main circles, but also does collision detection 
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
+                    int kochIndex = getKochFromQwerty(i + (k * layoutWidth)); 
 
                     // Outer Circle
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
@@ -170,6 +176,9 @@ int main(void) {
 
                     // Smaller inner circle  // TODO: Fill when activated by lesson
                     DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
+                    if (gameSave.activatedLetters[kochIndex]) {
+                        DrawCircleV(circleCentre, radius * 0.6, GREEN);
+                    }
 
                     // Fill with ring as per progress
                     // DrawRing();
@@ -237,7 +246,7 @@ int main(void) {
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", lettersQwerty[wasDetected]);
-                        PlayMorse(wasDetected);
+                        inLesson ? UpdateLesson(wasDetected) : PlayMorse(wasDetected);
                         // UpdateLesson(wasDetected);
                     }
                 }

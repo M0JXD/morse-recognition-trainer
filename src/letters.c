@@ -363,3 +363,13 @@ const char sixthCodePart[40] = {
     0, // /
     '.'  // ?
 };
+
+int getKochFromQwerty(int qwertyIndex) {
+    if (qwertyIndex == 1) {
+        return 1;
+    }
+    return 0;
+}
+int getQwertyFromKoch(int kochIndex){
+
+}
