@@ -1,5 +1,5 @@
 # Simple script to trim files in the assets folder
-# By default, Audio files for 'E' and 'T' from https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
+# By default, the audio files for 'E' and 'T' from https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
 # come with a intra-word gap at the end.
 # I just need an inter-letter gap, which can be acheived by trimming the file two dot lengths
 
