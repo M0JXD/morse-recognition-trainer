@@ -23,7 +23,7 @@ The `Theme` button changes the light/dark theme.
 The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM. Click/tap the `WPM` and `Tone` buttons to cycle through other options. 
 
 ## Download
-I currently make binaries for Linux, Windows (and hopefully soon, Android). You can download them on the releases page.
+I currently make binaries for Linux, Windows (and hopefully soon, Android). I'm also hoping to deploy to the web via github pages. You can download them on the releases page.
 Due to not owning Apple devices and an unwillingness to break their EULA's, macOS binaries are not provided, although it should build and run.
 iOS is waiting on Raylib to gain iOS support, but likewise I can't provide binaries anyways...
 
