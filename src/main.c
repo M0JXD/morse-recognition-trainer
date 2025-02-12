@@ -39,10 +39,17 @@ int main(void) {
 
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
-    
-    // Load morse sounds // TODO: Make more!
-    dot = LoadSound("assets/20WPM_700HZ_DOT.wav");
-    dash = LoadSound("assets/20WPM_700HZ_DASH.wav");
+
+    // Load morse sounds
+    char dotPath[32];
+    sprintf(dotPath, "assets/%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
+    char dashPath[34];
+    sprintf(dashPath, "assets/%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
+
+    printf("Loading tones for %dWPM %dHz.\n", gameSave.WPM, gameSave.tone);
+
+    dot = LoadSound(dotPath);
+    dash = LoadSound(dashPath);
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -219,6 +226,8 @@ int main(void) {
     // De-initialise
     //--------------------------------------------------------------------------------
     EndLesson(1); // If we reach here we should stop the lesson and save!
+    UnloadSound(dot);
+    UnloadSound(dash);
     CloseWindow();
     return 0;
 }

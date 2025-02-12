@@ -49,6 +49,7 @@ xmake install
 
 Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
 For Android, the build will be more complicated. See the Android branch Raymob README.
+Likewise, deploying to the web is somewhat involved.
 
 ## Credits
 Made for my Dad, love you!! xx
