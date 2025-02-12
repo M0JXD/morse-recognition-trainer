@@ -236,10 +236,9 @@ int main(void) {
                     // Detection
                     //--------------------------------------------------------------------------------
                     int wasDetected = NOT_LETTER;
-                    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {  // Check if one was clicked by the mouse
-                        if (CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {
+                    // Check if one was clicked by the mouse
+                    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {  
                             wasDetected = i + (k * layoutWidth);
-                        }
                     } else {  // Check if it was typed
                         char pressed[2] = "\0"; 
                         pressed[0] = toupper(GetCharPressed());
