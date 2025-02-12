@@ -115,7 +115,8 @@ int main(void) {
             DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                //printf("Lesson pressed, inLesson now = %d\n", inLesson);  // StartLesson();
+                SetLessonMode(inLesson);
+                //printf("Lesson pressed, inLesson now = %d\n", inLesson);
             }
                 
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
@@ -162,7 +163,6 @@ int main(void) {
             // Statusbar at bottom
             memset(string, 0, 40);
             inLesson ? GetLessonText(string) : GetMorseText(NOT_LETTER, string);     
-            // string[0] ? printf("Statusbar says \"%s\"\n", string) : 0 ;
             int centering = MeasureText(string, radius * 0.8) / 2;
             string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
 
@@ -170,19 +170,18 @@ int main(void) {
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
                     int kochIndex = getKochFromQwerty(i + (k * layoutWidth)); 
-
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
 
-                    // Draw fillings first so lines are clear on top
-                    if (gameSave.levels[kochIndex] != 0) {
+                    // Draw progress first so lines are clear on top
+                    if (gameSave.activatedLetters[kochIndex]) {
+                        DrawCircleV(circleCentre, radius * 0.6, progressColour);
+                    }
+
+                    if (gameSave.levels[kochIndex] && gameSave.activatedLetters[kochIndex]) {
                         DrawRing(circleCentre, radius * 0.6, radius, -90, 
                                 ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
                                 20, progressColour
                         );
-                    }
-
-                    if (gameSave.activatedLetters[kochIndex]) {
-                        DrawCircleV(circleCentre, radius * 0.6, progressColour);
                     }
 
                     // Outer Circle & Smaller inner circle 
@@ -243,6 +242,7 @@ int main(void) {
                         char pressed[2] = "\0"; 
                         pressed[0] = toupper(GetCharPressed());
                         if(pressed[0]) {
+                            // Sets wasDetected to the letter pressed
                             for (wasDetected = 0; wasDetected < 40; wasDetected++) {
                                 if (lettersQwerty[wasDetected][0] == pressed[0]) { break; }
                             }
@@ -261,9 +261,9 @@ int main(void) {
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------
-    // De-initialise
+    // Save and De-initialise
     //--------------------------------------------------------------------------------
-    EndLesson(1); // If we reach here we should stop the lesson and save!
+    // SaveData(&gameSave);
     UnloadSound(dot);
     UnloadSound(dash);
     CloseWindow();

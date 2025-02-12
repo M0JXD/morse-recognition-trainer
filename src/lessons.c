@@ -1,24 +1,25 @@
 #include "lessons.h"
 #include "letters.h"
+#include "stdio.h"
 
-int StartLesson(void) {
-    return 1;
-}
-
-int EndLesson(int force) {
-    return 0;
+void SetLessonMode(int inLesson) {
+    
 }
 
 void GetLessonText(char *string) {
-    // "Lesson: %d"
-    // "Playing Letter..." 
-    // "Which Letter Was Played?"
-    // "Wrong, try again."
-    // "Repeating letter as wrong 3 times..."
-    // "Correct! Status updated"
+    sprintf(string, "Playing Letter...");
+    sprintf(string, "Which letter was played?");
+    sprintf(string, "Wrong, try again.");
+    sprintf(string, "Correct! Status updated.");
 }
 
 void UpdateLesson(int characterDetected) {
 
+}
+
+void ResetDueToZeroLevel(int letterThatReachedZero) {
+    for (int i = 1; i < 40; i++) {
+        
+    }
 }
 
