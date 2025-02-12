@@ -27,7 +27,7 @@ int main(void) {
     puts("----- MORSE RECOGNITION TRAINER -----");
     InitWindow(640, 480, "Morse Recognition Trainer");
     SetTargetFPS(30);
-    SetWindowMinSize(300, 300);
+    SetWindowMinSize(410, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     Image icon = LoadImage("assets/icon.png");
     SetWindowIcon(icon);
@@ -95,6 +95,7 @@ int main(void) {
 
         float singleDivX = circleSpaceX / divisionsX;
         float singleDivY = circleSpaceY / divisionsY;
+        if (height > width) singleDivY = circleSpaceY / divisionsY * 0.96;  // Save some space for status messages at bottom
         
         //--------------------------------------------------------------------------------
         // DRAWING & COLLISION
