@@ -28,13 +28,11 @@ void GetMorseText(int letter, char* text) {
 
     if (letter < 40) {
         currentLetter = letter;
-        // *text = 0;
     }
 
     // We're not playing a sound anymore
     if (letter == (NOT_LETTER + 1)) {
         currentLetter = NOT_LETTER;
-        // *text = 0;
     }
 
     if (letter == NOT_LETTER && currentLetter < 40 && text != NULL) {

@@ -364,12 +364,18 @@ const char sixthCodePart[40] = {
     '.'  // ?
 };
 
-int getKochFromQwerty(int qwertyIndex) {
-    if (qwertyIndex == 1) {
-        return 1;
-    }
-    return 0;
-}
-int getQwertyFromKoch(int kochIndex){
 
+// TODO: I could maybe optimise these to O(1) with a long switch case?
+int getKochFromQwerty(int qwertyIndex) {
+    for(int i = 0; i < 40; i++) {
+        if (lettersKoch[i] == lettersQwerty[qwertyIndex])
+            return i;
+    }
+}
+
+int getQwertyFromKoch(int kochIndex){
+    for(int i = 0; i < 40; i++) {
+        if (lettersQwerty[i] == lettersKoch[kochIndex])
+            return i;
+    }
 }

@@ -48,6 +48,7 @@ int main(void) {
     // Load morse sounds
     LoadMorseSounds();
 
+    // Set up initial theme;
     Color mainTheme;
     Color oppositeMainTheme;
 
@@ -108,7 +109,7 @@ int main(void) {
             DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                printf("Lesson Pressed, inLesson now = %d\n", inLesson);  // StartLesson();
+                printf("Lesson pressed, inLesson now = %d\n", inLesson);  // StartLesson();
             }
                 
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
@@ -118,7 +119,7 @@ int main(void) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), wpmButton)) {
                 if (gameSave.WPM == 25) gameSave.WPM = 10; else gameSave.WPM += 5;
                 LoadMorseSounds();
-                printf("WPM Changed, is now = %d\n", gameSave.WPM);  // StartLesson();
+                // printf("WPM changed, is now = %d\n", gameSave.WPM);
             }
 
             Rectangle toneButton = { width - 205, 10, 110 ,30 };
@@ -141,7 +142,7 @@ int main(void) {
                         break;
                 }
                 LoadMorseSounds();
-                printf("Tone Changed, is now = %d\n", gameSave.tone);  // StartLesson();
+                // printf("Tone changed, is now = %d\n", gameSave.tone);
             }
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
@@ -170,20 +171,25 @@ int main(void) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
                     int kochIndex = getKochFromQwerty(i + (k * layoutWidth)); 
 
-                    // Outer Circle
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
-                    DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
 
-                    // Smaller inner circle  // TODO: Fill when activated by lesson
-                    DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
+                    // Draw fillings first so lines are clear on top
+                    if (gameSave.levels[kochIndex] != 0) {
+                        DrawRing(circleCentre, radius * 0.6, radius, -90, 
+                                ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
+                                20, GREEN
+                        );
+                    }
+
                     if (gameSave.activatedLetters[kochIndex]) {
                         DrawCircleV(circleCentre, radius * 0.6, GREEN);
                     }
 
-                    // Fill with ring as per progress
-                    // DrawRing();
+                    // Outer Circle & Smaller inner circle 
+                    DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
+                    DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
 
-                    // Add 8 lines for the segments
+                    // Add lines for the segments
                     DrawLine(circleCentre.x, circleCentre.y + radius * 0.6, 
                              circleCentre.x, circleCentre.y + radius, oppositeMainTheme);
 

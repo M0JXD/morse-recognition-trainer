@@ -33,6 +33,12 @@ void LoadData(SaveState *saveState) {
         saveState->WPM = 20;
         memset(saveState->activatedLetters, 0, 40);
         memset(saveState->levels, 0, 40);
+
+        // Testing
+        // saveState->activatedLetters[0] = 1;  
+        // saveState->activatedLetters[1] = 1;
+        // saveState->levels[0] = 1;
+        // saveState->levels[1] = 4;
     }
 }
 
