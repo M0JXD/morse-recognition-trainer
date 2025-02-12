@@ -43,16 +43,19 @@ Your desktop environment may have a GUI for making desktop entries more easily, 
 If your platform is not provided for, or you simply want to build from source, you can likely do so by installing xmake and running:
 
 ```
+xmake f -m release
 xmake
-xmake install
 ```
+
+Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which contains the executable. 
+You can move and rename this folder to `morse-recognition-trainer` or whatever you wish, although you must retain it's internal structure with the assets folder in the same directory as the binary.
 
 Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
 For Android, the build will be more complicated. See the Android branch Raymob README.
 Likewise, deploying to the web is somewhat involved.
 
 ## Credits
-Made for my Dad, love you!! xx
-Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways.
-Thanks to Raysan5 and all the contributors to Raylib!
-Raymob
+Made for my Dad, love you!! xx <br>
+Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
+Thanks to Raysan5 and all the contributors to Raylib! <br>
+Raymob <br>
