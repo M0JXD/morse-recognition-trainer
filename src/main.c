@@ -18,12 +18,15 @@ SaveState gameSave;
 // ENTRY
 //--------------------------------------------------------------------------------
 int main(void) {
+    SetTraceLogLevel(LOG_NONE);
+    puts("----- MORSE RECOGNITION TRAINER -----");
     InitWindow(640, 480, "Morse Recognition Trainer");
     SetTargetFPS(30);
     SetWindowMinSize(300, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     Image icon = LoadImage("assets/icon.png");
     SetWindowIcon(icon);
+    UnloadImage(icon);
 
     InitAudioDevice();
     
@@ -38,8 +41,8 @@ int main(void) {
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
     
     // Load morse sounds // TODO: Make more!
-    dot = LoadSound("assets/morse_dit.wav");
-    dash = LoadSound("assets/morse_dah.wav");
+    dot = LoadSound("assets/20WPM_700HZ_DOT.wav");
+    dash = LoadSound("assets/20WPM_700HZ_DASH.wav");
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
