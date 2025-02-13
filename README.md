@@ -64,7 +64,7 @@ Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
 Thanks to Raysan5 and all the contributors to Raylib! <br>
 
-TODO:
+# TODO
 Repeat letter when wrong
 New letter in Red
 12WPM option
