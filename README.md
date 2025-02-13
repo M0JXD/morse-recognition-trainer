@@ -16,7 +16,7 @@ After this, the morse for a letter will play. Enter the right letter, and the me
 Once you reach two segements for a letter, you will move to the next lesson and the next letter will be introduced. 
 The order is the same as LCWO. The currently active letters are played at random.
 
-If you get the letter wrong, the progress meter for the letter you should have pressed will regress. Subsequent incorrect inputs will not affect the status, but the program will wait until you enter the correct answer.
+If you get the letter wrong, the progress meter for the letter you should have pressed will regress. Subsequent incorrect inputs will not affect the status, but the program will wait until you enter the correct answer. Because you did not get it right on the first try, the letter will not be updated when you get in right.
 
 If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. Letters do not get repeated after the initial introduction, if you want to hear it again switch out of Lesson Mode and click the newly added circle.
 

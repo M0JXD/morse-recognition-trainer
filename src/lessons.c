@@ -6,19 +6,22 @@
 #include "stdio.h"
 #include "stdlib.h"
 
+#define COUNTER_DELAY 25
+
 extern int inLesson;
 extern SaveState gameSave;
-int currentLetter = 0;
+static int currentLetter = 0;
 
-enum LessonState {
+static enum LessonState {
     ASKING,
     WAITING,
     LAST_INCORRECT,
     CONGRATS,
     TEACHING
-} lessonState;
+} lessonState = WAITING;
 
 void GetLessonText(char *string) {
+    int lessonStateCheck = lessonState;
     switch (lessonState) {
         case ASKING:
             sprintf(string, "Playing Letter...");
@@ -29,10 +32,11 @@ void GetLessonText(char *string) {
             sprintf(string, "Wrong, try again.");
             break;
         case CONGRATS:
-            sprintf(string, "Correct! Status updated.");
+            sprintf(string, "Correct!");
             break;
         case TEACHING:
             TeachLesson(NOT_LETTER, string);
+            break;
         default:
             sprintf(string, "I am lost, what happened?");
             break;
@@ -40,7 +44,7 @@ void GetLessonText(char *string) {
 }
 
 void UpdateLevel(int kochLetterToUpdate) {
-    gameSave.levels[kochLetterToUpdate] += 1;
+    gameSave.levels[kochLetterToUpdate]++;
     // If the level is more than two, and the next Koch letter is not activated, activate it.
     if (gameSave.levels[kochLetterToUpdate] >= 2 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
         gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
@@ -85,9 +89,15 @@ void UpdateLesson(int characterDetected) {
         counter = 1;
     }
 
+    // Must be first ever play, no save present
+    if (!gameSave.activatedLetters[0]) {
+        gameSave.activatedLetters[0] = 1;
+        TeachLesson(0, NULL);
+        lessonState = TEACHING;
+    }
+    char string[40];
     switch (lessonState) {
         case ASKING:
-            char string[40];
             GetMorseText(NOT_LETTER, string);
             if (string[0]) {
                 break;
@@ -97,10 +107,12 @@ void UpdateLesson(int characterDetected) {
             break;
         case WAITING:
             if (characterDetected == currentLetter) {
+                puts("WAS CORRECT");
                 lessonState = CONGRATS;  // Last letter was correct
-                counter = 50;
+                counter = COUNTER_DELAY;
                 UpdateLevel(characterDetected);
-            } else if (characterDetected != NOT_LETTER){
+            } else if (characterDetected != NOT_LETTER) {
+                puts("HERE");
                 RegressLevel(characterDetected);
                 lessonState = LAST_INCORRECT;
             }
@@ -117,15 +129,21 @@ void UpdateLesson(int characterDetected) {
             break;
         case LAST_INCORRECT:
             if (characterDetected == currentLetter) {
-                lessonState = CONGRATS;  // Last letter was correct
-                counter = 50;
-                UpdateLevel(characterDetected);
-            } else {
+                lessonState = CONGRATS;
+                counter = COUNTER_DELAY;
+            } else if (characterDetected != NOT_LETTER) {
                 lessonState = LAST_INCORRECT;
             }
             break;
         case TEACHING:
-            if (1) ;
+
+            GetMorseText(NOT_LETTER, string);
+            if (string[0]) {
+                break;
+            } else {
+                lessonState = CONGRATS;
+                counter = 1;
+            }
             break;
     }
     oldInLesson = inLesson;
@@ -134,8 +152,14 @@ void UpdateLesson(int characterDetected) {
 void TeachLesson(int letterToTeach, char* string) {
     static int rememberLetter = 0;
     rememberLetter = (letterToTeach == NOT_LETTER) ? rememberLetter : letterToTeach;
+    
+    // Being called for the string
     if(letterToTeach == NOT_LETTER && string != NULL) {
         sprintf(string, "This is letter %s", lettersKoch[rememberLetter]);
+    } else {
+        // Being called to teach
+        PlayMorse(getQwertyFromKoch(rememberLetter));
+        lessonState = TEACHING;
     }
 }
 
