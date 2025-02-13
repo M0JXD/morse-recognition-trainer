@@ -63,3 +63,14 @@ Likewise, deploying to the web is somewhat involved.
 Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
 Thanks to Raysan5 and all the contributors to Raylib! <br>
+
+TODO:
+Repeat letter when wrong
+New letter in Red
+12WPM option
+Time how long to get them, maybe timeout
+Better algoritm that focuses on lower rated options - use times
+Maybe turn off letter introductions
+Right click to activate all letters for random quiz
+Build on old Linux to reduce GLibC version requirement
+Fix regression
