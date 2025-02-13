@@ -9,7 +9,7 @@ Built with C and Raylib.
 
 When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
 
-Press `Lesson` to start lesson mode, it will change to a filled button. You can press `Lesson` again at any time to return to `Repeat` Mode.
+Press `Lesson` to start lesson mode, it will change to a filled button. You can press `Lesson` again at any time to return to the default mode.
 
 In Lesson Mode, you will only be quizzed on currently active letters. They are marked with a green center.
 Letters are introduced in the Koch order, the same as the LCWO. The currently active letters are played at random.
