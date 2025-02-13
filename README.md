@@ -72,10 +72,8 @@ Time how long to get them, maybe timeout <br>
 Better algoritm that focuses on lower rated options - use times <br>
 Force press the letter when introduced. <br>
 Right click to activate all letters for random quiz <br>
-Build on old Linux to reduce GLibC version requirement <br>
 Fix regression/progression - never allow negatives <br>
 Dont repeat the previous asked letter. <br>
-Stop terminal being opened on Windows <br>
 Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE <br>
 Build for Web <br>
 Build for Android <br>
