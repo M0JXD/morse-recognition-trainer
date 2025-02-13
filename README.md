@@ -75,3 +75,6 @@ Right click to activate all letters for random quiz
 Build on old Linux to reduce GLibC version requirement
 Fix regression/progression - never allow negatives
 Dont repeat the previous asked letter.
+
+Build for Web
+Build for Android
