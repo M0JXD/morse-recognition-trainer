@@ -56,8 +56,8 @@ Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which conta
 You can move and rename this folder to `morse-recognition-trainer` or whatever you wish, although you must retain it's internal structure with the assets folder in the same directory as the binary.
 
 Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
-For Android, the build will be more complicated. See the Android branch Raymob README.
-Likewise, deploying to the web is somewhat involved.
+For Android, the build will be more complicated. See Raymob.
+Likewise, deploying to the web will be somewhat involved.
 
 ## Credits
 Made for my Dad, love you!! xx <br>
