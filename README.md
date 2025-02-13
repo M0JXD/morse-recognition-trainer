@@ -64,20 +64,18 @@ Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
 Thanks to Raysan5 and all the contributors to Raylib! <br>
 
-# TODO
-Repeat letter when wrong
-New letter in Red
-12WPM option
-Time how long to get them, maybe timeout
-Better algoritm that focuses on lower rated options - use times
-Force press the letter when introduced.
-Right click to activate all letters for random quiz
-Build on old Linux to reduce GLibC version requirement
-Fix regression/progression - never allow negatives
-Dont repeat the previous asked letter.
-Stop terminal being opened on Windows
-
-Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE
-
-Build for Web
-Build for Android
+## TODO
+Repeat letter when wrong <br>
+New letter in Red <br>
+12WPM option <br>
+Time how long to get them, maybe timeout <br>
+Better algoritm that focuses on lower rated options - use times <br>
+Force press the letter when introduced. <br>
+Right click to activate all letters for random quiz <br>
+Build on old Linux to reduce GLibC version requirement <br>
+Fix regression/progression - never allow negatives <br>
+Dont repeat the previous asked letter. <br>
+Stop terminal being opened on Windows <br>
+Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE <br>
+Build for Web <br>
+Build for Android <br>
