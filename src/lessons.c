@@ -35,7 +35,7 @@ void GetLessonText(char *string) {
             sprintf(string, "Correct!");
             break;
         case TEACHING:
-            TeachLesson(NOT_LETTER, string);
+            TeachLesson(NOT_LETTER, string, NULL);
             break;
         default:
             sprintf(string, "I am lost, what happened?");
@@ -43,12 +43,12 @@ void GetLessonText(char *string) {
     }
 }
 
-void UpdateLevel(int kochLetterToUpdate) {
+void UpdateLevel(int kochLetterToUpdate, int* externalCounter) {
     gameSave.levels[kochLetterToUpdate]++;
     // If the level is more than two, and the next Koch letter is not activated, activate it.
     if (gameSave.levels[kochLetterToUpdate] >= 2 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
         gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
-        TeachLesson(kochLetterToUpdate + 1, NULL);
+        TeachLesson(kochLetterToUpdate + 1, NULL, externalCounter);
         lessonState = TEACHING;
     }
 }
@@ -69,7 +69,7 @@ int GetRandomActiveLetter(void) {
         if(!gameSave.activatedLetters[amountOfLetters])
             break;
     }
-    int randomLetter = (rand() % (amountOfLetters + 1)); 
+    int randomLetter = (rand() % (amountOfLetters)); 
     return randomLetter;
 }
 
@@ -92,7 +92,7 @@ void UpdateLesson(int characterDetected) {
     // Must be first ever play, no save present
     if (!gameSave.activatedLetters[0]) {
         gameSave.activatedLetters[0] = 1;
-        TeachLesson(0, NULL);
+        TeachLesson(0, NULL, &counter);
         lessonState = TEACHING;
     }
     char string[40];
@@ -110,7 +110,7 @@ void UpdateLesson(int characterDetected) {
                 puts("WAS CORRECT");
                 lessonState = CONGRATS;  // Last letter was correct
                 counter = COUNTER_DELAY;
-                UpdateLevel(characterDetected);
+                UpdateLevel(characterDetected, &counter);
             } else if (characterDetected != NOT_LETTER) {
                 puts("HERE");
                 RegressLevel(characterDetected);
@@ -120,7 +120,7 @@ void UpdateLesson(int characterDetected) {
 
         case CONGRATS:
             if (counter == 1) {
-                //currentLetter = GetRandomActiveLetter();
+                currentLetter = GetRandomActiveLetter();
                 PlayMorse(getQwertyFromKoch(currentLetter));
                 lessonState = ASKING;
             } else if (counter) {
@@ -138,7 +138,8 @@ void UpdateLesson(int characterDetected) {
         case TEACHING:
 
             GetMorseText(NOT_LETTER, string);
-            if (string[0]) {
+            if (string[0] || counter) {
+                counter--;
                 break;
             } else {
                 lessonState = CONGRATS;
@@ -149,7 +150,7 @@ void UpdateLesson(int characterDetected) {
     oldInLesson = inLesson;
 }
 
-void TeachLesson(int letterToTeach, char* string) {
+void TeachLesson(int letterToTeach, char* string, int* externalCounter) {
     static int rememberLetter = 0;
     rememberLetter = (letterToTeach == NOT_LETTER) ? rememberLetter : letterToTeach;
     
@@ -160,6 +161,7 @@ void TeachLesson(int letterToTeach, char* string) {
         // Being called to teach
         PlayMorse(getQwertyFromKoch(rememberLetter));
         lessonState = TEACHING;
+        *externalCounter = COUNTER_DELAY + 20;
     }
 }
 
