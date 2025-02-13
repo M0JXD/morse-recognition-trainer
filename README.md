@@ -68,14 +68,10 @@ Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wz
 Thanks to Raysan5 and all the contributors to Raylib! <br>
 
 ## TODO
-Repeat letter when wrong <br>
 12WPM option <br>
 Time how long to get them, maybe timeout <br>
 Better algoritm that focuses on lower rated options - use times <br>
-Force press the letter when introduced. <br>
 Right click to activate all letters for random quiz <br>
-Fix regression/progression - never allow negatives <br>
-Dont repeat the previous asked letter. <br>
 Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE <br>
 Build for Web <br>
 Build for Android <br>
