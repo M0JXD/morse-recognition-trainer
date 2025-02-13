@@ -10,6 +10,10 @@
 #include "lessons.h"
 #include "game_save.h"
 
+#ifdef _WIN32
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#endif
+
 #define BUTTON_ROUNDNESS 0.4f
 #define BUTTON_SEGMENTS 5.0f
 #define FONT_SIZE 20
