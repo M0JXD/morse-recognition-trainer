@@ -9,22 +9,25 @@ Built with C and Raylib.
 
 When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
 
-Press `Lesson` to start lesson mode, it will change to a filled button. A lesson begins by teaching you the morse for a letter, by highlighting the center for the letter that's introduced in green and playing it's morse. Letters learnt in previous lessons will retain their green centers. You can press `Lesson` again at any time to return to Normal Mode.
+Press `Lesson` to start lesson mode, it will change to a filled button. You can press `Lesson` again at any time to return to `Repeat` Mode.
 
-After this, the morse for a letter will play. Enter the right letter, and the meter for the letter will progress a segment.
+In Lesson Mode, you will only be quizzed on currently active letters. They are marked with a green center.
+Letters are introduced in the Koch order, the same as the LCWO. The currently active letters are played at random.
 
-Once you reach two segements for a letter, you will move to the next lesson and the next letter will be introduced. 
-The order is the same as LCWO. The currently active letters are played at random.
+The morse for an active letter will play. Enter the right letter, and the meter for the letter will progress a segment.
+Once you reach two segements for a letter, the next letter will be introduced. 
+If you don't know the morse for the introduced letter, you can switch back to Repeat mode :)
 
-If you get the letter wrong, the progress meter for the letter you should have pressed will regress. Subsequent incorrect inputs will not affect the status, but the program will wait until you enter the correct answer. Because you did not get it right on the first try, the letter will not be updated when you get it right.
+If you get the letter wrong, the progress meter for the letter you should have pressed will regress. 
+Subsequent incorrect inputs will not affect the status, but the program will repeat the letter with each incorrect input until you enter the correct answer. 
+Because you did not get it right on the first try, the letter will not progress when you get it right.
 
-If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. Letters do not get repeated after the initial introduction, if you want to hear it again switch out of Lesson Mode and click the newly added circle.
+If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. There's no easy way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
 
-I see no way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
+The `Theme` button changes the light/dark theme. The `WPM` and `Tone` buttons cycle through other options.
+These preferences, along with the Window size, are saved.
 
-The `Theme` button changes the light/dark theme. Your preference will be saved.
-The Koch method recommends listening to letters at 20WPM. Hence by default morse is at 700Hz tone 20WPM.
-Click/tap the `WPM` and `Tone` buttons to cycle through other options, your preference will be saved.
+The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
 
 ## Download
 I currently make binaries for Linux and Windows (and hopefully soon, Android). I'm also hoping to deploy to the web via github pages. You can download them on the [releases](https://github.com/M0JXD/morse-recognition-trainer/releases) page.
@@ -66,7 +69,6 @@ Thanks to Raysan5 and all the contributors to Raylib! <br>
 
 ## TODO
 Repeat letter when wrong <br>
-New letter in Red <br>
 12WPM option <br>
 Time how long to get them, maybe timeout <br>
 Better algoritm that focuses on lower rated options - use times <br>

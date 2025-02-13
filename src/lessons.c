@@ -21,7 +21,6 @@ static enum LessonState {
     WAITING,
     LAST_INCORRECT,
     CONGRATS,
-    TEACHING
 } lessonState = WAITING;
 
 void GetLessonText(char *string) {
@@ -33,13 +32,10 @@ void GetLessonText(char *string) {
             sprintf(string, "Which letter was played?");
             break;
         case LAST_INCORRECT:
-            sprintf(string, "Wrong, try again.");
+            sprintf(string, "Wrong, repeating letter...");
             break;
         case CONGRATS:
             sprintf(string, "Correct!");
-            break;
-        case TEACHING:
-            TeachLesson(NOT_LETTER, string, NULL);
             break;
         default:
             sprintf(string, "I am lost, what happened?");
@@ -52,8 +48,10 @@ void UpdateLevel(int kochLetterToUpdate, int* externalCounter) {
     // If the level is more than two, and the next Koch letter is not activated, activate it.
     if (gameSave.levels[kochLetterToUpdate] >= 2 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
         gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
-        TeachLesson(kochLetterToUpdate + 1, NULL, externalCounter);
-        lessonState = TEACHING;
+    }
+
+    if (gameSave.levels[kochLetterToUpdate] > 8) {
+        gameSave.levels[kochLetterToUpdate] = 8;
     }
 }
 
@@ -64,6 +62,9 @@ int RegressLevel(int kochLetterToRegress) {
     gameSave.levels[kochLetterToRegress]--;
     if (!gameSave.levels[kochLetterToRegress]) {
         ResetDueToZeroLevel(kochLetterToRegress);
+    }
+    if (gameSave.levels[kochLetterToRegress] < 0) {
+        gameSave.levels[kochLetterToRegress] = 0;
     }
 }
 
@@ -87,7 +88,6 @@ void ResetDueToZeroLevel(int letterThatReachedZero) {
 void UpdateLesson(int characterDetected) {
     static int counter = 0;  // Used to delay between asking letters
 
-
     // Just entered Lesson Mode
     if ((oldInLesson != inLesson) && inLesson) {
         lessonState = CONGRATS;
@@ -97,9 +97,8 @@ void UpdateLesson(int characterDetected) {
     // Must be first ever play, no save present
     if (!gameSave.activatedLetters[0]) {
         gameSave.activatedLetters[0] = 1;
-        TeachLesson(0, NULL, &counter);
-        lessonState = TEACHING;
     }
+
     switch (lessonState) {
         case ASKING:
             if (IsSoundPlaying(dot) || IsSoundPlaying(dash)) {
@@ -114,7 +113,9 @@ void UpdateLesson(int characterDetected) {
                 counter = COUNTER_DELAY;
                 UpdateLevel(characterDetected, &counter);
             } else if (characterDetected != NOT_LETTER) {
-                RegressLevel(characterDetected);
+                RegressLevel(currentLetter);
+                // Repeat letter
+                PlayMorse(getQwertyFromKoch(currentLetter));
                 lessonState = LAST_INCORRECT;
             }
             break;
@@ -133,36 +134,10 @@ void UpdateLesson(int characterDetected) {
                 lessonState = CONGRATS;
                 counter = COUNTER_DELAY;
             } else if (characterDetected != NOT_LETTER) {
-                lessonState = LAST_INCORRECT;
-            }
-            break;
-        case TEACHING:
-            if (IsSoundPlaying(dot) || IsSoundPlaying(dash) || counter) {
-                counter--;
-                break;
-            } else {
-                lessonState = CONGRATS;
-                counter = 1;
+                // Repeat Letter again
+                PlayMorse(getQwertyFromKoch(currentLetter));
             }
             break;
     }
     oldInLesson = inLesson;
 }
-
-void TeachLesson(int letterToTeach, char* string, int* externalCounter) {
-    static int rememberLetter = 0;
-    rememberLetter = (letterToTeach == NOT_LETTER) ? rememberLetter : letterToTeach;
-    
-    // Being called for the string
-    if(letterToTeach == NOT_LETTER && string != NULL) {
-        sprintf(string, "This is letter %s", lettersKoch[rememberLetter]);
-    } else {
-        // Being called to teach
-        PlayMorse(getQwertyFromKoch(rememberLetter));
-        lessonState = TEACHING;
-        *externalCounter = COUNTER_DELAY + 20;
-    }
-}
-
-
-
