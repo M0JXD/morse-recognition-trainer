@@ -16,7 +16,12 @@ void LoadData(SaveState *saveState) {
         file = fopen(SAVE_FILE, "r");
         int saveData[90];
 
-        fread(saveData, sizeof(int), 90, file);
+        int failCheck = fread(saveData, sizeof(int), 90, file);
+
+        if (!failCheck) {
+            puts("Bad fail trying to get data!");
+            return;
+        }
 
         saveState->windowWidth  = saveData[0];
         saveState->windowLength = saveData[1];
