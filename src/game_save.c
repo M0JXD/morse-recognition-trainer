@@ -1,6 +1,7 @@
 #include "game_save.h"
 #include "raylib.h"
 #include "string.h"
+#include "stdio.h"
 
 void LoadData(SaveState *saveState) {
     // Check that save exists
@@ -8,21 +9,26 @@ void LoadData(SaveState *saveState) {
     if (FileExists(SAVE_FILE)) {
         // I have a lot of expectations here. 
         // If the file is not as anticipated the program will likely segfault.
-        int dataSize;
-        unsigned char* file = LoadFileData("save.mrt", &dataSize);
+        // int dataSize;
+        // unsigned char* file = LoadFileData("save.mrt", &dataSize);
 
-        saveState->windowWidth = (int)file[0];
-        saveState->windowLength = (int)file[1];
-        saveState->theme = (int)file[2];
-        saveState->tone = (int)file[4];
-        saveState->WPM = (int)file[5];
+        FILE *file;
+        file = fopen(SAVE_FILE, "r");
+        int saveData[90];
 
-        // Now the fun part...
+        fread(saveData, sizeof(int), 90, file);
+
+        saveState->windowWidth  = saveData[0];
+        saveState->windowLength = saveData[1];
+        saveState->theme        = saveData[2];
+        saveState->tone         = saveData[3];
+        saveState->WPM          = saveData[4];
+
         for (int i = 0; i < 40; i++) {
-            saveState->activatedLetters[i] = (int)file[6 + i];
-            saveState->levels[i] = (int)file[47 + i];
+            saveState->activatedLetters[i] = (int)saveData[6 + i];
+            saveState->levels[i] = (int)saveData[47 + i];
         }
-        UnloadFileData(file);
+        fclose(file);
 
     } else {
         // There's no save to load, set some defaults
@@ -43,13 +49,10 @@ void LoadData(SaveState *saveState) {
 }
 
 void SaveData(SaveState *saveState) {
-    int dataSize;
-    if(!FileExists(SAVE_FILE)){
-        // I think if the file doesn't exist, LoadFileData makes it anyways.
-        unsigned char *file = LoadFileData(SAVE_FILE, &dataSize);
-    }
 
-    unsigned char newData[90] = {
+    FILE *file = fopen(SAVE_FILE, "w");
+
+    int newData[90] = {
         saveState->windowWidth,
         saveState->windowLength,
         saveState->theme,
@@ -62,5 +65,6 @@ void SaveData(SaveState *saveState) {
         newData[47 + i] = saveState->levels[i];
     }
 
-    SaveFileData(SAVE_FILE, newData, 90);
+    fwrite(newData, sizeof(int), 90, file);
+    fclose(file);
 }

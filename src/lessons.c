@@ -10,7 +10,6 @@
 
 #define COUNTER_DELAY 25
 
-
 extern Sound dot, dash;
 extern int inLesson;
 extern int oldInLesson;

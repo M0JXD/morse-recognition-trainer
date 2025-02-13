@@ -117,7 +117,6 @@ int main(void) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 oldInLesson = inLesson;
                 inLesson = !inLesson;
-                //printf("Lesson pressed, inLesson now = %d\n", inLesson);
             }
             
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
@@ -127,7 +126,6 @@ int main(void) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), wpmButton)) {
                 if (gameSave.WPM == 25) gameSave.WPM = 10; else gameSave.WPM += 5;
                 LoadMorseSounds();
-                // printf("WPM changed, is now = %d\n", gameSave.WPM);
             }
 
             Rectangle toneButton = { width - 205, 10, 110 ,30 };
@@ -150,7 +148,6 @@ int main(void) {
                         break;
                 }
                 LoadMorseSounds();
-                // printf("Tone changed, is now = %d\n", gameSave.tone);
             }
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
@@ -264,7 +261,9 @@ int main(void) {
     //--------------------------------------------------------------------------------
     // Save and De-initialise
     //--------------------------------------------------------------------------------
-    // SaveData(&gameSave);
+    gameSave.windowWidth = GetScreenWidth();
+    gameSave.windowLength = GetScreenHeight();
+    SaveData(&gameSave);
     UnloadSound(dot);
     UnloadSound(dash);
     CloseWindow();
