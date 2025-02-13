@@ -19,7 +19,7 @@ void LoadData(SaveState *saveState) {
         int failCheck = fread(saveData, sizeof(int), 90, file);
 
         if (!failCheck) {
-            puts("Bad fail trying to get data!");
+            //puts("Bad fail trying to get data!");
             return;
         }
 

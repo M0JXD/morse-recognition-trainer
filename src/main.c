@@ -38,7 +38,7 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour)
 //--------------------------------------------------------------------------------
 int main(void) {
     SetTraceLogLevel(LOG_NONE);
-    puts("----- MORSE RECOGNITION TRAINER -----");
+    //puts("----- MORSE RECOGNITION TRAINER -----");
     InitWindow(640, 480, "Morse Recognition Trainer");
     SetTargetFPS(30);
     SetWindowMinSize(410, 300);
@@ -248,7 +248,7 @@ int main(void) {
                     }
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
-                        printf("Pressed %s\n", lettersQwerty[wasDetected]);
+                        // printf("Pressed %s\n", lettersQwerty[wasDetected]);
                         inLesson ? UpdateLesson(getKochFromQwerty(wasDetected)) : PlayMorse(wasDetected);
                     }
                 }
