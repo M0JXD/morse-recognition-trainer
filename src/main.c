@@ -18,6 +18,7 @@
 Sound dot;
 Sound dash;
 SaveState gameSave;
+int inLesson = 0;
 
 void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour) {
     if (gameSave.theme) {
@@ -69,7 +70,6 @@ int main(void) {
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
-    bool inLesson = false;  // Is a lesson running
     while (!WindowShouldClose()) {
         //--------------------------------------------------------------------------------
         // LAYOUT ADAPTING
@@ -115,10 +115,9 @@ int main(void) {
             DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 inLesson = !inLesson;
-                SetLessonMode(inLesson);
                 //printf("Lesson pressed, inLesson now = %d\n", inLesson);
             }
-                
+            
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
             DrawRectangleRoundedLines(wpmButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, RED);
             sprintf(string, "WPM: %d", gameSave.WPM);
@@ -251,13 +250,13 @@ int main(void) {
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
                         printf("Pressed %s\n", lettersQwerty[wasDetected]);
-                        inLesson ? UpdateLesson(wasDetected) : PlayMorse(wasDetected);
-                        // UpdateLesson(wasDetected);
+                        inLesson ? UpdateLesson(getKochFromQwerty(wasDetected)) : PlayMorse(wasDetected);
                     }
                 }
             }
         EndDrawing();
         PlayMorse(NOT_LETTER);
+        inLesson ? UpdateLesson(NOT_LETTER) : 0;
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------

@@ -1,12 +1,11 @@
 #ifndef LESSONS_H
 #define LESSONS_H
 
-extern int inLesson;
-
-void SetLessonMode(int inLesson);  // Checks the current global gamesave and starts the appropriate lesson
-int EndLesson(int force);  // Always called at end of the loop, ends the lesson if it's done.
+void TeachLesson(int letterToTeach, char* string);
 void GetLessonText(char* string);  // Provides the appropriate lesson text for the statusbar depending on current lesson state
 void UpdateLesson(int characterDetected);  // Passes the last pressed character so the lesson state can update.
-void UpdateLevel(char* kochLetterToUpdate);
+void UpdateLevel(int kochLetterToUpdate);  // NO
+int RegressLevel(int kochLetterToRegress);  // Returns 1 if it went to zero.
+void ResetDueToZeroLevel(int letterThatReachedZero);
 
 #endif
