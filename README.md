@@ -77,5 +77,7 @@ Fix regression/progression - never allow negatives
 Dont repeat the previous asked letter.
 Stop terminal being opened on Windows
 
+Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE
+
 Build for Web
 Build for Android
