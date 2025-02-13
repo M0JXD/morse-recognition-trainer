@@ -27,7 +27,8 @@ The Koch method recommends listening to letters at 20WPM. Hence by default morse
 Click/tap the `WPM` and `Tone` buttons to cycle through other options, your preference will be saved.
 
 ## Download
-I currently make binaries for Linux, Windows (and hopefully soon, Android). I'm also hoping to deploy to the web via github pages. You can download them on the releases page.
+I currently make binaries for Linux and Windows (and hopefully soon, Android). I'm also hoping to deploy to the web via github pages. You can download them on the [releases](https://github.com/M0JXD/morse-recognition-trainer/releases) page.
+
 Due to not owning Apple devices and an unwillingness to break their EULA's, macOS binaries are not provided, although it should build and run.
 iOS is waiting on Raylib to gain iOS support, but likewise I can't provide binaries anyways...
 
@@ -62,4 +63,3 @@ Likewise, deploying to the web is somewhat involved.
 Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
 Thanks to Raysan5 and all the contributors to Raylib! <br>
-Raymob <br>
