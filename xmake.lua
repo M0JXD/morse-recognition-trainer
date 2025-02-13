@@ -5,6 +5,7 @@ target("morse-recognition-trainer")
     set_kind("binary")
     add_files("src/*.c")
     add_packages('raylib')
+    -- add_ldflags("-static", {force = true})
 
     -- Copy the assets for building/running with xmake in development
     set_configdir("$(buildir)/$(plat)/$(arch)/$(mode)/assets")
