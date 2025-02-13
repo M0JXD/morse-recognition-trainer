@@ -19,6 +19,7 @@ Sound dot;
 Sound dash;
 SaveState gameSave;
 int inLesson = 0;
+int oldInLesson = 0;
 
 void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour) {
     if (gameSave.theme) {
@@ -114,6 +115,7 @@ int main(void) {
                      : DrawRectangleRoundedLines(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE);
             DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
+                oldInLesson = inLesson;
                 inLesson = !inLesson;
                 //printf("Lesson pressed, inLesson now = %d\n", inLesson);
             }

@@ -1,3 +1,5 @@
+#include "raylib.h"
+
 #include "lessons.h"
 #include "letters.h"
 #include "morse.h"
@@ -8,7 +10,10 @@
 
 #define COUNTER_DELAY 25
 
+
+extern Sound dot, dash;
 extern int inLesson;
+extern int oldInLesson;
 extern SaveState gameSave;
 static int currentLetter = 0;
 
@@ -74,14 +79,15 @@ int GetRandomActiveLetter(void) {
 }
 
 void ResetDueToZeroLevel(int letterThatReachedZero) {
-    for (int i = 1; i < 40; i++) {
-        
+    for (int i = letterThatReachedZero; i < 40; i++) {
+        gameSave.activatedLetters[i] = 0;
+        gameSave.levels[i] = 0;
     }
 }
 
 void UpdateLesson(int characterDetected) {
     static int counter = 0;  // Used to delay between asking letters
-    static int oldInLesson = 0;
+
 
     // Just entered Lesson Mode
     if ((oldInLesson != inLesson) && inLesson) {
@@ -95,11 +101,9 @@ void UpdateLesson(int characterDetected) {
         TeachLesson(0, NULL, &counter);
         lessonState = TEACHING;
     }
-    char string[40];
     switch (lessonState) {
         case ASKING:
-            GetMorseText(NOT_LETTER, string);
-            if (string[0]) {
+            if (IsSoundPlaying(dot) || IsSoundPlaying(dash)) {
                 break;
             } else {
                 lessonState = WAITING;
@@ -107,12 +111,10 @@ void UpdateLesson(int characterDetected) {
             break;
         case WAITING:
             if (characterDetected == currentLetter) {
-                puts("WAS CORRECT");
                 lessonState = CONGRATS;  // Last letter was correct
                 counter = COUNTER_DELAY;
                 UpdateLevel(characterDetected, &counter);
             } else if (characterDetected != NOT_LETTER) {
-                puts("HERE");
                 RegressLevel(characterDetected);
                 lessonState = LAST_INCORRECT;
             }
@@ -136,9 +138,7 @@ void UpdateLesson(int characterDetected) {
             }
             break;
         case TEACHING:
-
-            GetMorseText(NOT_LETTER, string);
-            if (string[0] || counter) {
+            if (IsSoundPlaying(dot) || IsSoundPlaying(dash) || counter) {
                 counter--;
                 break;
             } else {
