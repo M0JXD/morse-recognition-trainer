@@ -1,6 +1,6 @@
 # Morse Recognition Trainer
 
-TODO: Screenshots, Icon
+![screenshot](assets/screenshot.png)
 
 A simple cross platform app to learn morse using a sort of Koch inspired method. 
 Built with C and Raylib.
