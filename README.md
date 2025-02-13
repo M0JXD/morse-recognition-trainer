@@ -70,7 +70,7 @@ New letter in Red
 12WPM option
 Time how long to get them, maybe timeout
 Better algoritm that focuses on lower rated options - use times
-Maybe turn off letter introductions
+Force press the letter when introduced.
 Right click to activate all letters for random quiz
 Build on old Linux to reduce GLibC version requirement
 Fix regression
