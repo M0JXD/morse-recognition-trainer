@@ -11,7 +11,8 @@ I'm planning to make a release for Android.
 
 You can also try it out on the web here, although you're progress might not be saved: https://m0jxd.github.io/morse-recognition-trainer/
 
-Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide binaries anyways...
+Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), 
+macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide such binaries anyways...
 
 ## User Guide
 
@@ -77,5 +78,4 @@ Better algo that focuses on lower rated options - use times from above <br>
 "Got it wrong" sound <br>
 Right click to activate all letters for random quiz <br>
 For above: Have modes on the lesson button - REPEAT, LESSON, EVERYTHING <br>
-Build for Web <br>
 Build for Android <br>
