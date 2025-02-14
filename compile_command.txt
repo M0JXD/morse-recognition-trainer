@@ -1,0 +1,1 @@
+emcc -o index.html main.c game_save.c lessons.c letters.c morse.c -Os -Wall ../raylib/src/libraylib.a -I. -I../raylib/src -L. -s USE_GLFW=3 -s ASYNCIFY -DPLATFORM_WEB --preload-file ../assets
