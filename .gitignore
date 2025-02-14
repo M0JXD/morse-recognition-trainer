@@ -5,6 +5,8 @@ build/
 # MacOS Cache
 .DS_Store
 
+raylib/
+
 # VScode
 **/.vscode/
 .gitignore
