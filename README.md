@@ -5,6 +5,8 @@
 A simple cross platform app to learn morse using a sort of Koch inspired method. 
 Built with C and Raylib.
 
+FYI: This contains no generated code from the likes of ChatGPT/Copilot. Pure spartans way for the win!
+
 ## Download
 I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
 I'm planning to make a release for Android.
