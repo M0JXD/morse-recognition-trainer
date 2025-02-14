@@ -9,7 +9,7 @@ Built with C and Raylib.
 I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
 I'm planning to make a release for Android.
 
-You can also try it out on the web here, although you're progress might now be saved: https://m0jxd.github.io/morse-recognition-trainer/
+You can also try it out on the web here, although you're progress might not be saved: https://m0jxd.github.io/morse-recognition-trainer/
 
 Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide binaries anyways...
 
