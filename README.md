@@ -30,10 +30,9 @@ These preferences, along with the Window size, are saved.
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
 
 ## Download
-I currently make binaries for Linux and Windows (and hopefully soon, Android). I'm also hoping to deploy to the web via github pages. You can download them on the [releases](https://github.com/M0JXD/morse-recognition-trainer/releases) page.
+I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases). I'm planning to make a release for Android, and a Web version too.
 
-Due to not owning Apple devices and an unwillingness to break their EULA's, macOS binaries are not provided, although it should build and run.
-iOS is waiting on Raylib to gain iOS support, but likewise I can't provide binaries anyways...
+Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide binaries anyways...
 
 ## Installation
 
@@ -48,7 +47,7 @@ Choose where you want to store the app (e.g. ~/Applications/morse-recognition-tr
 Your desktop environment may have a GUI for making desktop entries more easily, e.g. in Cinnamon, right click the menu and select "Edit Menu".
 
 ## Compiling
-If your platform is not provided for, or you simply want to build from source, you can likely do so by installing xmake and running:
+If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [xmake](https://xmake.io/#/guide/installation) and running:
 
 ```
 xmake f -m release
@@ -69,9 +68,10 @@ Thanks to Raysan5 and all the contributors to Raylib! <br>
 
 ## TODO
 12WPM option <br>
-Time how long to get them, maybe timeout <br>
-Better algoritm that focuses on lower rated options - use times <br>
+Time how long to get them, maybe have a timeout <br>
+Better algo that focuses on lower rated options - use times from above <br>
+"Got it wrong" sound <br>
 Right click to activate all letters for random quiz <br>
-Lesson modes - REPEAT, LESSON MODE, RANDOM EVERYTHING MODE <br>
+For above: Have modes on the lesson button - REPEAT, LESSON, EVERYTHING <br>
 Build for Web <br>
 Build for Android <br>
