@@ -22,6 +22,7 @@
 // These are needed all the time, I think it's fair they're global.
 Sound dot;
 Sound dash;
+Sound incorrect;
 SaveState gameSave;
 int inLesson = 0;
 int oldInLesson = 0;
@@ -66,6 +67,7 @@ int main(void) {
 
     // Load morse sounds
     LoadMorseSounds();
+    incorrect = LoadSound("assets/INCORRECT.wav");
 
     // Set up initial theme;
     Color mainTheme;
@@ -271,6 +273,7 @@ int main(void) {
     SaveData(&gameSave);
     UnloadSound(dot);
     UnloadSound(dash);
+    UnloadSound(incorrect);
     CloseWindow();
     return 0;
 }

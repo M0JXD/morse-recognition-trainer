@@ -10,12 +10,13 @@
 
 #define COUNTER_DELAY 25
 
-extern Sound dot, dash;
+extern Sound dot, dash, incorrect;
+extern SaveState gameSave;
 extern int inLesson;
 extern int oldInLesson;
-extern SaveState gameSave;
-static int currentLetter = 0;
 
+
+static int currentLetter = 0;
 static enum LessonState {
     ASKING,
     WAITING,
@@ -43,7 +44,7 @@ void GetLessonText(char *string) {
     }
 }
 
-void UpdateLevel(int kochLetterToUpdate, int* externalCounter) {
+void UpdateLevel(int kochLetterToUpdate) {
     gameSave.levels[kochLetterToUpdate]++;
     // If the level is more than two, and the next Koch letter is not activated, activate it.
     if (gameSave.levels[kochLetterToUpdate] >= 2 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
@@ -55,7 +56,7 @@ void UpdateLevel(int kochLetterToUpdate, int* externalCounter) {
     }
 }
 
-int RegressLevel(int kochLetterToRegress) {
+void RegressLevel(int kochLetterToRegress) {
     if (!gameSave.levels[kochLetterToRegress]) {
         ResetDueToZeroLevel(kochLetterToRegress);
     }
@@ -79,7 +80,7 @@ int GetRandomActiveLetter(void) {
 }
 
 void ResetDueToZeroLevel(int letterThatReachedZero) {
-    for (int i = letterThatReachedZero; i < 40; i++) {
+    for (int i = letterThatReachedZero + 1; i < 40; i++) {
         gameSave.activatedLetters[i] = 0;
         gameSave.levels[i] = 0;
     }
@@ -87,6 +88,7 @@ void ResetDueToZeroLevel(int letterThatReachedZero) {
 
 void UpdateLesson(int characterDetected) {
     static int counter = 0;  // Used to delay between asking letters
+    static enum Marker {PLAYING_INCORRECT, NO_MARKER} marker;
 
     // Just entered Lesson Mode
     if ((oldInLesson != inLesson) && inLesson) {
@@ -111,11 +113,12 @@ void UpdateLesson(int characterDetected) {
             if (characterDetected == currentLetter) {
                 lessonState = CONGRATS;  // Last letter was correct
                 counter = COUNTER_DELAY;
-                UpdateLevel(characterDetected, &counter);
+                UpdateLevel(characterDetected);
             } else if (characterDetected != NOT_LETTER) {
                 RegressLevel(currentLetter);
                 // Repeat letter
-                PlayMorse(getQwertyFromKoch(currentLetter));
+                PlaySound(incorrect);
+                marker = PLAYING_INCORRECT;
                 lessonState = LAST_INCORRECT;
             }
             break;
@@ -134,10 +137,18 @@ void UpdateLesson(int characterDetected) {
                 lessonState = CONGRATS;
                 counter = COUNTER_DELAY;
             } else if (characterDetected != NOT_LETTER) {
-                // Repeat Letter again
-                PlayMorse(getQwertyFromKoch(currentLetter));
+                marker = PLAYING_INCORRECT;
+                PlaySound(incorrect);
             }
             break;
     }
+
+    // To repeat the morse after the incorrect sound
+    if (!IsSoundPlaying(incorrect) && marker == PLAYING_INCORRECT) {
+        PlayMorse(getQwertyFromKoch(currentLetter));
+        marker = NO_MARKER;
+    }
+        
+
     oldInLesson = inLesson;
 }
