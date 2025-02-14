@@ -5,6 +5,14 @@
 A simple cross platform app to learn morse using a sort of Koch inspired method. 
 Built with C and Raylib.
 
+## Download
+I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
+I'm planning to make a release for Android.
+
+You can also try it out on the web here, although you're progress might now be saved: https://m0jxd.github.io/morse-recognition-trainer/
+
+Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide binaries anyways...
+
 ## User Guide
 
 When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
@@ -29,10 +37,6 @@ These preferences, along with the Window size, are saved.
 
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
 
-## Download
-I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases). I'm planning to make a release for Android, and a Web version too.
-
-Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide binaries anyways...
 
 ## Installation
 
@@ -59,7 +63,7 @@ You can move and rename this folder to `morse-recognition-trainer` or whatever y
 
 Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
 For Android, the build will be more complicated. See Raymob.
-Likewise, deploying to the web will be somewhat involved.
+See the emscripten branch for web deployment - there is a text file showing the compile command, otherwise follow Raylib's HTML guide :)
 
 ## Credits
 Made for my Dad, love you!! xx <br>
