@@ -56,7 +56,7 @@ Your desktop environment may have a GUI for making desktop entries more easily, 
 ## Compiling
 
 ### Desktop
-If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [xmake](https://xmake.io/#/guide/installation) and running:
+If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [Xmake](https://xmake.io/#/guide/installation) and running:
 
 ```
 xmake f -m release
@@ -65,6 +65,8 @@ xmake
 
 Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which contains the executable and the assets it requires.. 
 You can move and rename this folder to `morse-recognition-trainer` or whatever you wish, although you must retain it's internal structure with the assets folder in the same directory as the binary.
+
+If Xmake complains about being unable to install Raylib, try installing your distro's openGL dev packages (e.g. libopengl-dev/libgl-dev for Ubuntu). 
 
 ### Android
 
@@ -80,5 +82,9 @@ Which will generate four files, index.html, index.wasm, index.data and index.js.
 
 ## Credits
 Made for my Dad, love you!! xx <br>
-Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
-Thanks to Raysan5 and all the contributors to Raylib! <br>
+Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app, and only ran on Windows anyways. <br>
+Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/)! <br>
+Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php? <br>
+Thanks to this video for the CC0 Buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
+Thanks to Ruki for Xmake <br>
+And everyone else who's work this relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
