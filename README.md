@@ -54,6 +54,8 @@ Choose where you want to store the app (e.g. ~/Applications/morse-recognition-tr
 Your desktop environment may have a GUI for making desktop entries more easily, e.g. in Cinnamon, right click the menu and select "Edit Menu".
 
 ## Compiling
+
+### Desktop
 If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [xmake](https://xmake.io/#/guide/installation) and running:
 
 ```
@@ -61,12 +63,18 @@ xmake f -m release
 xmake
 ```
 
-Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which contains the executable. 
+Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which contains the executable and the assets it requires.. 
 You can move and rename this folder to `morse-recognition-trainer` or whatever you wish, although you must retain it's internal structure with the assets folder in the same directory as the binary.
 
-Which will create a folder called morse-recognition-trainer containing the executable and the assets it requires.
-For Android, the build will be more complicated. See Raymob.
-See the emscripten branch for web deployment - there is a text file showing the compile command, otherwise follow Raylib's HTML guide :)
+### Android
+
+Not done yet, but I intend to use Raymob.
+
+### Web
+
+See the emscripten branch for web deployment. Follow Raylib's HTML guide in their wiki to create libraylib.a, then cd into the src folder and run:
+
+``
 
 ## Credits
 Made for my Dad, love you!! xx <br>
