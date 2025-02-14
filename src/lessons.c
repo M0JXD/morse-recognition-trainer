@@ -77,6 +77,11 @@ int GetRandomActiveLetter(int mode) {
         return (rand() % (40)); 
     }
 
+    // if only the first letter is active, we must send it!
+    if (!gameSave.activatedLetters[1]) {
+        return 0;
+    }
+
     static char lastLetter = '*';
     static char lastLastLetter = '*';
 
@@ -91,8 +96,8 @@ int GetRandomActiveLetter(int mode) {
 
     // 30% of the time, force it to be a low level letter
     // There should always be one with less then three sections except when all letters are activatd
-    if ((rand() % 11) < 4  && !gameSave.activatedLetters[39]) {
-        while (gameSave.levels[nextLetter] > 4) {
+    if ((rand() % 11) < 6  && !gameSave.activatedLetters[39]) {
+        while (gameSave.levels[nextLetter] > 3) {
             nextLetter = (rand() % (amountOfLetters));
         }
     }
@@ -113,6 +118,10 @@ void ResetDueToZeroLevel(int letterThatReachedZero) {
     for (int i = letterThatReachedZero + 1; i < 40; i++) {
         gameSave.activatedLetters[i] = 0;
         gameSave.levels[i] = 0;
+    }
+
+    if (!gameSave.activatedLetters[0]) {
+        gameSave.activatedLetters[0] = 1;
     }
 }
 
