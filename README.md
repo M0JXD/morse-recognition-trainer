@@ -74,7 +74,9 @@ Not done yet, but I intend to use Raymob.
 
 See the emscripten branch for web deployment. Follow Raylib's HTML guide in their wiki to create libraylib.a, then cd into the src folder and run:
 
-``
+`emcc -o index.html main.c game_save.c lessons.c letters.c morse.c -Os -Wall ../raylib/src/libraylib.a -I. -I../raylib/src -L. -s USE_GLFW=3 -s ASYNCIFY -DPLATFORM_WEB --preload-file ../assets`
+
+Which will generate four files, index.html, index.wasm, index.data and index.js
 
 ## Credits
 Made for my Dad, love you!! xx <br>
