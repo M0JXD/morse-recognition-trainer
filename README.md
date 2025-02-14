@@ -72,12 +72,3 @@ See the emscripten branch for web deployment - there is a text file showing the 
 Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
 Thanks to Raysan5 and all the contributors to Raylib! <br>
-
-## TODO
-12WPM option <br>
-Time how long to get them, maybe have a timeout <br>
-Better algo that focuses on lower rated options - use times from above <br>
-"Got it wrong" sound <br>
-Right click to activate all letters for random quiz <br>
-For above: Have modes on the lesson button - REPEAT, LESSON, EVERYTHING <br>
-Build for Android <br>
