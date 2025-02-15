@@ -165,19 +165,19 @@ int main(void) {
                 if (mode > EVERYTHING) mode = REPEAT; 
             }
             
-            Rectangle wpmButton = { width - 307, 10, 90 ,30 };
+            Rectangle wpmButton = { width - 312, 10, 90 ,30 };
             DrawRectangleRoundedLines(wpmButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, RED);
             sprintf(string, "WPM: %d", gameSave.WPM);
-            DrawText(string, width - 302, 15, FONT_SIZE, oppositeMainTheme);
+            DrawText(string, width - 307, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), wpmButton)) {
                 if (gameSave.WPM == 25) gameSave.WPM = 10; else gameSave.WPM += 5;
                 LoadMorseSounds();
             }
 
-            Rectangle toneButton = { width - 205, 10, 110 ,30 };
+            Rectangle toneButton = { width - 210, 10, 110 ,30 };
             DrawRectangleRoundedLines(toneButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, GREEN);
             sprintf(string, "TONE: %d", gameSave.tone);
-            DrawText(string, width - 202, 15, FONT_SIZE, oppositeMainTheme);
+            DrawText(string, width - 207, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), toneButton)) {
                 switch (gameSave.tone) {
                     case 650:
@@ -196,9 +196,9 @@ int main(void) {
                 LoadMorseSounds();
             }
 
-            Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
+            Rectangle switchThemeButton = { (width - 88), 10, 85, 30 };
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
-            DrawText("THEME", width - 84, 15, 20, oppositeMainTheme);
+            DrawText("THEME", width - 82, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
                 SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
             }
