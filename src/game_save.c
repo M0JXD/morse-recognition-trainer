@@ -1,11 +1,12 @@
-#include "game_save.h"
 #include "raylib.h"
-#include "string.h"
-#include "stdio.h"
+#include "stdio.h"  // FILE
+#include "string.h"  // memset
+
+#include "game_save.h"
 
 void LoadData(SaveState *saveState) {
     // Check that save exists
-    // mrt is arbritary, for "morse recognition trainer"
+    // .mrt is arbritary, for "morse recognition trainer"
     if (FileExists(SAVE_FILE)) {
         // I have a lot of expectations here. 
         // If the file is not as anticipated the program will likely segfault.

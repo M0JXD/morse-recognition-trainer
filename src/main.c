@@ -1,18 +1,18 @@
 #include "raylib.h"
 #include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
 
-#include "stdio.h"  // printf debugging
-#include "ctype.h"  // for toupper
-#include "string.h"
-#include "time.h"
-#include "stdlib.h"
+#include "ctype.h"   // toupper
+#include "stdio.h"   // sprintf
+#include "stdlib.h"  // rand
+#include "string.h"  // memset
+#include "time.h"  // time used to seed rand
 
+#include "game_save.h"
+#include "lessons.h"
 #include "letters.h"
 #include "morse.h"
-#include "lessons.h"
-#include "game_save.h"
 
-// Prevent a console from opening too.
+// Stop a console window from also opening
 #ifdef _WIN32
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
@@ -68,7 +68,7 @@ int main(void) {
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
 
-    // Load morse sounds
+    // Load sounds
     LoadMorseSounds();
     incorrect = LoadSound("assets/INCORRECT.wav");
 
@@ -168,7 +168,7 @@ int main(void) {
                 SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
             }
 
-            // Statusbar at bottom
+            // Status text at bottom
             memset(string, 0, 40);
             inLesson ? GetLessonText(string) : GetMorseText(NOT_LETTER, string);     
             int centering = MeasureText(string, radius * 0.8) / 2;
@@ -196,7 +196,7 @@ int main(void) {
                     DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
                     DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
 
-                    // Add lines for the segments
+                    // Add lines for the segments, NB: sin(45) = 0.707
                     DrawLine(circleCentre.x, circleCentre.y + radius * 0.6, 
                              circleCentre.x, circleCentre.y + radius, oppositeMainTheme);
 
@@ -209,7 +209,6 @@ int main(void) {
                     DrawLine(circleCentre.x - radius * 0.6, circleCentre.y,
                              circleCentre.x - radius, circleCentre.y, oppositeMainTheme);
 
-                    // sin(45) = 0.707
                     DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707, 
                              circleCentre.x + radius * 0.707, circleCentre.y + radius * 0.707, oppositeMainTheme);
    
@@ -230,7 +229,7 @@ int main(void) {
                         2  // Is the default in rText.C I think this is an unused parameter 
                     );  // TODO: Double check and issue report to raylib
                     
-                    // Letter in circle
+                    // Draw the letter in circle
                     DrawText(
                         lettersQwerty[i + (k * layoutWidth)], 
                         circleCentre.x - (offsets.x / 2), 

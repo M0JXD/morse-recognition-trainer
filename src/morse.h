@@ -3,17 +3,7 @@
  * See for reference: https://morsecode.world/international/timing.html
  * Also: https://en.wikipedia.org/wiki/Morse_code */
 
-#ifndef MORSE_H
-#define MORSE_H
-
-void LoadMorseSounds(void);
-
-/* If passed NOT_LETTER then sets @text appropriate string for current state.
- * Is passed letters in PlayMorse so it knows what letter we're on.
- * If passed (NOT_LETTER + 1) that tells it nothing is playing (done in PlayMorse) */
-void GetMorseText(int letter, char* text);
-
-/* A selection of wav files are included to play the morse sounds. 
+ /* A selection of wav files are included to play the morse sounds. 
  * The original intention was to generate on the fly, but for a measly 48kB this is much easier!
  * Included options are:
  * 650Hz 10WPM
@@ -31,6 +21,16 @@ void GetMorseText(int letter, char* text);
  * This site was used to generate them: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
  * Generated using letters "E" and "T". I checked in Audacity and they contain the appropriate gaps after the sound already. 
  * Please use the site to generate the ones you need should you're requirements not be provided for */
+
+#ifndef MORSE_H
+#define MORSE_H
+
+void LoadMorseSounds(void);
+
+/* If passed NOT_LETTER then sets @text appropriate string for current state.
+ * Is passed letters in PlayMorse so it knows what letter we're on.
+ * If passed (NOT_LETTER + 1) that tells it nothing is playing (done in PlayMorse) */
+void GetMorseText(int letter, char* text);
 
 void PlayMorse(int letter);
 

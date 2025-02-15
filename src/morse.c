@@ -1,8 +1,9 @@
 #include "raylib.h"
-#include "morse.h"
-#include "letters.h"
+#include "stdio.h"  // sprintf
+
 #include "game_save.h"
-#include "stdio.h"
+#include "letters.h"
+#include "morse.h"
 
 extern Sound dot;
 extern Sound dash;

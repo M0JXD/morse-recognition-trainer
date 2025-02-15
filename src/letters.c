@@ -1,3 +1,7 @@
+#include "raylib.h"
+#include "stdio.h"  // FILE
+// #include "string.h"
+
 #include "letters.h"
 
 const char* lettersQwerty[40] = {
@@ -378,4 +382,8 @@ int getQwertyFromKoch(int kochIndex){
         if (lettersQwerty[i] == lettersKoch[kochIndex])
             return i;
     }
+}
+
+void LoadCustomOrder(void) {
+    if (FileExists("CustomLetters.mrt")) ;
 }

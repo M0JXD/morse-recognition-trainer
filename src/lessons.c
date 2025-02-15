@@ -1,12 +1,11 @@
 #include "raylib.h"
+#include "stdio.h"  // sprintf
+#include "stdlib.h" // rand
 
 #include "lessons.h"
 #include "letters.h"
 #include "morse.h"
 #include "game_save.h"
-
-#include "stdio.h"
-#include "stdlib.h"
 
 #define COUNTER_DELAY 25
 
@@ -14,7 +13,6 @@ extern Sound dot, dash, incorrect;
 extern SaveState gameSave;
 extern int inLesson;
 extern int oldInLesson;
-
 
 static int currentLetter = 0;
 static enum LessonState {
@@ -25,7 +23,6 @@ static enum LessonState {
 } lessonState = WAITING;
 
 void GetLessonText(char *string) {
-    int lessonStateCheck = lessonState;
     switch (lessonState) {
         case ASKING:
             sprintf(string, "Playing Letter...");
@@ -103,7 +100,7 @@ int GetRandomActiveLetter(int mode, int introducedLetter) {
     int nextLetter = (rand() % (amountOfLetters));
 
     // 60% of the time, force it to be a low level letter
-    // There should always be one with less then three sections except when all letters are activatd
+    // There should always be one with less then three sections except when all letters are activated
     if ((((rand() % 5) + 1) <= 3) && !gameSave.activatedLetters[39]) {
         while (gameSave.levels[nextLetter] >= 3) {
             nextLetter = (rand() % (amountOfLetters));
@@ -138,13 +135,13 @@ void UpdateLesson(int characterDetected) {
     static int newLetter = NOT_LETTER;
     static enum Marker {PLAYING_INCORRECT, NO_MARKER} incorrectMarker = NO_MARKER;
 
-    // Just entered Lesson Mode
+    // Just entered Lesson Mode, force a letter to be asked
     if ((oldInLesson != inLesson) && inLesson) {
         lessonState = CONGRATS;
         counter = 1;
     }
 
-    // Must be first ever play, no save present
+    // Must be first ever play if this occurs
     if (!gameSave.activatedLetters[0]) {
         gameSave.activatedLetters[0] = 1;
     }
@@ -157,6 +154,7 @@ void UpdateLesson(int characterDetected) {
                 lessonState = WAITING;
             }
             break;
+
         case WAITING:
             if (characterDetected == currentLetter) {
                 lessonState = CONGRATS;  // Last letter was correct
@@ -181,6 +179,7 @@ void UpdateLesson(int characterDetected) {
                 counter--;
             }
             break;
+
         case LAST_INCORRECT:
             if (characterDetected == currentLetter) {
                 lessonState = CONGRATS;
@@ -192,7 +191,7 @@ void UpdateLesson(int characterDetected) {
             break;
     }
 
-    // To repeat the morse after the incorrect sound
+    // Repeat the morse after the incorrect sound is finished playing
     if (!IsSoundPlaying(incorrect) && incorrectMarker == PLAYING_INCORRECT) {
         PlayMorse(getQwertyFromKoch(currentLetter));
         incorrectMarker = NO_MARKER;
