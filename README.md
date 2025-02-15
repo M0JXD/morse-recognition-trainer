@@ -42,6 +42,10 @@ These preferences, along with the Window size, are saved.
 
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
 
+You can create a custom lesson order by adding a text file named "CustomLetters.mrt" in the same folder as the executable.
+Place the letters in the order you want on individual lines, an example is in the root of the repo.
+You MUST ensure there are 40 entries.
+
 ## Installation
 
 On Linux and Windows, this is a portable app that uses the directory it's launched in for saving/loading data and assets.
