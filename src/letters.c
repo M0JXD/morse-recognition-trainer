@@ -52,7 +52,7 @@ const char* lettersQwerty[40] = {
 // See https://www.qsl.net/kb5wck/super.html
 // And: https://lcwo.net/forum/628
 // Using LCWO's order
-const char* lettersKoch[40] = {
+char lettersKoch[40][2] = {
     "K",
     "M",
     "U",
@@ -372,7 +372,7 @@ const char sixthCodePart[40] = {
 // TODO: I could maybe optimise these to O(1) with a long switch case?
 int getKochFromQwerty(int qwertyIndex) {
     for(int i = 0; i < 40; i++) {
-        if (lettersKoch[i] == lettersQwerty[qwertyIndex])
+        if (lettersKoch[i][0] == lettersQwerty[qwertyIndex][0])
             return i;
     }
     return NOT_LETTER;
@@ -380,12 +380,25 @@ int getKochFromQwerty(int qwertyIndex) {
 
 int getQwertyFromKoch(int kochIndex){
     for(int i = 0; i < 40; i++) {
-        if (lettersQwerty[i] == lettersKoch[kochIndex])
+        if (lettersQwerty[i][0] == lettersKoch[kochIndex][0])
             return i;
     }
     return NOT_LETTER;
 }
 
 void LoadCustomOrder(void) {
-    if (FileExists("CustomLetters.mrt")) ;
+    if (FileExists("CustomLetters.mrt")) {
+        FILE *file = fopen("CustomLetters.mrt", "r");
+        char letterBuffer[5] = {0};
+        // Overwrite the Koch buffer
+        for (int i = 0; i < 40; i++) {
+            fgets(letterBuffer, 5, file);
+            letterBuffer[1] = '\0';
+            // printf("Buffer Read: %s\n", letterBuffer);
+            // printf("lettersKoch[%d] was: %s\n", i, lettersKoch[i]);
+            lettersKoch[i][0] = letterBuffer[0];
+            // printf("lettersKoch[%d] is now: %s\n\n", i, lettersKoch[i]);
+        }
+        fclose(file);
+    }
 }

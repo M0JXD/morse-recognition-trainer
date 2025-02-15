@@ -7,7 +7,7 @@
 
 // Strings with all the letters
 extern const char* lettersQwerty[40];
-extern const char* lettersKoch[40];
+extern char lettersKoch[40][2];
 
 /* These are in alignment with lettersQwerty.
  * Basically, each one returns the . or - for the character, then NULLs for unused characters
@@ -29,5 +29,6 @@ extern const char sixthCodePart[40];
 
 int getKochFromQwerty(int qwertyIndex);
 int getQwertyFromKoch(int kochIndex);
+void LoadCustomOrder(void);
 
 #endif  // LETTERS_H

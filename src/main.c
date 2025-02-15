@@ -89,10 +89,9 @@ int main(void) {
 
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
-
-    // Load sounds
     LoadMorseSounds();
     incorrect = LoadSound("assets/INCORRECT.wav");
+    LoadCustomOrder();
 
     // Set up initial theme;
     Color mainTheme;
