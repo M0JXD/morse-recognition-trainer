@@ -102,9 +102,9 @@ int GetRandomActiveLetter(int introducedLetter) {
             // Let's start by choosing a random active letter anyways
             nextLetter = (rand() % (amountOfLetters));
 
-            // 60% of the time, force it to be a low level letter
+            // 40% of the time, force it to be a low level letter
             // There should always be one with less then three sections except when all letters are activated
-            if ((((rand() % 5) + 1) <= 3) && !gameSave.activatedLetters[39]) {
+            if ((((rand() % 5) + 1) <= 2) && !gameSave.activatedLetters[39]) {
                 while (gameSave.levels[nextLetter] >= 3) {
                     nextLetter = (rand() % (amountOfLetters));
                 }
