@@ -4,6 +4,8 @@
 #include "stdio.h"  // printf debugging
 #include "ctype.h"  // for toupper
 #include "string.h"
+#include "time.h"
+#include "stdlib.h"
 
 #include "letters.h"
 #include "morse.h"
@@ -53,6 +55,7 @@ int main(void) {
     SetWindowIcon(icon);
     UnloadImage(icon);
 
+    srand(time(NULL)); 
     InitAudioDevice();
     
     // Default line width is a bit thin.

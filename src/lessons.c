@@ -50,7 +50,7 @@ int UpdateLevel(int kochLetterToUpdate) {
         gameSave.levels[kochLetterToUpdate] = 8;
     }
     // If the level is more than two, and the next Koch letter is not activated, activate it.
-    if (gameSave.levels[kochLetterToUpdate] >= 2 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
+    if (gameSave.levels[kochLetterToUpdate] >= 3 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
         // Force it to be the next letter
         gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
         return kochLetterToUpdate + 1;
@@ -71,7 +71,7 @@ void RegressLevel(int kochLetterToRegress) {
     }
 }
 
-int GetRandomActiveLetter(int mode) {
+int GetRandomActiveLetter(int mode, int introducedLetter) {
     // For Everything mode
     if (mode) {
         return (rand() % (40)); 
@@ -85,6 +85,14 @@ int GetRandomActiveLetter(int mode) {
     static char lastLetter = '*';
     static char lastLastLetter = '*';
 
+    // It's a newly introduced letter
+    if (introducedLetter != NOT_LETTER) {
+        lastLastLetter = lastLetter;
+        lastLetter = introducedLetter;
+        return introducedLetter;
+    }
+
+    // Get the amount of active letters
     int amountOfLetters;
     for (amountOfLetters = 0; amountOfLetters < 40; ++amountOfLetters) {
         if(!gameSave.activatedLetters[amountOfLetters])
@@ -94,10 +102,10 @@ int GetRandomActiveLetter(int mode) {
     // Let's start by choosing a random active letter anyways
     int nextLetter = (rand() % (amountOfLetters));
 
-    // 30% of the time, force it to be a low level letter
+    // 60% of the time, force it to be a low level letter
     // There should always be one with less then three sections except when all letters are activatd
-    if ((rand() % 11) < 6  && !gameSave.activatedLetters[39]) {
-        while (gameSave.levels[nextLetter] > 3) {
+    if ((((rand() % 5) + 1) <= 3) && !gameSave.activatedLetters[39]) {
+        while (gameSave.levels[nextLetter] >= 3) {
             nextLetter = (rand() % (amountOfLetters));
         }
     }
@@ -165,7 +173,7 @@ void UpdateLesson(int characterDetected) {
 
         case CONGRATS:
             if (counter == 1) {
-                currentLetter = (newLetter == NOT_LETTER) ? GetRandomActiveLetter(0) : newLetter;
+                currentLetter = GetRandomActiveLetter(0, newLetter);
                 PlayMorse(getQwertyFromKoch(currentLetter));
                 lessonState = ASKING;
                 newLetter = NOT_LETTER;
