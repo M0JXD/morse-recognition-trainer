@@ -29,15 +29,33 @@ SaveState gameSave;
 int inLesson = 0;
 int oldInLesson = 0;
 
+// Iterates to the next theme.
 void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour) {
-    if (gameSave.theme) {
-        *mainTheme = LIGHTGRAY;
-        *oppositeMainTheme = BLACK;
-        *progressColour = GREEN;
-    } else {
-        *mainTheme = DARKGRAY;
-        *oppositeMainTheme = WHITE;
-        *progressColour = LIME;  // MAROON, LIME, VIOLET
+    enum THEME {LIGHT_GREEN, LIGHT_PURPLE, DARK_GREEN, DARK_PURPLE};
+    gameSave.theme++;
+    if (gameSave.theme > 3) gameSave.theme = LIGHT_GREEN;
+
+    switch (gameSave.theme) {
+        case LIGHT_GREEN:
+            *mainTheme = LIGHTGRAY;
+            *oppositeMainTheme = BLACK;
+            *progressColour = GREEN;
+            break;
+        case LIGHT_PURPLE:
+            *mainTheme = LIGHTGRAY;
+            *oppositeMainTheme = BLACK;
+            *progressColour = PURPLE;
+            break;
+        case DARK_GREEN:
+            *mainTheme = DARKGRAY;
+            *oppositeMainTheme = WHITE;
+            *progressColour = LIME;  // MAROON, LIME, VIOLET
+            break;
+        case DARK_PURPLE:
+            *mainTheme = DARKGRAY;
+            *oppositeMainTheme = WHITE;
+            *progressColour = VIOLET;
+            break;
     }
 }
 
@@ -76,6 +94,7 @@ int main(void) {
     Color mainTheme;
     Color oppositeMainTheme;
     Color progressColour;
+    gameSave.theme--;  // Stop it iterating to next at startup 
     SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
 
     //--------------------------------------------------------------------------------
@@ -164,7 +183,6 @@ int main(void) {
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
-                gameSave.theme = !gameSave.theme;
                 SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
             }
 
