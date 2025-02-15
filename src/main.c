@@ -168,7 +168,7 @@ int main(void) {
             Rectangle wpmButton = { width - 312, 10, 90 ,30 };
             DrawRectangleRoundedLines(wpmButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, RED);
             sprintf(string, "WPM: %d", gameSave.WPM);
-            DrawText(string, width - 307, 15, FONT_SIZE, oppositeMainTheme);
+            DrawText(string, width - 306, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), wpmButton)) {
                 if (gameSave.WPM == 25) gameSave.WPM = 10; else gameSave.WPM += 5;
                 LoadMorseSounds();
@@ -196,9 +196,9 @@ int main(void) {
                 LoadMorseSounds();
             }
 
-            Rectangle switchThemeButton = { (width - 88), 10, 85, 30 };
+            Rectangle switchThemeButton = { (width - 88), 10, 78, 30 };
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
-            DrawText("THEME", width - 82, 15, FONT_SIZE, oppositeMainTheme);
+            DrawText("THEME", width - 85, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
                 SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
             }
@@ -238,11 +238,9 @@ int main(void) {
                         }
                     } else {
                         // Highlight all centers in a new colour
-                        DrawCircleV(circleCentre, radius * 0.6, everythingColour);
+                        DrawCircleV(circleCentre, radius * 0.6, progressColour);
                         DrawRing(circleCentre, radius * 0.6, radius, -90, 
-                            360 - 90,
-                            20, everythingColour
-                    );
+                                 360 - 90, 20, everythingColour);
                     }
 
                     // Outer Circle & Smaller inner circle 

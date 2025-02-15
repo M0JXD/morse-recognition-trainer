@@ -35,7 +35,7 @@ It will also repeat the morse for you. Subsequent incorrect inputs will not affe
 If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. There's no easy way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
 
 `EVERYTHING` mode is similar to `LESSON` mode, but activates all possible letters at once and quizzes you at random. 
-There are no progress meters/saves for this mode.
+There are no progress meters/saves for this mode - instead, to signify everything mode, all letter centers are filled, and the progress rings are filled to be the same colour as the everything button.
 
 The `THEME` button changes the light/dark theme. The `WPM` and `TONE` buttons cycle through other Sound options.
 These preferences, along with the Window size, are saved.
