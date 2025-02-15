@@ -26,11 +26,11 @@ Sound dot;
 Sound dash;
 Sound incorrect;
 SaveState gameSave;
-int inLesson = 0;
-int oldInLesson = 0;
+int mode = REPEAT;
+int oldMode = REPEAT;
 
 // Iterates to the next theme.
-void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour) {
+void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour, Color *everythingColour) {
     enum THEME {LIGHT_GREEN, LIGHT_PURPLE, DARK_GREEN, DARK_PURPLE};
     gameSave.theme++;
     if (gameSave.theme > 3) gameSave.theme = LIGHT_GREEN;
@@ -40,21 +40,25 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour)
             *mainTheme = LIGHTGRAY;
             *oppositeMainTheme = BLACK;
             *progressColour = GREEN;
+            *everythingColour = SKYBLUE;
             break;
         case LIGHT_PURPLE:
             *mainTheme = LIGHTGRAY;
             *oppositeMainTheme = BLACK;
             *progressColour = PURPLE;
+            *everythingColour = GOLD;
             break;
         case DARK_GREEN:
             *mainTheme = DARKGRAY;
             *oppositeMainTheme = WHITE;
-            *progressColour = LIME;  // MAROON, LIME, VIOLET
+            *progressColour = LIME;
+            *everythingColour = DARKBLUE;
             break;
         case DARK_PURPLE:
             *mainTheme = DARKGRAY;
             *oppositeMainTheme = WHITE;
             *progressColour = VIOLET;
+            *everythingColour = CLITERAL(Color){ 176, 174, 68, 255 };  // Custom, nothing good in the pallet
             break;
     }
 }
@@ -67,7 +71,7 @@ int main(void) {
     //puts("----- MORSE RECOGNITION TRAINER -----");
     InitWindow(640, 480, "Morse Recognition Trainer");
     SetTargetFPS(30);
-    SetWindowMinSize(410, 300);
+    SetWindowMinSize(480, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     Image icon = LoadImage("assets/icon.png");
     SetWindowIcon(icon);
@@ -94,8 +98,9 @@ int main(void) {
     Color mainTheme;
     Color oppositeMainTheme;
     Color progressColour;
+    Color everythingColour;
     gameSave.theme--;  // Stop it iterating to next at startup 
-    SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
+    SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
 
     //--------------------------------------------------------------------------------
     // MAIN LOOP
@@ -139,13 +144,25 @@ int main(void) {
             char string[40] = {0};  // This should always be enough. Not used as a user input path!
             
             // Top Buttons
-            Rectangle LessonButton = { 10, 10, 80, 30 };
-            inLesson ? DrawRectangleRounded(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE) 
-                     : DrawRectangleRoundedLines(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE);
-            DrawText("Lesson", 14, 15, FONT_SIZE, oppositeMainTheme);
+            Rectangle LessonButton = { 10, 10, 150, 30 };
+            switch (mode) {
+                case REPEAT:
+                    DrawRectangleRoundedLines(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE);
+                    DrawText("REPEAT", 45, 15, FONT_SIZE, oppositeMainTheme);
+                    break;
+                case LESSON:
+                    DrawRectangleRounded(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, BLUE);
+                    DrawText("LESSON", 45, 15, FONT_SIZE, oppositeMainTheme);
+                    break;
+                case EVERYTHING:
+                    DrawRectangleRounded(LessonButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, everythingColour);
+                    DrawText("EVERYTHING", 16, 15, FONT_SIZE, oppositeMainTheme);
+            }
+
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
-                oldInLesson = inLesson;
-                inLesson = !inLesson;
+                oldMode = mode;
+                mode++;
+                if (mode > EVERYTHING) mode = REPEAT; 
             }
             
             Rectangle wpmButton = { width - 307, 10, 90 ,30 };
@@ -183,12 +200,21 @@ int main(void) {
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
             DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
-                SetTheme(&mainTheme, &oppositeMainTheme, &progressColour);
+                SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
             }
 
             // Status text at bottom
             memset(string, 0, 40);
-            inLesson ? GetLessonText(string) : GetMorseText(NOT_LETTER, string);     
+            switch (mode) {
+                case REPEAT:
+                    GetMorseText(NOT_LETTER, string);
+                    break;
+                case LESSON:
+                case EVERYTHING:
+                    GetLessonText(string);
+                    break;
+            }
+            
             int centering = MeasureText(string, radius * 0.8) / 2;
             string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
 
@@ -199,15 +225,20 @@ int main(void) {
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
 
                     // Draw progress first so lines are clear on top
-                    if (gameSave.activatedLetters[kochIndex]) {
-                        DrawCircleV(circleCentre, radius * 0.6, progressColour);
-                    }
+                    if (mode != EVERYTHING) {
+                        if (gameSave.activatedLetters[kochIndex]) {
+                            DrawCircleV(circleCentre, radius * 0.6, progressColour);
+                        }
 
-                    if (gameSave.levels[kochIndex] && gameSave.activatedLetters[kochIndex]) {
-                        DrawRing(circleCentre, radius * 0.6, radius, -90, 
-                                ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
-                                20, progressColour
-                        );
+                        if (gameSave.levels[kochIndex] && gameSave.activatedLetters[kochIndex]) {
+                            DrawRing(circleCentre, radius * 0.6, radius, -90, 
+                                    ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
+                                    20, progressColour
+                            );
+                        }
+                    } else {
+                        // Highlight all centers in a new colour
+                        DrawCircleV(circleCentre, radius * 0.6, everythingColour);
                     }
 
                     // Outer Circle & Smaller inner circle 
@@ -263,7 +294,8 @@ int main(void) {
                     // Check if one was clicked by the mouse
                     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {  
                             wasDetected = i + (k * layoutWidth);
-                    } else {  // Check if it was typed
+                    } else {  
+                        // Check if it was typed
                         char pressed[2] = "\0"; 
                         pressed[0] = toupper(GetCharPressed());
                         if(pressed[0]) {
@@ -276,13 +308,21 @@ int main(void) {
                     // Do something if it's been clicked/typed
                     if (wasDetected < 40) {
                         // printf("Pressed %s\n", lettersQwerty[wasDetected]);
-                        inLesson ? UpdateLesson(getKochFromQwerty(wasDetected)) : PlayMorse(wasDetected);
+                        switch (mode) {
+                            case REPEAT:
+                                PlayMorse(wasDetected);
+                                break;
+                            case LESSON:
+                            case EVERYTHING:
+                                UpdateLesson(getKochFromQwerty(wasDetected));
+                                break;
+                        } 
                     }
                 }
             }
         EndDrawing();
         PlayMorse(NOT_LETTER);
-        inLesson ? UpdateLesson(NOT_LETTER) : 0;
+        (mode == LESSON || mode == EVERYTHING) ? UpdateLesson(NOT_LETTER) : 0;
         //--------------------------------------------------------------------------------
     }
     //--------------------------------------------------------------------------------

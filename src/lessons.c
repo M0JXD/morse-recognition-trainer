@@ -11,8 +11,8 @@
 
 extern Sound dot, dash, incorrect;
 extern SaveState gameSave;
-extern int inLesson;
-extern int oldInLesson;
+extern int mode;
+extern int oldMode;
 
 static int currentLetter = 0;
 static enum LessonState {
@@ -42,78 +42,88 @@ void GetLessonText(char *string) {
 }
 
 int UpdateLevel(int kochLetterToUpdate) {
-    gameSave.levels[kochLetterToUpdate]++;
-    if (gameSave.levels[kochLetterToUpdate] > 8) {
-        gameSave.levels[kochLetterToUpdate] = 8;
+    int letterToReturn = NOT_LETTER;
+    if (mode == LESSON) {
+        gameSave.levels[kochLetterToUpdate]++;
+        if (gameSave.levels[kochLetterToUpdate] > 8) {
+            gameSave.levels[kochLetterToUpdate] = 8;
+        }
+        // If the level is more than two, and the next Koch letter is not activated, activate it.
+        if (gameSave.levels[kochLetterToUpdate] >= 3 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
+            // Force it to be the next letter
+            gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
+            letterToReturn = kochLetterToUpdate + 1;
+        } else {
+            letterToReturn = NOT_LETTER;
+        }
     }
-    // If the level is more than two, and the next Koch letter is not activated, activate it.
-    if (gameSave.levels[kochLetterToUpdate] >= 3 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
-        // Force it to be the next letter
-        gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
-        return kochLetterToUpdate + 1;
-    }
-    return NOT_LETTER;
+    return letterToReturn;
 }
 
 void RegressLevel(int kochLetterToRegress) {
-    if (!gameSave.levels[kochLetterToRegress]) {
-        ResetDueToZeroLevel(kochLetterToRegress);
-    }
-    gameSave.levels[kochLetterToRegress]--;
-    if (!gameSave.levels[kochLetterToRegress]) {
-        ResetDueToZeroLevel(kochLetterToRegress);
-    }
-    if (gameSave.levels[kochLetterToRegress] < 0) {
-        gameSave.levels[kochLetterToRegress] = 0;
+    if (mode == LESSON) {
+        if (!gameSave.levels[kochLetterToRegress]) {
+            ResetDueToZeroLevel(kochLetterToRegress);
+        }
+        gameSave.levels[kochLetterToRegress]--;
+        if (!gameSave.levels[kochLetterToRegress]) {
+            ResetDueToZeroLevel(kochLetterToRegress);
+        }
+        if (gameSave.levels[kochLetterToRegress] < 0) {
+            gameSave.levels[kochLetterToRegress] = 0;
+        }
     }
 }
 
-int GetRandomActiveLetter(int mode, int introducedLetter) {
-    // For Everything mode
-    if (mode) {
-        return (rand() % (40)); 
-    }
-
-    // if only the first letter is active, we must send it!
-    if (!gameSave.activatedLetters[1]) {
-        return 0;
-    }
-
+int GetRandomActiveLetter(int introducedLetter) {
     static char lastLetter = '*';
     static char lastLastLetter = '*';
+    int nextLetter;
 
-    // It's a newly introduced letter
-    if (introducedLetter != NOT_LETTER) {
-        lastLastLetter = lastLetter;
-        lastLetter = introducedLetter;
-        return introducedLetter;
-    }
+    // For Everything mode
+    if (mode == EVERYTHING) {
+        nextLetter = (rand() % (40));
+        // If the last two letters were the same, force it to be different
+        if (lastLastLetter == lastLetter) {
+            while (nextLetter == lastLetter) {
+                nextLetter = (rand() % (40));
+            }
+        }
+    } else if (mode == LESSON) {
+        // Only do random stuff if needed
+        if (introducedLetter == NOT_LETTER && gameSave.activatedLetters[1]) {
+            int amountOfLetters;
+            // Get the amount of active letters
+            for (amountOfLetters = 0; amountOfLetters < 40; ++amountOfLetters) {
+                if(!gameSave.activatedLetters[amountOfLetters])
+                    break;
+            }
 
-    // Get the amount of active letters
-    int amountOfLetters;
-    for (amountOfLetters = 0; amountOfLetters < 40; ++amountOfLetters) {
-        if(!gameSave.activatedLetters[amountOfLetters])
-            break;
-    }
-
-    // Let's start by choosing a random active letter anyways
-    int nextLetter = (rand() % (amountOfLetters));
-
-    // 60% of the time, force it to be a low level letter
-    // There should always be one with less then three sections except when all letters are activated
-    if ((((rand() % 5) + 1) <= 3) && !gameSave.activatedLetters[39]) {
-        while (gameSave.levels[nextLetter] >= 3) {
+            // Let's start by choosing a random active letter anyways
             nextLetter = (rand() % (amountOfLetters));
+
+            // 60% of the time, force it to be a low level letter
+            // There should always be one with less then three sections except when all letters are activated
+            if ((((rand() % 5) + 1) <= 3) && !gameSave.activatedLetters[39]) {
+                while (gameSave.levels[nextLetter] >= 3) {
+                    nextLetter = (rand() % (amountOfLetters));
+                }
+            }
+
+            // If the last two letters were the same, force it to be different
+            if (lastLastLetter == lastLetter) {
+                while (nextLetter == lastLetter) {
+                    nextLetter = (rand() % (amountOfLetters));
+                }
+            }
+        } else if (introducedLetter != NOT_LETTER) {
+            // Send the introduced letter
+            nextLetter = introducedLetter;
+        } else if (!gameSave.activatedLetters[1]) {
+            // We must send the first letter
+            nextLetter = 0;
         }
     }
-
-    // If the last two letters were the same, force it to be different
-    if (lastLastLetter == lastLetter) {
-        while (nextLetter == lastLetter) {
-            nextLetter = (rand() % (amountOfLetters));
-        }
-    }
-
     lastLastLetter = lastLetter;
     lastLetter = nextLetter;
     return nextLetter;
@@ -135,14 +145,15 @@ void UpdateLesson(int characterDetected) {
     static int newLetter = NOT_LETTER;
     static enum Marker {PLAYING_INCORRECT, NO_MARKER} incorrectMarker = NO_MARKER;
 
-    // Just entered Lesson Mode, force a letter to be asked
-    if ((oldInLesson != inLesson) && inLesson) {
+    // Just entered new Lesson-style Mode, force a letter to be asked
+    if ((oldMode != mode) && ((mode == LESSON) || (mode == EVERYTHING))) {
         lessonState = CONGRATS;
         counter = 1;
     }
+    oldMode = mode;
 
     // Must be first ever play if this occurs
-    if (!gameSave.activatedLetters[0]) {
+    if (!gameSave.activatedLetters[0] && mode != EVERYTHING) {
         gameSave.activatedLetters[0] = 1;
     }
 
@@ -171,7 +182,7 @@ void UpdateLesson(int characterDetected) {
 
         case CONGRATS:
             if (counter == 1) {
-                currentLetter = GetRandomActiveLetter(0, newLetter);
+                currentLetter = GetRandomActiveLetter(newLetter);
                 PlayMorse(getQwertyFromKoch(currentLetter));
                 lessonState = ASKING;
                 newLetter = NOT_LETTER;
@@ -196,7 +207,4 @@ void UpdateLesson(int characterDetected) {
         PlayMorse(getQwertyFromKoch(currentLetter));
         incorrectMarker = NO_MARKER;
     }
-        
-
-    oldInLesson = inLesson;
 }
