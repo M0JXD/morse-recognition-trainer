@@ -23,15 +23,14 @@ When not in Lesson Mode, clicking/tapping/typing the letters will simply play th
 Press `Lesson` to start lesson mode, it will change to a filled button. You can press `Lesson` again at any time to return to the default mode.
 
 In Lesson Mode, you will only be quizzed on currently active letters. They are marked with a green center.
-Letters are introduced in the Koch order, the same as the LCWO. The currently active letters are played at random.
+Letters are introduced in the Koch order, the same as the LCWO.
 
 The morse for an active letter will play. Enter the right letter, and the meter for the letter will progress a segment.
-Once you reach two segements for a letter, the next letter will be introduced. 
+Once you reach two segements for a letter, the next letter will be introduced. Newly introduced letters are always asked when they are added.
 If you don't know the morse for the introduced letter, you can switch back to Repeat mode :)
 
-If you get the letter wrong, the progress meter for the letter you should have pressed will regress. 
-Subsequent incorrect inputs will not affect the status, but the program will repeat the letter with each incorrect input until you enter the correct answer. 
-Because you did not get it right on the first try, the letter will not progress when you get it right.
+If you get the letter wrong, a buzzer noise will occur and the progress meter for the letter you should have pressed will regress.
+It will also repeat the morse for you. Subsequent incorrect inputs will not affect the status, but the program will wait until you enter the correct answer. Also, because you did not get it right on the first try, the letter will not progress when you get it right.
 
 If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. There's no easy way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
 
@@ -39,7 +38,6 @@ The `Theme` button changes the light/dark theme. The `WPM` and `Tone` buttons cy
 These preferences, along with the Window size, are saved.
 
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
-
 
 ## Installation
 
@@ -56,7 +54,7 @@ Your desktop environment may have a GUI for making desktop entries more easily, 
 ## Compiling
 
 ### Desktop
-If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [xmake](https://xmake.io/#/guide/installation) and running:
+If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [Xmake](https://xmake.io/#/guide/installation) and running:
 
 ```
 xmake f -m release
@@ -65,6 +63,8 @@ xmake
 
 Then look in `build/(PLATFORM)/(ARCH)` and for the `release` folder, which contains the executable and the assets it requires.. 
 You can move and rename this folder to `morse-recognition-trainer` or whatever you wish, although you must retain it's internal structure with the assets folder in the same directory as the binary.
+
+If Xmake complains about being unable to install Raylib, try installing your distro's openGL dev packages (e.g. libopengl-dev/libgl-dev for Ubuntu). 
 
 ### Android
 
@@ -80,5 +80,9 @@ Which will generate four files, index.html, index.wasm, index.data and index.js.
 
 ## Credits
 Made for my Dad, love you!! xx <br>
-Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app and only ran on Windows anyways. <br>
-Thanks to Raysan5 and all the contributors to Raylib! <br>
+Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app, and only ran on Windows anyways. <br>
+Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/)! <br>
+Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php? <br>
+Thanks to this video for the CC0 Buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
+Thanks to Ruki for Xmake <br>
+And everyone else who's work this relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
