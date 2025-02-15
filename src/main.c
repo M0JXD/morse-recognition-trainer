@@ -176,8 +176,8 @@ int main(void) {
 
             Rectangle toneButton = { width - 205, 10, 110 ,30 };
             DrawRectangleRoundedLines(toneButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, GREEN);
-            sprintf(string, "Tone: %d", gameSave.tone);
-            DrawText(string, width - 200, 15, FONT_SIZE, oppositeMainTheme);
+            sprintf(string, "TONE: %d", gameSave.tone);
+            DrawText(string, width - 202, 15, FONT_SIZE, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), toneButton)) {
                 switch (gameSave.tone) {
                     case 650:
@@ -198,7 +198,7 @@ int main(void) {
 
             Rectangle switchThemeButton = { (width - 85), 10, 75, 30 };
             DrawRectangleRoundedLines(switchThemeButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, PURPLE);
-            DrawText("Theme", width - 80, 15, 20, oppositeMainTheme);
+            DrawText("THEME", width - 84, 15, 20, oppositeMainTheme);
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), switchThemeButton)) {
                 SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
             }
@@ -239,6 +239,10 @@ int main(void) {
                     } else {
                         // Highlight all centers in a new colour
                         DrawCircleV(circleCentre, radius * 0.6, everythingColour);
+                        DrawRing(circleCentre, radius * 0.6, radius, -90, 
+                            360 - 90,
+                            20, everythingColour
+                    );
                     }
 
                     // Outer Circle & Smaller inner circle 

@@ -18,11 +18,11 @@ macOS binaries are not provided, although it should build and run. iOS is waitin
 
 ## User Guide
 
-When not in Lesson Mode, clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
+When opening, the app defaults to `REPEAT` mode, where clicking/tapping/typing the letters will simply play the morse for that letter, letting you know in the at the bottom which letter is playing. This is useful if you want to hear the letters outside of lessons. The letters will still be highlighted with your progress from Lesson Mode.
 
-Press `Lesson` to start lesson mode, it will change to a filled button. You can press `Lesson` again at any time to return to the default mode.
+Press the top right button change modes. It cycle through three modes: `REPEAT`, `LESSON` and `EVERYTHING`.
 
-In Lesson Mode, you will only be quizzed on currently active letters. They are marked with a green center.
+In `LESSON` Mode, you will only be quizzed on currently active letters. They are marked with a filled center.
 Letters are introduced in the Koch order, the same as the LCWO.
 
 The morse for an active letter will play. Enter the right letter, and the meter for the letter will progress a segment.
@@ -34,7 +34,10 @@ It will also repeat the morse for you. Subsequent incorrect inputs will not affe
 
 If you drop to zero segements for an active letter, the program reverts back to the lesson of which that letter was introduced. There's no easy way to approach this better, as the Koch method relies on you knowing all the letters of the previous lesson before moving on. Hopefully this should be a rare occurence for most learners!
 
-The `Theme` button changes the light/dark theme. The `WPM` and `Tone` buttons cycle through other options.
+`EVERYTHING` mode is similar to `LESSON` mode, but activates all possible letters at once and quizzes you at random. 
+There are no progress meters/saves for this mode.
+
+The `THEME` button changes the light/dark theme. The `WPM` and `TONE` buttons cycle through other Sound options.
 These preferences, along with the Window size, are saved.
 
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
