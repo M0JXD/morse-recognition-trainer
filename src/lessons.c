@@ -78,7 +78,7 @@ void RegressLevel(int kochLetterToRegress) {
 int GetRandomActiveLetter(int introducedLetter) {
     static char lastLetter = '*';
     static char lastLastLetter = '*';
-    int nextLetter;
+    int nextLetter = '*';
 
     // For Everything mode
     if (mode == EVERYTHING) {

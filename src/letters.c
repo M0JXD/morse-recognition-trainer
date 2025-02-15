@@ -375,6 +375,7 @@ int getKochFromQwerty(int qwertyIndex) {
         if (lettersKoch[i] == lettersQwerty[qwertyIndex])
             return i;
     }
+    return NOT_LETTER;
 }
 
 int getQwertyFromKoch(int kochIndex){
@@ -382,6 +383,7 @@ int getQwertyFromKoch(int kochIndex){
         if (lettersQwerty[i] == lettersKoch[kochIndex])
             return i;
     }
+    return NOT_LETTER;
 }
 
 void LoadCustomOrder(void) {
