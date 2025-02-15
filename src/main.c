@@ -37,7 +37,7 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour)
     } else {
         *mainTheme = DARKGRAY;
         *oppositeMainTheme = WHITE;
-        *progressColour = VIOLET;
+        *progressColour = LIME;  // MAROON, LIME, VIOLET
     }
 }
 
@@ -60,7 +60,7 @@ int main(void) {
     
     // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
-    rlSetLineWidth(defaultLineWidth * 2.3);
+    rlSetLineWidth(defaultLineWidth * 1.5);
     
     int layoutWidth = 10;
     int layoutHeight = 4;
