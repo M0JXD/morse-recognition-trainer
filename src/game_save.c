@@ -40,7 +40,7 @@ void LoadData(SaveState *saveState) {
         // There's no save to load, set some defaults
         saveState->windowWidth = 640;
         saveState->windowLength = 480;
-        saveState->theme = 1; // Light theme
+        saveState->theme = 0; // Light green
         saveState->tone = 700;
         saveState->WPM = 20;
         memset(saveState->activatedLetters, 0, 40);
