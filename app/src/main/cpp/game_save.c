@@ -1,25 +1,36 @@
+#if defined(PLATFORM_ANDROID)
+#include "raymob.h"
+#else
 #include "raylib.h"
+#endif
 #include "stdio.h"  // FILE
 #include "string.h"  // memset
 
 #include "game_save.h"
 
 void LoadData(SaveState *saveState) {
-    // Check that save exists
-    // .mrt is arbritary, for "morse recognition trainer"
+    // I have a lot of expectations here.
+    // If the file is not as anticipated the program will likely segfault.
+#if defined(PLATFORM_ANDROID)
+    const char* saveFilePath = TextFormat(
+            "%s/%s", GetAndroidApp()->activity->internalDataPath, SAVE_FILE);
+#endif
+
+#if defined(PLATFORM_ANDROID)
+    if (FileExists(saveFilePath)) {
+#else
     if (FileExists(SAVE_FILE)) {
-        // I have a lot of expectations here. 
-        // If the file is not as anticipated the program will likely segfault.
-        // int dataSize;
-        // unsigned char* file = LoadFileData("save.mrt", &dataSize);
+#endif
 
-        FILE *file;
-        file = fopen(SAVE_FILE, "r");
+#if defined(PLATFORM_ANDROID)
+        FILE *file = fopen(saveFilePath, "r");
+#else
+        FILE *file = fopen(SAVE_FILE, "r");
+#endif
         int saveData[90];
-
         int failCheck = fread(saveData, sizeof(int), 90, file);
 
-        if (!failCheck) {
+        if (failCheck < 90) {
             //puts("Bad fail trying to get data!");
             return;
         }
@@ -50,7 +61,16 @@ void LoadData(SaveState *saveState) {
 
 void SaveData(SaveState *saveState) {
 
-    FILE *file = fopen(SAVE_FILE, "w");
+#if defined(PLATFORM_ANDROID)
+    const char* saveFilePath = TextFormat(
+            "%s/%s", GetAndroidApp()->activity->internalDataPath, SAVE_FILE);
+#endif
+
+#if defined(PLATFORM_ANDROID)
+       FILE *file = fopen(saveFilePath, "w");
+#else
+       FILE *file = fopen(SAVE_FILE, "w");
+#endif
 
     int newData[90] = {
         saveState->windowWidth,

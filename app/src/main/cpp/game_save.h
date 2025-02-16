@@ -3,6 +3,7 @@
 #ifndef GAME_SAVE_H
 #define GAME_SAVE_H
 
+// .mrt is arbritary, for "morse recognition trainer"
 #define SAVE_FILE "save.mrt"
 
 typedef struct SaveState {

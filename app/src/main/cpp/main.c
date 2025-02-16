@@ -31,7 +31,7 @@ int oldMode = REPEAT;
 
 // Iterates to the next theme.
 void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour, Color *everythingColour) {
-    enum THEME {LIGHT_GREEN, LIGHT_PURPLE, DARK_GREEN, DARK_PURPLE};
+    enum THEME {LIGHT_GREEN, DARK_GREEN, LIGHT_PURPLE, DARK_PURPLE};
     gameSave.theme++;
     if (gameSave.theme > 3) gameSave.theme = LIGHT_GREEN;
 
@@ -68,8 +68,8 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour,
 //--------------------------------------------------------------------------------
 int main(void) {
     SetTraceLogLevel(LOG_NONE);
-#if defined(PLATFORM_ANDROID)
-    InitWindow(640, 1200, "Morse Recognition Trainer");
+#ifdef PLATFORM_ANDROID
+    InitWindow(640, 1250, "Morse Recognition Trainer");
     ToggleFullscreen();
 #else
     InitWindow(640, 480, "Morse Recognition Trainer");
@@ -79,13 +79,21 @@ int main(void) {
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     InitAudioDevice();
 
+#if defined(PLATFORM_ANDROID)
+    Image icon = LoadImage("icon.png");
+#else
     Image icon = LoadImage("assets/icon.png");
+#endif
     SetWindowIcon(icon);
     UnloadImage(icon);
-    
     LoadData(&gameSave);
+
+#ifndef PLATFORM_ANDROID
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
+#endif
+
     LoadMorseSounds();
+
 #if defined(PLATFORM_ANDROID)
     incorrect = LoadSound("INCORRECT.wav");
 #else
@@ -333,6 +341,11 @@ int main(void) {
         PlayMorse(NOT_LETTER);
         (mode == LESSON || mode == EVERYTHING) ? UpdateLesson(NOT_LETTER) : 0;
         //--------------------------------------------------------------------------------
+#if defined (PLATFORM_ANDROID)
+    if (IsKeyPressed(KEY_BACK)) {
+        break;
+    }
+#endif
     }
     //--------------------------------------------------------------------------------
     // Save and De-initialise
