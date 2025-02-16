@@ -339,6 +339,11 @@ int main(void) {
         PlayMorse(NOT_LETTER);
         (mode == LESSON || mode == EVERYTHING) ? UpdateLesson(NOT_LETTER) : 0;
         //--------------------------------------------------------------------------------
+#if defined (PLATFORM_ANDROID)
+        if (IsKeyPressed(KEY_BACK)) {
+            break;
+        }
+#endif
     }
     //--------------------------------------------------------------------------------
     // Save and De-initialise
