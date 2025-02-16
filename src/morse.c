@@ -144,6 +144,6 @@ void PlayMorse(int letter) {
 
     // We've been asked to play a new letter but the previous one is still playing
     // TODO: Handle this situation?
-    // if (letter < 40 && letterPlaying < 40)   
+    // if (letter < 40 && letterPlaying < 40)
 }
 

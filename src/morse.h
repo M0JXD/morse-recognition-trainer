@@ -1,10 +1,10 @@
-/* Defines audio functions for morse output
+/* Defines functions relating to morse output
  *
  * See for reference: https://morsecode.world/international/timing.html
  * Also: https://en.wikipedia.org/wiki/Morse_code */
 
  /* A selection of wav files are included to play the morse sounds. 
- * The original intention was to generate on the fly, but for a measly 48kB this is much easier!
+ * The original intention was to generate on the fly, but for a couple hundred kilobytes this is much easier!
  * Included options are:
  * 650Hz 10WPM
  * 650Hz 15WPM
@@ -19,8 +19,7 @@
  * 800Hz 20WPM
  * 800Hz 25WPM
  * This site was used to generate them: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
- * Generated using letters "E" and "T". I checked in Audacity and they contain the appropriate gaps after the sound already. 
- * Please use the site to generate the ones you need should you're requirements not be provided for */
+ * Generated using letters "E" and "T". They need trimmed, there is a script called trimmer.py that will do this. */
 
 #ifndef MORSE_H
 #define MORSE_H

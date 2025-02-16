@@ -68,30 +68,26 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour,
 //--------------------------------------------------------------------------------
 int main(void) {
     SetTraceLogLevel(LOG_NONE);
-    //puts("----- MORSE RECOGNITION TRAINER -----");
     InitWindow(640, 480, "Morse Recognition Trainer");
     SetTargetFPS(30);
     SetWindowMinSize(480, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
+    InitAudioDevice();
+
     Image icon = LoadImage("assets/icon.png");
     SetWindowIcon(icon);
     UnloadImage(icon);
-
-    srand(time(NULL)); 
-    InitAudioDevice();
     
-    // Default line width is a bit thin.
-    float defaultLineWidth = rlGetLineWidth();
-    rlSetLineWidth(defaultLineWidth * 1.5);
-    
-    int layoutWidth = 10;
-    int layoutHeight = 4;
-
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
     LoadMorseSounds();
     incorrect = LoadSound("assets/INCORRECT.wav");
     LoadCustomOrder();
+    srand(time(NULL)); 
+
+    // Default line width is a bit thin.
+    float defaultLineWidth = rlGetLineWidth();
+    rlSetLineWidth(defaultLineWidth * 1.5);
 
     // Set up initial theme;
     Color mainTheme;
@@ -101,6 +97,8 @@ int main(void) {
     gameSave.theme--;  // Stop it iterating to next at startup 
     SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
 
+    int layoutWidth = 10;
+    int layoutHeight = 4;
     //--------------------------------------------------------------------------------
     // MAIN LOOP
     //--------------------------------------------------------------------------------
