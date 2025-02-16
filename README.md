@@ -43,8 +43,7 @@ These preferences, along with the Window size, are saved.
 The Koch method recommends listening to letters at 20WPM, so by default morse is at 700Hz tone at 20WPM.
 
 You can create a custom lesson order by adding a text file named "CustomLetters.mrt" in the same folder as the executable.
-Place the letters in the order you want on individual lines, an example is in the root of the repo.
-You MUST ensure there are 40 entries.
+Place the letters in the order you want on individual lines, an example is in the root of the repo. You MUST ensure there are 40 entries.
 
 ## Installation
 
@@ -52,20 +51,24 @@ On Linux and Windows, this is a portable app that uses the directory it's launch
 To make things feel more "installed", you can:
 
 ### Windows
-Choose where you want to store the app (e.g. Documents\Apps\morse-recognition-trainer), then right click the app and pin to start.
+
+Choose where you want to store the app (e.g. Documents\Applications\morse-recognition-trainer), then right click the app and pin to start.
 
 ### Linux
+
 Choose where you want to store the app (e.g. ~/Applications/morse-recognition-trainer), and create a desktop entry in .local/share/applications.
 Your desktop environment may have a GUI for making desktop entries more easily, e.g. in Cinnamon, right click the menu and select "Edit Menu".
 
 ### Android
-You will have to sideload the app. It might ask you to scan it which should pass, otherwise you can still select to install anyways.
+
+You will have to sideload the app. It might ask you to scan it which should pass, otherwise you can still opt to install anyways.
 If you want to reset your progess you can clear the app's data :)
 
 ## Compiling
 
 ### Desktop
-If your platform is not provided for, or you simply want to build from source, you can probably do so by installing [Xmake](https://xmake.io/#/guide/installation) and running:
+
+The main desktop platforms can be compiled by installing [Xmake](https://xmake.io/#/guide/installation) and running:
 
 ```
 xmake f -m release
