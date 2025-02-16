@@ -31,7 +31,7 @@ int oldMode = REPEAT;
 
 // Iterates to the next theme.
 void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour, Color *everythingColour) {
-    enum THEME {LIGHT_GREEN, LIGHT_PURPLE, DARK_GREEN, DARK_PURPLE};
+    enum THEME {LIGHT_GREEN, DARK_GREEN, LIGHT_PURPLE, DARK_PURPLE};
     gameSave.theme++;
     if (gameSave.theme > 3) gameSave.theme = LIGHT_GREEN;
 
