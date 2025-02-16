@@ -58,6 +58,10 @@ Choose where you want to store the app (e.g. Documents\Apps\morse-recognition-tr
 Choose where you want to store the app (e.g. ~/Applications/morse-recognition-trainer), and create a desktop entry in .local/share/applications.
 Your desktop environment may have a GUI for making desktop entries more easily, e.g. in Cinnamon, right click the menu and select "Edit Menu".
 
+### Android
+You will have to sideload the app. It might ask you to scan it which should pass, otherwise you can still select to install anyways.
+If you want to reset your progess you can clear the app's data :)
+
 ## Compiling
 
 ### Desktop
