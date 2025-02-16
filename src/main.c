@@ -68,8 +68,8 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour,
 //--------------------------------------------------------------------------------
 int main(void) {
     SetTraceLogLevel(LOG_NONE);
-#if defined(PLATFORM_ANDROID)
-    InitWindow(640, 1200, "Morse Recognition Trainer");
+#ifdef PLATFORM_ANDROID
+    InitWindow(640, 1250, "Morse Recognition Trainer");
     ToggleFullscreen();
 #else
     InitWindow(640, 480, "Morse Recognition Trainer");
@@ -84,12 +84,14 @@ int main(void) {
 #else
     Image icon = LoadImage("assets/icon.png");
 #endif
-    
     SetWindowIcon(icon);
     UnloadImage(icon);
-    
     LoadData(&gameSave);
+
+#ifndef PLATFORM_ANDROID
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
+#endif
+
     LoadMorseSounds();
 
 #if defined(PLATFORM_ANDROID)
@@ -340,9 +342,9 @@ int main(void) {
         (mode == LESSON || mode == EVERYTHING) ? UpdateLesson(NOT_LETTER) : 0;
         //--------------------------------------------------------------------------------
 #if defined (PLATFORM_ANDROID)
-        if (IsKeyPressed(KEY_BACK)) {
-            break;
-        }
+    if (IsKeyPressed(KEY_BACK)) {
+        break;
+    }
 #endif
     }
     //--------------------------------------------------------------------------------
