@@ -8,10 +8,9 @@ Built with C and Raylib.
 FYI: This contains no generated code from the likes of ChatGPT/Copilot. Pure spartans way for the win!
 
 ## Download
-I currently make binaries for Linux and Windows. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
-I'm planning to make a release for Android.
+I currently make binaries for Linux, Windows and Android. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
 
-You can also try it out on the web here, although you're progress might not be saved: https://m0jxd.github.io/morse-recognition-trainer/
+You can also try it out on the web here, although you're progress will not be saved: https://m0jxd.github.io/morse-recognition-trainer/
 
 Due to not owning Apple devices and an [unwillingness to break their EULA's](https://www.google.com/search?q=is+cross+compiling+for+mac+allowed&hl=en), 
 macOS binaries are not provided, although it should build and run. iOS is waiting on Raylib to gain iOS support, but likewise I couldn't provide such binaries anyways...
