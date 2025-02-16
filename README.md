@@ -91,12 +91,12 @@ See the emscripten branch for web deployment. Follow Raylib's HTML guide in thei
 Which will generate four files, index.html, index.wasm, index.data and index.js. Put them in the root of a repo and deploy via github pages, easy as that!
 
 ## Credits
-Made for my Dad, love you!! xx <br>
-Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app, and only ran on Windows anyways. <br>
-Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/) <br>
-Thanks to BigFoot71 for Raymob <br>
-Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php? <br>
-Thanks to this video for the CC0 buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
-Thanks to Ruki for Xmake <br>
-Thanks to https://icon.kitchen for the easy to use Android Icon Set Generator <br>
-And everyone else's work which this project relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
+- Made for my Dad, love you!! xx
+- Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app, and only ran on Windows anyways.
+- Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/)
+- Thanks to BigFoot71 for Raymob
+- Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php?
+- Thanks to this video for the CC0 buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4
+- Thanks to Ruki for Xmake
+- Thanks to https://icon.kitchen for the easy to use Android Icon Set Generator
+- And everyone else's work which this project relies on... Emscripten, GNU, Linux, Microsoft, Google... thank you :)
