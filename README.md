@@ -8,6 +8,7 @@ Built with C and Raylib.
 FYI: This contains no generated code from the likes of ChatGPT/Copilot. Pure spartans way for the win!
 
 ## Download
+
 I currently make binaries for Linux, Windows and Android. You can download them on the [releases page](https://github.com/M0JXD/morse-recognition-trainer/releases).
 
 You can also try it out on the web here, although you're progress will not be saved: https://m0jxd.github.io/morse-recognition-trainer/
@@ -74,7 +75,8 @@ If Xmake complains about being unable to install Raylib, try installing your dis
 
 ### Android
 
-Use Raymob and Android Studio. I had to add the .h files the the CMakeLists.txt SOURCE glob, but the rest is pretty straightforward!
+Requires Android Studio - see the raymob branch. I had to add the .h files the the CMakeLists.txt SOURCE glob, but the rest is pretty straightforward.
+The Android Build is a debug one with the debug signing key, as I have no intention of paying Google so I can "sign" it and put it on the Play Store.
 
 ### Web
 
@@ -87,9 +89,10 @@ Which will generate four files, index.html, index.wasm, index.data and index.js.
 ## Credits
 Made for my Dad, love you!! xx <br>
 Inspired by [Morse Trainer for Windows 10](https://apps.microsoft.com/detail/9wzdncrdlzhg?hl=en-us&gl=US), which sadly became a paid app, and only ran on Windows anyways. <br>
-Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/)! <br>
+Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/) <br>
+Thanks to BigFoot71 for Raymob <br>
 Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php? <br>
-Thanks to this video for the CC0 Buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
+Thanks to this video for the CC0 buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
 Thanks to Ruki for Xmake <br>
 Thanks to https://icon.kitchen for the easy to use Android Icon Set Generator <br>
-And everyone else who's work this relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
+And everyone else's work which this project relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
