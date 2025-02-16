@@ -16,8 +16,13 @@ void LoadMorseSounds(void) {
         UnloadSound(dash);
     }
     char dotPath[32], dashPath[34];
+#if defined(PLATFORM_ANDROID)
+    sprintf(dotPath, "%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
+    sprintf(dashPath, "%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
+#else
     sprintf(dotPath, "assets/%dWPM_%dHZ_DOT.wav", gameSave.WPM, gameSave.tone);
     sprintf(dashPath, "assets/%dWPM_%dHZ_DASH.wav", gameSave.WPM, gameSave.tone);
+#endif
     // printf("Loading tones for %dWPM %dHz.\n", gameSave.WPM, gameSave.tone);
     dot = LoadSound(dotPath);
     dash = LoadSound(dashPath);

@@ -74,14 +74,25 @@ int main(void) {
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     InitAudioDevice();
 
+#if defined(PLATFORM_ANDROID)
+    Image icon = LoadImage("icon.png");
+#else
     Image icon = LoadImage("assets/icon.png");
+#endif
+    
     SetWindowIcon(icon);
     UnloadImage(icon);
     
     LoadData(&gameSave);
     SetWindowSize(gameSave.windowWidth, gameSave.windowLength);
     LoadMorseSounds();
+
+#if defined(PLATFORM_ANDROID)
+    incorrect = LoadSound("INCORRECT.wav");
+#else
     incorrect = LoadSound("assets/INCORRECT.wav");
+#endif
+
     LoadCustomOrder();
     srand(time(NULL)); 
 
