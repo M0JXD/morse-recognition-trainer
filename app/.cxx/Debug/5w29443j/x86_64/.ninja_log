@@ -1,0 +1,23 @@
+# ninja log v5
+1	69	1739722689951397893	CMakeFiles/raymob.dir/game_save.c.o	d14fc7865d0dd12a
+2	70	1739722689953397895	CMakeFiles/raymob.dir/morse.c.o	a60744889c4d7daf
+1	73	1739722689955397896	CMakeFiles/raymob.dir/lessons.c.o	be9a7510ea56b695
+2	77	1739722689959397899	CMakeFiles/raymob.dir/letters.c.o	90b90fab9a664709
+5	101	1739722689982397916	deps/raylib/CMakeFiles/raylib.dir/utils.c.o	85e04fa6a7205544
+6	102	1739722689984397917	deps/raymob/CMakeFiles/raymoblib.dir/soft_keyboard.c.o	a4c015b29cb78249
+6	118	1739722689999397928	deps/raymob/CMakeFiles/raymoblib.dir/helper.c.o	1195be356a411b9a
+1	120	1739722690001397929	CMakeFiles/raymob.dir/main.c.o	d564804613b95e0
+11	124	1739722690007397934	deps/raymob/CMakeFiles/raymoblib.dir/display.c.o	9f13c54b486ecdea
+70	130	1739722690013397938	deps/raymob/CMakeFiles/raymoblib.dir/callback.c.o	194941b9074f0b44
+9	137	1739722690020397943	deps/raymob/CMakeFiles/raymoblib.dir/vibrator.c.o	131508088fdc7c63
+8	149	1739722690031397951	deps/raymob/CMakeFiles/raymoblib.dir/sensor.c.o	cabe1c292c53b77e
+2	155	1739722690038397956	CMakeFiles/raymob.dir/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c.o	4ca5bc5ef985f29
+3	368	1739722690248398108	deps/raylib/CMakeFiles/raylib.dir/rshapes.c.o	ae2c4746254ea06a
+4	410	1739722690291398139	deps/raylib/CMakeFiles/raylib.dir/rtext.c.o	e2b279b6d8de1485
+3	1004	1739722690879398564	deps/raylib/CMakeFiles/raylib.dir/rcore.c.o	ac73d7dfd0e43d9e
+3	1354	1739722691224398813	deps/raylib/CMakeFiles/raylib.dir/rmodels.c.o	b4af90cc7d6f1130
+4	2306	1739722692173399498	deps/raylib/CMakeFiles/raylib.dir/rtextures.c.o	499c2fbe845289c0
+4	2818	1739722692666399854	deps/raylib/CMakeFiles/raylib.dir/raudio.c.o	dab499ee0afb7214
+2818	2846	1739722692725399896	deps/raylib/libraylib.a	a9eb255c8245afcb
+2846	2865	1739722692744399910	deps/raymob/libraymoblib.a	89bf0d2a99d10507
+2865	2931	1739722692808399956	/home/jamiedrinkell/development/raymob/app/build/intermediates/cxx/Debug/5w29443j/obj/x86_64/libraymob.so	dc2935d7476f4a45

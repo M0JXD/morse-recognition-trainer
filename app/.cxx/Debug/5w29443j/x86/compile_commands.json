@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/game_save.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/game_save.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/game_save.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/lessons.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/lessons.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/lessons.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/letters.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/letters.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/letters.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/main.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/main.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/main.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/morse.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/morse.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/morse.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DDEBUG -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D_DEBUG -D__ANDROID__ -Draymob_EXPORTS -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -g -fno-limit-debug-info -fPIC -std=gnu99 -o CMakeFiles/raymob.dir/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c.o -c /home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c",
+  "file": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/rcore.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rcore.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rcore.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/rmodels.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rmodels.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rmodels.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/rshapes.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rshapes.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rshapes.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/rtext.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rtext.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rtext.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/rtextures.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rtextures.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/rtextures.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/raudio.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/raudio.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/raudio.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raylib/CMakeFiles/raylib.dir/utils.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/utils.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/utils.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/helper.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/helper.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/helper.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/sensor.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/sensor.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/sensor.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/vibrator.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/vibrator.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/vibrator.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/display.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/display.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/display.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/soft_keyboard.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/soft_keyboard.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/soft_keyboard.c"
+},
+{
+  "directory": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5w29443j/x86",
+  "command": "/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --sysroot=/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGRAPHICS_API_OPENGL_ES3 -DPLATFORM_ANDROID -D__ANDROID__ -I/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue -I/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-limit-debug-info  -fPIC -std=gnu99 -o deps/raymob/CMakeFiles/raymoblib.dir/callback.c.o -c /home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/callback.c",
+  "file": "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/callback.c"
+}
+]

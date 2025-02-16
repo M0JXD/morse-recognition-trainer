@@ -1,0 +1,23 @@
+# ninja log v5
+2	71	1739722681016391378	CMakeFiles/raymob.dir/letters.c.o	14618a7ed556f46c
+1	73	1739722681018391380	CMakeFiles/raymob.dir/game_save.c.o	d8d9dd86fd0919ff
+2	82	1739722681026391385	CMakeFiles/raymob.dir/morse.c.o	d3a9f2ddb919bd6c
+6	85	1739722681030391388	deps/raymob/CMakeFiles/raymoblib.dir/display.c.o	ff351f95ab81aa02
+5	120	1739722681065391414	deps/raymob/CMakeFiles/raymoblib.dir/sensor.c.o	d7bb718cabf3baa2
+4	126	1739722681071391418	deps/raylib/CMakeFiles/raylib.dir/utils.c.o	d23fb90953c88573
+4	129	1739722681073391420	deps/raymob/CMakeFiles/raymoblib.dir/soft_keyboard.c.o	aafcdb799a929416
+5	129	1739722681074391421	deps/raymob/CMakeFiles/raymoblib.dir/helper.c.o	9c377faa231c0f4b
+72	136	1739722681082391427	deps/raymob/CMakeFiles/raymoblib.dir/callback.c.o	fc0e1e0ca1f3da43
+1	141	1739722681086391430	CMakeFiles/raymob.dir/main.c.o	f67129d4cf9de3c7
+1	161	1739722681106391444	CMakeFiles/raymob.dir/lessons.c.o	673f48398d1f194d
+2	165	1739722681110391447	CMakeFiles/raymob.dir/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c.o	6a936aa091235b7f
+5	169	1739722681114391450	deps/raymob/CMakeFiles/raymoblib.dir/vibrator.c.o	cabd82f047b64a90
+3	337	1739722681281391573	deps/raylib/CMakeFiles/raylib.dir/rshapes.c.o	e9c1a6b8e51dd549
+3	624	1739722681566391782	deps/raylib/CMakeFiles/raylib.dir/rtext.c.o	fc9432b7be50ea19
+2	1284	1739722682219392261	deps/raylib/CMakeFiles/raylib.dir/rcore.c.o	d239aafca0109b73
+3	2211	1739722683137392933	deps/raylib/CMakeFiles/raylib.dir/rmodels.c.o	1764f2d0f7229c9b
+3	2286	1739722683213392989	deps/raylib/CMakeFiles/raylib.dir/rtextures.c.o	e2b0b5d9b15e75ba
+4	4472	1739722685369394564	deps/raylib/CMakeFiles/raylib.dir/raudio.c.o	575b6f773155a5ab
+4472	4500	1739722685442394617	deps/raylib/libraylib.a	a9eb255c8245afcb
+4500	4517	1739722685460394630	deps/raymob/libraymoblib.a	89bf0d2a99d10507
+4518	4585	1739722685526394679	/home/jamiedrinkell/development/raymob/app/build/intermediates/cxx/Debug/5w29443j/obj/armeabi-v7a/libraymob.so	2bbcdb347c5248de

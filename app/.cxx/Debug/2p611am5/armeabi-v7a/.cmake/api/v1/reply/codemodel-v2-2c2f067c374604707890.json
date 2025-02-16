@@ -1,0 +1,113 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "deps/raylib",
+					"jsonFile" : "directory-deps.raylib-Debug-5d06b0c1b4cbffc3ea38.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "deps/raylib",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "deps/raymob",
+					"jsonFile" : "directory-deps.raymob-Debug-c535ca06249c88c40433.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "deps/raymob",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "morse-recognition-trainer",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "morse-recognition-trainer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-morse-recognition-trainer-Debug-1d6d59f3fb94b42db42c.json",
+					"name" : "morse-recognition-trainer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "raylib::@8e6642aeca8dad46aa8c",
+					"jsonFile" : "target-raylib-Debug-1285fa31826321b1acee.json",
+					"name" : "raylib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "raymoblib::@71420b749f8138f26715",
+					"jsonFile" : "target-raymoblib-Debug-5dbf6a967fc3459f042b.json",
+					"name" : "raymoblib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/2p611am5/armeabi-v7a",
+		"source" : "/home/jamiedrinkell/development/raymob/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

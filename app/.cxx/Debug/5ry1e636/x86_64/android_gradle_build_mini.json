@@ -1,0 +1,41 @@
+{
+  "buildFiles": [
+    "/home/jamiedrinkell/development/raymob/app/src/main/cpp/CMakeLists.txt",
+    "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raylib/CMakeLists.txt",
+    "/home/jamiedrinkell/development/raymob/app/src/main/cpp/deps/raymob/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/jamiedrinkell/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5ry1e636/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/jamiedrinkell/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5ry1e636/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "raymoblib::@71420b749f8138f26715": {
+      "artifactName": "raymoblib",
+      "abi": "x86_64",
+      "output": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5ry1e636/x86_64/deps/raymob/libraymoblib.a",
+      "runtimeFiles": []
+    },
+    "raymob::@6890427a1f51a3e7e1df": {
+      "artifactName": "raymob",
+      "abi": "x86_64",
+      "output": "/home/jamiedrinkell/development/raymob/app/build/intermediates/cxx/Debug/5ry1e636/obj/x86_64/libraymob.so",
+      "runtimeFiles": []
+    },
+    "raylib::@8e6642aeca8dad46aa8c": {
+      "artifactName": "raylib",
+      "abi": "x86_64",
+      "output": "/home/jamiedrinkell/development/raymob/app/.cxx/Debug/5ry1e636/x86_64/deps/raylib/libraylib.a",
+      "runtimeFiles": []
+    }
+  }
+}

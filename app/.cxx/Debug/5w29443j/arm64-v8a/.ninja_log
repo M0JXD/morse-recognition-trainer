@@ -1,0 +1,24 @@
+# ninja log v5
+0	4	0	clean	305482ac713365cf
+7	123	1739722676171387805	deps/raymob/CMakeFiles/raymoblib.dir/sensor.c.o	bafad9370e783c3d
+2	126	1739722676169387803	CMakeFiles/raymob.dir/letters.c.o	bb4accd00c5e61bb
+6	134	1739722676182387813	deps/raymob/CMakeFiles/raymoblib.dir/soft_keyboard.c.o	5248b378a44848e5
+1	148	1739722676196387823	CMakeFiles/raymob.dir/game_save.c.o	eeaf27ea26ce869d
+6	159	1739722676206387831	deps/raymob/CMakeFiles/raymoblib.dir/helper.c.o	b1b03367bb6b9711
+1	159	1739722676207387831	CMakeFiles/raymob.dir/main.c.o	54ef861c52ef5ea0
+1	161	1739722676206387831	CMakeFiles/raymob.dir/lessons.c.o	eec31019e56c48ab
+2	168	1739722676215387837	CMakeFiles/raymob.dir/morse.c.o	5b6bfaf014b8a566
+8	179	1739722676227387846	deps/raymob/CMakeFiles/raymoblib.dir/vibrator.c.o	5036375547aaf967
+2	184	1739722676231387849	CMakeFiles/raymob.dir/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c.o	b8663311cf1bf822
+15	186	1739722676234387851	deps/raymob/CMakeFiles/raymoblib.dir/display.c.o	c0d5496dca72ca3b
+5	199	1739722676247387861	deps/raylib/CMakeFiles/raylib.dir/utils.c.o	55e13f0bec7a0554
+124	214	1739722676262387872	deps/raymob/CMakeFiles/raymoblib.dir/callback.c.o	f54e77f973faf907
+3	435	1739722676483388036	deps/raylib/CMakeFiles/raylib.dir/rshapes.c.o	b11d195273740a06
+3	744	1739722676786388260	deps/raylib/CMakeFiles/raylib.dir/rtext.c.o	87ea8ff7f5e143d9
+2	1362	1739722677402388715	deps/raylib/CMakeFiles/raylib.dir/rcore.c.o	8bae40002f360da3
+3	2356	1739722678392389446	deps/raylib/CMakeFiles/raylib.dir/rmodels.c.o	dada6da13f6b5deb
+4	3745	1739722679776390466	deps/raylib/CMakeFiles/raylib.dir/rtextures.c.o	3ba929b11a393bc3
+4	4352	1739722680365390900	deps/raylib/CMakeFiles/raylib.dir/raudio.c.o	a33ccd43f440b2fb
+4352	4382	1739722680427390945	deps/raylib/libraylib.a	a9eb255c8245afcb
+4382	4400	1739722680446390959	deps/raymob/libraymoblib.a	89bf0d2a99d10507
+4400	4468	1739722680513391008	/home/jamiedrinkell/development/raymob/app/build/intermediates/cxx/Debug/5w29443j/obj/arm64-v8a/libraymob.so	a011509b9720988c

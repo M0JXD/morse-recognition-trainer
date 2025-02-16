@@ -1,0 +1,23 @@
+# ninja log v5
+1	61	1739722685979395009	CMakeFiles/raymob.dir/letters.c.o	b6f9e97967242f2d
+1	66	1739722685984395012	CMakeFiles/raymob.dir/game_save.c.o	637bd06699b42f4c
+2	68	1739722685986395014	CMakeFiles/raymob.dir/morse.c.o	28c87b0afd4031bf
+1	73	1739722685991395017	CMakeFiles/raymob.dir/lessons.c.o	d6bbfd2e3e71ca85
+9	99	1739722686017395036	deps/raymob/CMakeFiles/raymoblib.dir/display.c.o	cb8c3dc9c363534f
+5	104	1739722686022395040	deps/raymob/CMakeFiles/raymoblib.dir/soft_keyboard.c.o	ffa8ced9e0649fe5
+4	105	1739722686022395040	deps/raylib/CMakeFiles/raylib.dir/utils.c.o	1ee33f94b5f3b85c
+5	117	1739722686035395050	deps/raymob/CMakeFiles/raymoblib.dir/helper.c.o	627ad91081d0b31b
+2	129	1739722686048395059	CMakeFiles/raymob.dir/home/jamiedrinkell/Android/Sdk/ndk/26.1.10909125/sources/android/native_app_glue/android_native_app_glue.c.o	bb4eebc53aea4913
+7	129	1739722686048395059	deps/raymob/CMakeFiles/raymoblib.dir/vibrator.c.o	a285091423fb5fad
+0	140	1739722686059395067	CMakeFiles/raymob.dir/main.c.o	aa7713fb985be767
+6	146	1739722686064395071	deps/raymob/CMakeFiles/raymoblib.dir/sensor.c.o	e7058cb95a4b1801
+63	151	1739722686069395074	deps/raymob/CMakeFiles/raymoblib.dir/callback.c.o	761a0f7b006a8b36
+3	345	1739722686261395214	deps/raylib/CMakeFiles/raylib.dir/rshapes.c.o	e7cb47a736632d0d
+3	407	1739722686323395259	deps/raylib/CMakeFiles/raylib.dir/rtext.c.o	c45a09faa6a45d44
+2	895	1739722686806395611	deps/raylib/CMakeFiles/raylib.dir/rcore.c.o	5c32a871cbeff07a
+3	1425	1739722687331395993	deps/raylib/CMakeFiles/raylib.dir/rmodels.c.o	13d825d9a8d2968d
+4	2313	1739722688216396635	deps/raylib/CMakeFiles/raylib.dir/rtextures.c.o	94f76d90183d6e5
+4	3427	1739722689309397428	deps/raylib/CMakeFiles/raylib.dir/raudio.c.o	809877a5db4e1ded
+3427	3454	1739722689368397471	deps/raylib/libraylib.a	a9eb255c8245afcb
+3454	3472	1739722689388397485	deps/raymob/libraymoblib.a	89bf0d2a99d10507
+3473	3539	1739722689453397532	/home/jamiedrinkell/development/raymob/app/build/intermediates/cxx/Debug/5w29443j/obj/x86/libraymob.so	f9a56267b7fc0e20
