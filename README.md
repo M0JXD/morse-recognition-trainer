@@ -75,7 +75,7 @@ If Xmake complains about being unable to install Raylib, try installing your dis
 
 ### Android
 
-Not done yet, but I intend to use Raymob.
+Use Raymob and Android Studio. I had to add the .h files the the CMakeLists.txt SOURCE glob, but the rest is pretty straightforward!
 
 ### Web
 
@@ -92,4 +92,5 @@ Thanks to raysan5 and all the contributors of [Raylib](https://www.raylib.com/)!
 Thanks to Meridian Outpost's website for the Morse files: https://www.meridianoutpost.com/resources/etools/calculators/calculator-morse-code.php? <br>
 Thanks to this video for the CC0 Buzzer sound: https://www.youtube.com/watch?v=L0atHn_vPS4 <br>
 Thanks to Ruki for Xmake <br>
+Thanks to https://icon.kitchen for the easy to use Android Icon Set Generator <br>
 And everyone else who's work this relies on... Emscripten, GNU, Linux, Microsoft... Thank you :)
