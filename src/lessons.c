@@ -26,6 +26,7 @@ void GetLessonText(char *string) {
     switch (lessonState) {
         case ASKING:
             sprintf(string, "Playing Letter...");
+            break;
         case WAITING:
             sprintf(string, "Which letter was played?");
             break;
