@@ -50,7 +50,10 @@ int UpdateLevel(int kochLetterToUpdate) {
             gameSave.levels[kochLetterToUpdate] = 8;
         }
         // If the level is more than two, and the next Koch letter is not activated, activate it.
-        if (gameSave.levels[kochLetterToUpdate] >= 3 && !gameSave.activatedLetters[kochLetterToUpdate + 1]) {
+        // Provided we haven't already activated everything that is!
+        if (gameSave.levels[kochLetterToUpdate] >= 3 
+            && !gameSave.activatedLetters[kochLetterToUpdate + 1]
+            && kochLetterToUpdate < 39) {
             // Force it to be the next letter
             gameSave.activatedLetters[kochLetterToUpdate + 1] = 1;
             letterToReturn = kochLetterToUpdate + 1;
