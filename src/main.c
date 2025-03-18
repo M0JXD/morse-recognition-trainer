@@ -1,11 +1,11 @@
 #include "raylib.h"
-#include "rlgl.h"  // Needed to set line widths for functions like "DrawCircleOutline()"
+#include "rlgl.h"    // Needed to set line widths for functions like "DrawCircleOutline()"
 
 #include "ctype.h"   // toupper
 #include "stdio.h"   // sprintf
 #include "stdlib.h"  // rand
 #include "string.h"  // memset
-#include "time.h"  // time used to seed rand
+#include "time.h"    // time used to seed rand
 
 #include "game_save.h"
 #include "lessons.h"
@@ -58,7 +58,7 @@ void SetTheme(Color *mainTheme, Color *oppositeMainTheme, Color *progressColour,
             *mainTheme = DARKGRAY;
             *oppositeMainTheme = WHITE;
             *progressColour = VIOLET;
-            *everythingColour = CLITERAL(Color){ 176, 174, 68, 255 };  // Custom, nothing good in the pallet
+            *everythingColour = CLITERAL(Color) { 176, 174, 68, 255 };  // Custom, nothing good in the pallet
             break;
     }
 }
@@ -247,7 +247,7 @@ int main(void) {
 
                         if (gameSave.levels[kochIndex] && gameSave.activatedLetters[kochIndex]) {
                             DrawRing(circleCentre, radius * 0.6, radius, -90, 
-                                    ((gameSave.levels[kochIndex]) * (360 / 8)) - 90,
+                                    ((gameSave.levels[kochIndex]) * (360.0f / 8.0f)) - 90,
                                     20, progressColour
                             );
                         }
