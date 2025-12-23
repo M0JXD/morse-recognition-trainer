@@ -101,7 +101,7 @@ int main(void) {
 #endif
 
     LoadCustomOrder();
-    srand(time(NULL)); 
+    srand(time(NULL));
 
     // Default line width is a bit thin.
     float defaultLineWidth = rlGetLineWidth();
@@ -112,7 +112,7 @@ int main(void) {
     Color oppositeMainTheme;
     Color progressColour;
     Color everythingColour;
-    gameSave.theme--;  // Stop it iterating to next at startup 
+    gameSave.theme--;  // Stop it iterating to next at startup
     SetTheme(&mainTheme, &oppositeMainTheme, &progressColour, &everythingColour);
 
     int layoutWidth = 10;
@@ -130,7 +130,7 @@ int main(void) {
         float circleSpaceY = height - 30;  // Save space at the top for buttons
         float radius = 10.0f;
         int divisionsX, divisionsY;
-        
+
         if (width > height) {
             // Normal Desktop Layout 10 x 4
             layoutWidth = 10; layoutHeight = 4;
@@ -150,14 +150,14 @@ int main(void) {
         float singleDivX = circleSpaceX / divisionsX;
         float singleDivY = circleSpaceY / divisionsY;
         if (height > width) singleDivY = circleSpaceY / divisionsY * 0.96;  // Save some space for status messages at bottom
-        
+
         //--------------------------------------------------------------------------------
         // DRAWING & COLLISION
         //--------------------------------------------------------------------------------
         BeginDrawing();
             ClearBackground(mainTheme);
             char string[40] = {0};  // This should always be enough. Not used as a user input path!
-            
+
             // Top Buttons
             Rectangle LessonButton = { 10, 10, 150, 30 };
             switch (mode) {
@@ -177,9 +177,9 @@ int main(void) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), LessonButton)) {
                 oldMode = mode;
                 mode++;
-                if (mode > EVERYTHING) mode = REPEAT; 
+                if (mode > EVERYTHING) mode = REPEAT;
             }
-            
+
             Rectangle wpmButton = { width - 312, 10, 90 ,30 };
             DrawRectangleRoundedLines(wpmButton, BUTTON_ROUNDNESS, BUTTON_SEGMENTS, RED);
             sprintf(string, "WPM: %d", gameSave.WPM);
@@ -229,14 +229,14 @@ int main(void) {
                     GetLessonText(string);
                     break;
             }
-            
+
             int centering = MeasureText(string, radius * 0.8) / 2;
             string[0] ? DrawText(string, (width / 2) - centering, height * 0.95, radius * 0.8, oppositeMainTheme) : 0;
 
-            // This loops draws the main circles, but also does collision detection 
+            // This loops draws the main circles, but also does collision detection
             for (int k = 0, y = 2; k < layoutHeight; k++, y += 3) {
                 for (int i = 0, x = 2; i < layoutWidth;  i++, x += 3) {
-                    int kochIndex = getKochFromQwerty(i + (k * layoutWidth)); 
+                    int kochIndex = getKochFromQwerty(i + (k * layoutWidth));
                     Vector2 circleCentre = {x * singleDivX, (y * singleDivY) + 30};
 
                     // Draw progress first so lines are clear on top
@@ -246,7 +246,7 @@ int main(void) {
                         }
 
                         if (gameSave.levels[kochIndex] && gameSave.activatedLetters[kochIndex]) {
-                            DrawRing(circleCentre, radius * 0.6, radius, -90, 
+                            DrawRing(circleCentre, radius * 0.6, radius, -90,
                                     ((gameSave.levels[kochIndex]) * (360.0f / 8.0f)) - 90,
                                     20, progressColour
                             );
@@ -254,37 +254,37 @@ int main(void) {
                     } else {
                         // Highlight all centers in a new colour
                         DrawCircleV(circleCentre, radius * 0.6, progressColour);
-                        DrawRing(circleCentre, radius * 0.6, radius, -90, 
+                        DrawRing(circleCentre, radius * 0.6, radius, -90,
                                  360 - 90, 20, everythingColour);
                     }
 
-                    // Outer Circle & Smaller inner circle 
+                    // Outer Circle & Smaller inner circle
                     DrawCircleLinesV(circleCentre, radius, oppositeMainTheme);
                     DrawCircleLinesV(circleCentre, radius * 0.6, oppositeMainTheme);
 
                     // Add lines for the segments, NB: sin(45) = 0.707
-                    DrawLine(circleCentre.x, circleCentre.y + radius * 0.6, 
+                    DrawLine(circleCentre.x, circleCentre.y + radius * 0.6,
                              circleCentre.x, circleCentre.y + radius, oppositeMainTheme);
 
-                    DrawLine(circleCentre.x, circleCentre.y - radius * 0.6, 
+                    DrawLine(circleCentre.x, circleCentre.y - radius * 0.6,
                              circleCentre.x, circleCentre.y - radius, oppositeMainTheme);
 
-                    DrawLine(circleCentre.x + radius * 0.6, circleCentre.y, 
+                    DrawLine(circleCentre.x + radius * 0.6, circleCentre.y,
                              circleCentre.x + radius, circleCentre.y, oppositeMainTheme);
 
                     DrawLine(circleCentre.x - radius * 0.6, circleCentre.y,
                              circleCentre.x - radius, circleCentre.y, oppositeMainTheme);
 
-                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707, 
+                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707,
                              circleCentre.x + radius * 0.707, circleCentre.y + radius * 0.707, oppositeMainTheme);
-   
-                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707, 
+
+                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y + (radius * 0.6) * 0.707,
                              circleCentre.x - radius * 0.707, circleCentre.y + radius * 0.707, oppositeMainTheme);
 
-                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707, 
+                    DrawLine(circleCentre.x - (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707,
                              circleCentre.x - radius * 0.707, circleCentre.y - radius * 0.707, oppositeMainTheme);
 
-                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707, 
+                    DrawLine(circleCentre.x + (radius * 0.6) * 0.707, circleCentre.y - (radius * 0.6) * 0.707,
                              circleCentre.x + radius * 0.707, circleCentre.y - radius * 0.707, oppositeMainTheme);
 
                     // Used for centering the letters in each circle
@@ -292,28 +292,28 @@ int main(void) {
                         GetFontDefault(),
                         lettersQwerty[i + (k * layoutWidth)],
                         radius * 0.9,
-                        2  // Is the default in rText.C I think this is an unused parameter 
+                        2  // Is the default in rText.C I think this is an unused parameter
                     );  // TODO: Double check and issue report to raylib
-                    
+
                     // Draw the letter in circle
                     DrawText(
-                        lettersQwerty[i + (k * layoutWidth)], 
-                        circleCentre.x - (offsets.x / 2), 
-                        circleCentre.y - (offsets.y / 2), 
+                        lettersQwerty[i + (k * layoutWidth)],
+                        circleCentre.x - (offsets.x / 2),
+                        circleCentre.y - (offsets.y / 2),
                         radius * 0.9,
                         oppositeMainTheme
                     );
-                    
+
                     //--------------------------------------------------------------------------------
                     // Detection
                     //--------------------------------------------------------------------------------
                     int wasDetected = NOT_LETTER;
                     // Check if one was clicked by the mouse
-                    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {  
+                    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointCircle(circleCentre, GetMousePosition(), radius)) {
                             wasDetected = i + (k * layoutWidth);
-                    } else {  
+                    } else {
                         // Check if it was typed
-                        char pressed[2] = "\0"; 
+                        char pressed[2] = "\0";
                         pressed[0] = toupper(GetCharPressed());
                         if(pressed[0]) {
                             // Sets wasDetected to the letter pressed
@@ -333,7 +333,7 @@ int main(void) {
                             case EVERYTHING:
                                 UpdateLesson(getKochFromQwerty(wasDetected));
                                 break;
-                        } 
+                        }
                     }
                 }
             }

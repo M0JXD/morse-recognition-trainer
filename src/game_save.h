@@ -13,7 +13,6 @@ typedef struct SaveState {
     int activatedLetters[40];  // Active letters are !0, Koch order.
 } SaveState;
 
-
 void LoadData(SaveState *saveState);
 
 void SaveData(SaveState *saveState);

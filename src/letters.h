@@ -5,7 +5,7 @@
 
 #define NOT_LETTER 41
 
-// Strings with all the letters
+/* Strings with all the letters */
 extern const char* lettersQwerty[40];
 extern char lettersKoch[40][2];
 
