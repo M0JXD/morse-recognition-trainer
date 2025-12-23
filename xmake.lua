@@ -14,5 +14,5 @@ target("morse-recognition-trainer")
     -- add_ldflags("-static", {force = true})
 
     -- Copy the assets
-    set_configdir("$(buildir)/$(plat)/$(arch)/$(mode)/assets")
+    set_configdir("$(builddir)/$(plat)/$(arch)/$(mode)/assets")
     add_configfiles("assets/*.*", {onlycopy = true})
