@@ -29,12 +29,14 @@ void GetLessonText(char *string) {
             break;
         case WAITING:
             sprintf(string, "Which letter was played?");
+            EnableEventWaiting();  // We can wait until user input at this point
             break;
         case LAST_INCORRECT:
             sprintf(string, "Wrong, repeating letter...");
             break;
         case CONGRATS:
             sprintf(string, "Correct!");
+            DisableEventWaiting();  // The loop has to run to wait until the next letter gets played
             break;
         default:
             sprintf(string, "I am lost, what happened?");
@@ -51,7 +53,7 @@ int UpdateLevel(int kochLetterToUpdate) {
         }
         // If the level is more than two, and the next Koch letter is not activated, activate it.
         // Provided we haven't already activated everything that is!
-        if (gameSave.levels[kochLetterToUpdate] >= 3 
+        if (gameSave.levels[kochLetterToUpdate] >= 3
             && !gameSave.activatedLetters[kochLetterToUpdate + 1]
             && kochLetterToUpdate < 39) {
             // Force it to be the next letter

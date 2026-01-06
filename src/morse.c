@@ -39,6 +39,7 @@ void GetMorseText(int letter, char* text) {
     // We're not playing a sound anymore
     if (letter == (NOT_LETTER + 1)) {
         currentLetter = NOT_LETTER;
+        EnableEventWaiting();
     }
 
     if (letter == NOT_LETTER && currentLetter < 40 && text != NULL) {
@@ -47,7 +48,7 @@ void GetMorseText(int letter, char* text) {
 }
 
 void PlayMorse(int letter) {
-    
+
     static int letterPlaying = NOT_LETTER;
     static int onPart = 0;
 
@@ -55,6 +56,7 @@ void PlayMorse(int letter) {
     // If both are NOT_LETTER, then nothing is playing right now, promptly return
     if (letter == NOT_LETTER && letterPlaying == NOT_LETTER) return;
 
+    DisableEventWaiting();  // Raylib poll loop must run to keep playing sound
     // We have a new letter to start playing
     if (letterPlaying == NOT_LETTER && letter < 40) {
         letterPlaying = letter;
