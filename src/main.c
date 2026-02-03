@@ -74,7 +74,7 @@ int main(void) {
 #else
     InitWindow(640, 480, "Morse Recognition Trainer");
 #endif
-    SetTargetFPS(30);
+    SetTargetFPS(20);
     EnableEventWaiting();
     SetWindowMinSize(480, 300);
     SetWindowState(FLAG_WINDOW_RESIZABLE);
